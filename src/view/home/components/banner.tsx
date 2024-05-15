@@ -60,6 +60,7 @@ const Banner: React.FC = () => {
                     transition={{ type: "spring", duration: 0.5 }}
                     initial={{ opacity: 0, y: 100 }}
                     whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
                     className="text-4xl font-bold tracking-tight text-[#153615] sm:text-6xl"
                   >
                     Travel The World,{" "}
@@ -67,6 +68,7 @@ const Banner: React.FC = () => {
                       transition={{ type: "spring", duration: 0.5, delay: 0.2 }}
                       initial={{ opacity: 0, y: 100 }}
                       whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
                       className="text-green-600"
                     >
                       Simplified.
@@ -76,6 +78,7 @@ const Banner: React.FC = () => {
                     transition={{ type: "spring", duration: 0.5, delay: 0.3 }}
                     initial={{ opacity: 0, y: 100 }}
                     whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
                     className="mt-6 text-lg leading-8 text-gray-400 sm:max-w-md lg:max-w-none"
                   >
                     Effortless Visa Assistance for Your Dream Destination. No
@@ -91,6 +94,7 @@ const Banner: React.FC = () => {
                       transition={{ type: "spring", duration: 0.1, delay: 0.4 }}
                       initial={{ opacity: 0, y: 100 }}
                       whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
                       href="#"
                       className="rounded-md bg-green-500 px-3.5 py-2.5 text-sm font-semibold text-[#153615] shadow-sm hover:bg-green-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 duration-300"
                     >
@@ -104,6 +108,7 @@ const Banner: React.FC = () => {
                       }}
                       initial={{ opacity: 0, y: 100 }}
                       whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
                       href="#"
                       className="text-sm font-semibold leading-6 text-green-400 hover:text-green-900 duration-300"
                     >
@@ -118,8 +123,8 @@ const Banner: React.FC = () => {
                         transition={{ type: "spring", delay: 0.6 }}
                         initial={{ opacity: 0, x: 100 }}
                         whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
                         src={IMG01}
-                        // src="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&h=528&q=80"
                         alt=""
                         className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                       />
@@ -136,8 +141,8 @@ const Banner: React.FC = () => {
                         }}
                         initial={{ opacity: 0, x: 100 }}
                         whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
                         src={IMG02}
-                        // src="https://images.unsplash.com/photo-1485217988980-11786ced9454?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&h=528&q=80"
                         alt=""
                         className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                       />
@@ -152,8 +157,8 @@ const Banner: React.FC = () => {
                         }}
                         initial={{ opacity: 0, x: 100 }}
                         whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
                         src={IMG03}
-                        // src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=focalpoint&fp-x=.4&w=396&h=528&q=80"
                         alt=""
                         className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                       />
@@ -170,8 +175,8 @@ const Banner: React.FC = () => {
                         }}
                         initial={{ opacity: 0, x: 100 }}
                         whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
                         src={IMG04}
-                        // src="https://images.unsplash.com/photo-1670272504528-790c24957dda?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=left&w=400&h=528&q=80"
                         alt=""
                         className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                       />
@@ -186,8 +191,8 @@ const Banner: React.FC = () => {
                         }}
                         initial={{ opacity: 0, x: 100 }}
                         whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
                         src={IMG05}
-                        // src="https://images.unsplash.com/photo-1670272505284-8faba1c31f7d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&h=528&q=80"
                         alt=""
                         className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                       />

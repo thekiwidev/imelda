@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 import {
   FaArrowTrendUp,
   FaCubesStacked,
@@ -43,24 +44,53 @@ const Proposition: React.FC = () => {
       <div className="bg-white py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl lg:text-center">
-            <h2 className="text-base font-semibold leading-7 text-green-600">
+            <motion.h2
+              transition={{ type: "spring", duration: 0.5 }}
+              initial={{ opacity: 0, y: 100 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-base font-semibold leading-7 text-green-600"
+            >
               Streamlined Visa Process
-            </h2>
-            <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+            </motion.h2>
+            <motion.p
+              transition={{ type: "spring", duration: 0.7 }}
+              initial={{ opacity: 0, y: 100 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"
+            >
               Less Paperwork, Higher Approval Rates
-            </p>
-            <p className="mt-6 text-lg leading-8 text-gray-600">
+            </motion.p>
+            <motion.p
+              transition={{ type: "spring", duration: 0.8 }}
+              initial={{ opacity: 0, y: 100 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="mt-6 text-lg leading-8 text-gray-600"
+            >
               Our travel consultant simplifies the visa application process by
               handling the document collection and ensuring all requirements are
               met. This meticulous attention to detail helps to streamline the
               application process and minimize the risk of errors or delays that
               could jeopardize your visa approval.
-            </p>
+            </motion.p>
           </div>
           <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
             <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
-              {features.map((feature) => (
-                <div key={feature.name} className="relative pl-16">
+              {features.map((feature, index) => (
+                <motion.div
+                  transition={{
+                    type: "spring",
+                    duration: 0.6,
+                    delay: index * 0.2,
+                  }}
+                  initial={{ opacity: 0, y: 100 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  key={feature.name}
+                  className="relative pl-16"
+                >
                   <dt className="text-base font-semibold leading-7 text-[#153615]">
                     <div className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-green-600">
                       <feature.icon
@@ -73,7 +103,7 @@ const Proposition: React.FC = () => {
                   <dd className="mt-2 text-base leading-7 text-gray-600">
                     {feature.description}
                   </dd>
-                </div>
+                </motion.div>
               ))}
             </dl>
           </div>
@@ -81,32 +111,58 @@ const Proposition: React.FC = () => {
       </div>
       <div className="bg-white">
         <div className="mx-auto max-w-7xl py-24 sm:px-6 sm:py-32 lg:px-8">
-          <div className="relative isolate overflow-hidden bg-[#202020] px-6 py-24 text-center shadow-2xl sm:rounded-3xl sm:px-16">
-            <h2 className="mx-auto max-w-2xl text-3xl font-bold tracking-tight text-green-500 sm:text-4xl">
+          <motion.div
+            transition={{ type: "spring", duration: 0.8 }}
+            initial={{ opacity: 0, y: 100 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="relative isolate overflow-hidden bg-[#202020] px-6 py-24 text-center shadow-2xl sm:rounded-3xl sm:px-16"
+          >
+            <motion.h2
+              transition={{ type: "spring", duration: 0.5, delay: 0.4 }}
+              initial={{ opacity: 0, y: 100 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="mx-auto max-w-2xl text-3xl font-bold tracking-tight text-green-500 sm:text-4xl"
+            >
               Visas Simplified:{" "}
               <span className="text-white">Dream Trip Activated.</span>
-            </h2>
-            <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-gray-300">
+            </motion.h2>
+            <motion.p
+              transition={{ type: "spring", duration: 0.5, delay: 0.5 }}
+              initial={{ opacity: 0, y: 100 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="mx-auto mt-6 max-w-xl text-lg leading-8 text-gray-300"
+            >
               Planning a trip can be incredibly exciting, but visa applications
               often add unnecessary stress and confusion. At{" "}
               <span className="text-green-400 font-bold">Imelda yayala</span>,
               we take the worry out of visas with our streamlined process and
               expert guidance.
-            </p>
+            </motion.p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
-              <a
+              <motion.a
+                transition={{ type: "spring", duration: 0.2 }}
+                initial={{ opacity: 0, y: 100 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
                 href="#"
                 className="rounded-md bg-green-500 px-3.5 py-2.5 text-sm font-semibold text-[#153615] shadow-sm hover:bg-green-600 
                 duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
               >
                 Get Your Free Visa Assessment
-              </a>
-              <a
+              </motion.a>
+              <motion.a
+                transition={{ type: "spring", duration: 0.8, delay: 0.5 }}
+                initial={{ opacity: 0, y: 100 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
                 href="#"
                 className="text-sm font-semibold leading-6 text-white hover:text-green-200"
               >
                 Explore Our Services <span aria-hidden="true">→</span>
-              </a>
+              </motion.a>
             </div>
             <svg
               viewBox="0 0 1024 1024"
@@ -127,7 +183,7 @@ const Proposition: React.FC = () => {
                 </radialGradient>
               </defs>
             </svg>
-          </div>
+          </motion.div>
         </div>
       </div>
     </div>

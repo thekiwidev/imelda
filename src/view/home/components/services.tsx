@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 import {
   FaComments,
   FaFileCircleCheck,
@@ -53,22 +54,44 @@ const Services: React.FC = () => {
     <div className="bg-[#101010] py-24 sm:py-32" id="services">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl sm:text-center">
-          <h2 className="text-base font-semibold leading-7 text-green-400">
+          <motion.h2
+            transition={{ type: "spring", duration: 0.5, delay: 0.2 }}
+            initial={{ opacity: 0, y: 100 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-base font-semibold leading-7 text-green-400"
+          >
             Everything you need
-          </h2>
-          <p className="mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl">
+          </motion.h2>
+          <motion.p
+            transition={{ type: "spring", duration: 0.5, delay: 0.4 }}
+            initial={{ opacity: 0, y: 100 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl"
+          >
             Streamlined Visa Application Services for Every Traveler
-          </p>
-          <p className="mt-6 text-lg leading-8 text-gray-300">
+          </motion.p>
+          <motion.p
+            transition={{ type: "spring", duration: 0.5, delay: 0.4 }}
+            initial={{ opacity: 0, y: 100 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mt-6 text-lg leading-8 text-gray-300"
+          >
             At Imelda Yayala, we offer a comprehensive suite of services to
             simplify your visa application process, regardless of your travel
             goals.
-          </p>
+          </motion.p>
         </div>
       </div>
       <div className="relative overflow-hidden pt-16">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <img
+          <motion.img
+            transition={{ type: "spring", duration: 0.5, delay: 0.4 }}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             src={IMG06}
             alt="App screenshot"
             className="mb-[-12%] rounded-xl shadow-2xl ring-1 ring-white/10"
@@ -82,8 +105,15 @@ const Services: React.FC = () => {
       </div>
       <div className="mx-auto mt-16 max-w-7xl px-6 sm:mt-20 md:mt-24 lg:px-8">
         <dl className="mx-auto grid max-w-2xl grid-cols-1 gap-x-6 gap-y-10 text-base leading-7 text-gray-300 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-x-8 lg:gap-y-16">
-          {features.map((feature) => (
-            <div key={feature.name} className="relative pl-9">
+          {features.map((feature, index) => (
+            <motion.div
+              transition={{ type: "spring", duration: 0.5, delay: index * 0.2 }}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              key={`${feature.name}-${index}`}
+              className="relative pl-9"
+            >
               <dt className="inline font-semibold text-white">
                 <feature.icon
                   className="absolute left-1 top-1 h-6 w-6 text-green-500"
@@ -92,7 +122,7 @@ const Services: React.FC = () => {
                 {feature.name}
               </dt>{" "}
               <dd className="inline">{feature.description}</dd>
-            </div>
+            </motion.div>
           ))}
         </dl>
       </div>

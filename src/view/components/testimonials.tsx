@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 const featuredTestimonial = {
   body: "I initially hesitated to use a visa consultancy service, but I'm so glad I did! Imelda Yayala streamlined the entire visa application process for my family vacation to Europe.  They saved me a lot of time and frustration, and their expertise was worth every penny.  We're now exploring Europe with confidence, knowing our visas are in order.",
@@ -131,7 +132,17 @@ const Testimonials: React.FC = () => {
           </p>
         </div>
         <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 grid-rows-1 gap-8 text-sm leading-6 text-gray-900 sm:mt-20 sm:grid-cols-2 xl:mx-0 xl:max-w-none xl:grid-flow-col xl:grid-cols-4">
-          <figure className="rounded-2xl bg-white shadow-lg ring-1 ring-gray-900/5 sm:col-span-2 xl:col-start-2 xl:row-end-1">
+          <motion.figure
+            transition={{
+              type: "spring",
+              duration: 0.5,
+              delay: 0.2,
+            }}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="rounded-2xl bg-white shadow-lg ring-1 ring-gray-900/5 sm:col-span-2 xl:col-start-2 xl:row-end-1"
+          >
             <blockquote className="p-6 text-lg font-semibold leading-7 tracking-tight text-gray-900 sm:p-12 sm:text-xl sm:leading-8">
               <p>{`“${featuredTestimonial.body}”`}</p>
             </blockquote>
@@ -153,7 +164,7 @@ const Testimonials: React.FC = () => {
                 alt=""
               />
             </figcaption>
-          </figure>
+          </motion.figure>
           {testimonials.map((columnGroup, columnGroupIdx) => (
             <div
               key={columnGroupIdx}
@@ -172,7 +183,15 @@ const Testimonials: React.FC = () => {
                   )`}
                 >
                   {column.map((testimonial) => (
-                    <figure
+                    <motion.figure
+                      transition={{
+                        type: "spring",
+                        duration: 0.5,
+                        delay: columnIdx * 0.2,
+                      }}
+                      initial={{ opacity: 0, y: 50 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
                       key={testimonial.author.handle}
                       className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-gray-900/5"
                     >
@@ -192,7 +211,7 @@ const Testimonials: React.FC = () => {
                           <div className="text-gray-600">{`@${testimonial.author.handle}`}</div>
                         </div>
                       </figcaption>
-                    </figure>
+                    </motion.figure>
                   ))}
                 </div>
               ))}
