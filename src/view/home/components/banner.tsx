@@ -1,7 +1,7 @@
 import React from "react";
 // import { useRef } from "react";
 import { motion } from "framer-motion";
-import { IMG01, IMG02, IMG03, IMG04 } from "../../../assets";
+import { IMG01, IMG02, IMG03, IMG04, IMG05 } from "../../../assets";
 
 const Banner: React.FC = () => {
   // const ref = useRef(null);
@@ -53,7 +53,7 @@ const Banner: React.FC = () => {
             />
           </div>
           <div className="overflow-hidden">
-            <div className="mx-auto max-w-7xl px-6 pb-32 pt-36 sm:pt-60 lg:px-8 lg:pt-32">
+            <div className="mx-auto max-w-7xl px-6 pb-32 pt-36 sm:pt-60 lg:px-8 lg:pt-16">
               <div className="mx-auto max-w-2xl gap-x-14 lg:mx-0 lg:flex lg:max-w-none lg:items-center">
                 <div className="relative w-full max-w-xl lg:shrink-0 xl:max-w-2xl">
                   <motion.h1
@@ -186,7 +186,7 @@ const Banner: React.FC = () => {
                         }}
                         initial={{ opacity: 0, x: 100 }}
                         whileInView={{ opacity: 1, x: 0 }}
-                        src={IMG01}
+                        src={IMG05}
                         // src="https://images.unsplash.com/photo-1670272505284-8faba1c31f7d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&h=528&q=80"
                         alt=""
                         className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"

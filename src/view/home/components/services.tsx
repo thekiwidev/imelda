@@ -7,6 +7,7 @@ import {
   FaUserGear,
   FaUsersGear,
 } from "react-icons/fa6";
+import { IMG06 } from "../../../assets";
 
 const features = [
   {
@@ -68,7 +69,7 @@ const Services: React.FC = () => {
       <div className="relative overflow-hidden pt-16">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <img
-            src="https://tailwindui.com/img/component-images/dark-project-app-screenshot.png"
+            src={IMG06}
             alt="App screenshot"
             className="mb-[-12%] rounded-xl shadow-2xl ring-1 ring-white/10"
             width={2432}
