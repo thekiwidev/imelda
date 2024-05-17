@@ -13,14 +13,13 @@ import { IoMenu } from "react-icons/io5";
 import { logo } from "../../../assets";
 
 import {
-  FaBinoculars,
   FaBriefcase,
   FaChevronDown,
-  FaCirclePlay,
+  FaComments,
   FaGraduationCap,
   FaHeadset,
-  FaHouseChimneyWindow,
 } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 // const navigation = [
 //   { name: "Home", path: "/" },
 //   { name: "Services", href: "#services" },
@@ -31,33 +30,21 @@ import {
 const forms = [
   {
     name: "Student Visa Application",
-    description: "Get a better understanding of your traffic",
-    href: "#",
+    description: "Pursue your academic dreams abroad",
+    href: "/student-application",
     icon: FaGraduationCap,
   },
   {
-    name: "Business",
-    description: "Speak directly to your customers",
-    href: "#",
+    name: "Travel Visa Application",
+    description: "Simplify your travel visa application",
+    href: "/travel-application",
     icon: FaBriefcase,
-  },
-  {
-    name: "Relocation",
-    description: "Your customer's data will be safe and secure",
-    href: "#",
-    icon: FaHouseChimneyWindow,
-  },
-  {
-    name: "Tourism",
-    description: "Connect with third-party tools",
-    href: "#",
-    icon: FaBinoculars,
   },
 ];
 
 const callsToAction = [
-  { name: "Watch demo", href: "#", icon: FaCirclePlay },
-  { name: "Contact sales", href: "#", icon: FaHeadset },
+  { name: "See testimonies", href: "#testimonials", icon: FaComments },
+  { name: "Get in touch", href: "#", icon: FaHeadset },
 ];
 
 const Header: React.FC = () => {
@@ -70,10 +57,10 @@ const Header: React.FC = () => {
         aria-label="Global"
       >
         <div className="flex lg:flex-1">
-          <a href="#" className="-m-1.5 p-1.5">
+          <Link to="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Your Company</span>
             <img className="h-8 w-auto" src={logo} alt="" />
-          </a>
+          </Link>
         </div>
         <div className="flex lg:hidden">
           <button
@@ -122,13 +109,13 @@ const Header: React.FC = () => {
                         />
                       </div>
                       <div className="flex-auto">
-                        <a
-                          href={item.href}
+                        <Link
+                          to={item.href}
                           className="block font-semibold text-gray-900"
                         >
                           {item.name}
                           <span className="absolute inset-0" />
-                        </a>
+                        </Link>
                         <p className="mt-1 text-gray-600">{item.description}</p>
                       </div>
                     </div>
@@ -136,9 +123,9 @@ const Header: React.FC = () => {
                 </div>
                 <div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
                   {callsToAction.map((item) => (
-                    <a
+                    <Link
                       key={item.name}
-                      href={item.href}
+                      to={item.href}
                       className="flex items-center justify-center gap-x-2.5 p-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-100"
                     >
                       <item.icon
@@ -146,19 +133,25 @@ const Header: React.FC = () => {
                         aria-hidden="true"
                       />
                       {item.name}
-                    </a>
+                    </Link>
                   ))}
                 </div>
               </PopoverPanel>
             </Transition>
           </Popover>
 
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-            Marketplace
+          <a
+            href="#services"
+            className="text-sm font-semibold leading-6 text-gray-900"
+          >
+            Services
           </a>
 
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-            Marketplace
+          <a
+            href="#proposition"
+            className="text-sm font-semibold leading-6 text-gray-900"
+          >
+            Value Proposition
           </a>
         </PopoverGroup>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
@@ -178,11 +171,7 @@ const Header: React.FC = () => {
             <div className="flex items-center justify-between">
               <a href="#" className="-m-1.5 p-1.5">
                 <span className="sr-only">Your Company</span>
-                <img
-                  className="h-8 w-auto"
-                  src="https://tailwindui.com/img/logos/mark.svg?color=green&shade=600"
-                  alt=""
-                />
+                <img className="h-8 w-auto" src={logo} alt="" />
               </a>
               <button
                 type="button"
@@ -217,19 +206,19 @@ const Header: React.FC = () => {
                     href="#"
                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                   >
-                    Features
+                    About
                   </a>
                   <a
                     href="#"
                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                   >
-                    Marketplace
+                    Services
                   </a>
                   <a
                     href="#"
                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                   >
-                    Marketplace
+                    Value Proposition
                   </a>
                 </div>
                 <div className="py-6">

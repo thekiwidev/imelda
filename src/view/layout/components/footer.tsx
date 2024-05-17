@@ -7,9 +7,8 @@ const navigation = {
     { name: "About", href: "#" },
     { name: "Contact Us", href: "#" },
     { name: "FAQs", href: "#faqs" },
-    { name: "Press", href: "#" },
-    { name: "Privacy Policy & Terms of Service", href: "#" },
-    { name: "Partners", href: "#partners" },
+    { name: "Student Visa Application", href: "/student-application" },
+    { name: "Travel Visa Application", href: "/travel-application" },
   ],
   social: [
     {
