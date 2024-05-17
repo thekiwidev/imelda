@@ -9,7 +9,10 @@ import SubmitButton from "./submitButton";
 
 const Form: React.FC = () => {
   return (
-    <form>
+    <form
+      className="mx-auto max-w-7xl px-6 lg:px-8"
+      id="student-application-form"
+    >
       <PersonalInformation />
       <Hr />
       <ParentInformation />

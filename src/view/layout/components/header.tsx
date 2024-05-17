@@ -20,12 +20,6 @@ import {
   FaHeadset,
 } from "react-icons/fa6";
 import { Link } from "react-router-dom";
-// const navigation = [
-//   { name: "Home", path: "/" },
-//   { name: "Services", href: "#services" },
-//   { name: "Destinations", href: "/destinations" },
-//   { name: "About Us", href: "/about-us" },
-// ];
 
 const forms = [
   {
@@ -156,7 +150,7 @@ const Header: React.FC = () => {
         </PopoverGroup>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-            Free Consultation <span aria-hidden="true">&rarr;</span>
+            Get Consultation <span aria-hidden="true">&rarr;</span>
           </a>
         </div>
       </nav>
@@ -226,7 +220,7 @@ const Header: React.FC = () => {
                     href="#"
                     className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                   >
-                    Free Consultation
+                    Get Consultation
                   </a>
                 </div>
               </div>
