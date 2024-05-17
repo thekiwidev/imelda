@@ -1,8 +1,3 @@
-export const YesNo = [
-  { id: "yes", title: "Yes" },
-  { id: "no", title: "No" },
-];
-
 export const EnglishCertExam = [
   { id: "ielts", title: "IELTS" },
   { id: "toefl", title: "TOEFL" },

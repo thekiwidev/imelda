@@ -2,7 +2,6 @@ import React from "react";
 import {
   EnglishCertExam,
   HowDidYouHearAboutUs,
-  YesNo,
 } from "../../../components/data";
 import { FaCircleInfo } from "react-icons/fa6";
 
