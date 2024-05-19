@@ -5,7 +5,7 @@ import ParentInformation from "./parentInfo";
 import EmergencyContact from "./emergencyContact";
 import OtherInformation from "./otherInfo";
 import Declaration from "./declaration";
-import SubmitButton from "./submitButton";
+import SubmitButton from "../../components/submitButton";
 
 const StudentApplicationForm: React.FC = () => {
   return (
