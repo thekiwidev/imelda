@@ -79,6 +79,15 @@ const Header: React.FC = () => {
           </button>
         </div>
         <PopoverGroup className="hidden lg:flex lg:gap-x-12">
+          {isFormPage && (
+            <a
+              href="/"
+              className="text-sm font-semibold leading-6 text-gray-900"
+            >
+              Home
+            </a>
+          )}
+
           <a
             href="/about-us"
             className="text-sm font-semibold leading-6 text-gray-900"
