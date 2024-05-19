@@ -1,3 +1,5 @@
+import { FaCircleInfo } from "react-icons/fa6";
+
 interface InputProps {
   label: string;
   name: string;
@@ -34,7 +36,11 @@ const InputField: React.FC<InputProps> = ({
         />
       </div>
       {note && (
-        <p className="mt-2 text-sm text-gray-400" id="email-description">
+        <p
+          className="mt-2 text-sm text-gray-400 flex items-center gap-2"
+          id={`${name}-description`}
+        >
+          <FaCircleInfo />
           {note}
         </p>
       )}

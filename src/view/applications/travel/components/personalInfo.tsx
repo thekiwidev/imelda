@@ -2,6 +2,8 @@ import InputField from "../../components/inputField";
 import RadioField from "../../components/radioField";
 import DateField from "../../components/dateField";
 import { Gender, YesNo } from "../../../components/data";
+import InputsWrapper from "../../components/inputsWrapper";
+import InputFlex from "../../components/inputsFlex";
 
 const PInfo: React.FC = () => {
   return (
@@ -16,27 +18,27 @@ const PInfo: React.FC = () => {
         </p>
       </div>
 
-      <div className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2">
-        <div className="px-4 py-6 sm:p-8 border">
-          <div className="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+      <InputsWrapper>
+        <div className="px-4 py-6 sm:p-8">
+          <InputFlex>
             <InputField
               name="applyCountry"
               label="Which Country do plan to apply for"
               gridCol={3}
             />
-          </div>
+          </InputFlex>
 
           <h2 className="mt-4 mb-2 text-md font-bold">Full Name Provided:</h2>
 
-          <div className="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+          <InputFlex>
             <InputField name="firstName" label="First name" gridCol={3} />
 
             <InputField name="lastName" label="Last name" gridCol={3} />
 
             <InputField name="middleName" label="Middle name" gridCol={3} />
-          </div>
+          </InputFlex>
 
-          <div className="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 mt-8">
+          <InputFlex>
             <RadioField name="gender" label="Gender" options={Gender} />
 
             <InputField
@@ -116,10 +118,10 @@ const PInfo: React.FC = () => {
             />
 
             <InputField name="emailAddress" label="Email Address" gridCol={6} />
-          </div>
+          </InputFlex>
 
           <h2 className="mt-8 mb-2 text-md font-bold">Travel Document</h2>
-          <div className="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+          <InputFlex>
             <InputField
               name="travelDocumentType"
               label="Passport/Travel Document Type"
@@ -179,9 +181,9 @@ const PInfo: React.FC = () => {
               label="Have you ever lost a passport or had one stolen"
               options={YesNo}
             />
-          </div>
+          </InputFlex>
         </div>
-      </div>
+      </InputsWrapper>
     </div>
   );
 };
