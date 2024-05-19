@@ -1,5 +1,4 @@
 import InputsWrapper from "../../components/inputsWrapper";
-import InputFlex from "../../components/inputsFlex";
 import InputField from "../../components/inputField";
 import DateField from "../../components/dateField";
 import RadioField from "../../components/radioField";
@@ -19,7 +18,7 @@ const PersonalInformation: React.FC = () => {
 
       <InputsWrapper>
         <div className="px-4 py-6 sm:p-8">
-          <InputFlex>
+          <div className="grid max-w-3xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <InputField
               name="firstName"
               label="First name"
@@ -82,7 +81,7 @@ const PersonalInformation: React.FC = () => {
             <InputField name="state" label="State/Province" gridCol={2} />
 
             <InputField name="city" label="City" gridCol={2} />
-          </InputFlex>
+          </div>
         </div>
       </InputsWrapper>
     </div>
