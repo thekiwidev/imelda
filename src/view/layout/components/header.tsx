@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import {
   Dialog,
   DialogPanel,
@@ -19,7 +19,7 @@ import {
   FaGraduationCap,
   FaHeadset,
 } from "react-icons/fa6";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const forms = [
   {
@@ -43,6 +43,9 @@ const callsToAction = [
 
 const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
+  const { pathname } = useLocation();
+
+  useEffect(() => console.log(pathname), [pathname]);
 
   return (
     <header className="bg-white">

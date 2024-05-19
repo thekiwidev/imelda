@@ -1,12 +1,13 @@
 import React from "react";
-import Form from "./components/form";
+
 import FormHeader from "./components/header";
+import StudentApplicationForm from "./components/form";
 
 const StudentApplication: React.FC = () => {
   return (
     <div>
       <FormHeader />
-      <Form />
+      <StudentApplicationForm />
     </div>
   );
 };

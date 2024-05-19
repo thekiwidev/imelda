@@ -4,10 +4,10 @@ import { Hr } from "../../../components";
 import ParentInformation from "./parentInfo";
 import EmergencyContact from "./emergencyContact";
 import OtherInformation from "./otherInfo";
-import Declearation from "./declearation";
+import Declaration from "./declaration";
 import SubmitButton from "./submitButton";
 
-const Form: React.FC = () => {
+const StudentApplicationForm: React.FC = () => {
   return (
     <form
       className="mx-auto max-w-7xl px-6 lg:px-8"
@@ -21,11 +21,11 @@ const Form: React.FC = () => {
       <Hr />
       <OtherInformation />
       <Hr />
-      <Declearation />
+      <Declaration />
       <Hr />
       <SubmitButton />
     </form>
   );
 };
 
-export default Form;
+export default StudentApplicationForm;

@@ -5,6 +5,7 @@ import "./index.css";
 import Layout from "./view/layout";
 import Home from "./view/home";
 import StudentApplication from "./view/applications/student";
+import TravelApplication from "./view/applications/travel";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
       {
         path: "/student-application",
         element: <StudentApplication />,
+      },
+      {
+        path: "/travel-application",
+        element: <TravelApplication />,
       },
     ],
   },

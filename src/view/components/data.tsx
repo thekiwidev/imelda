@@ -11,3 +11,13 @@ export const HowDidYouHearAboutUs = [
   { id: "agent", title: "Agent" },
   { id: "others", title: "Others" },
 ];
+
+export const YesNo = [
+  { label: "Yes", value: "Yes" },
+  { label: "No", value: "No" },
+];
+
+export const Gender = [
+  { label: "Male", value: "Male" },
+  { label: "Female", value: "Female" },
+];
