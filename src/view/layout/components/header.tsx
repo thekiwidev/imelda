@@ -44,8 +44,17 @@ const callsToAction = [
 const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
   const { pathname } = useLocation();
+  const [isFormPage, setIsFormPage] = useState<boolean>(false);
 
-  useEffect(() => console.log(pathname), [pathname]);
+  useEffect(() => {
+    if (
+      pathname === "/student-application" ||
+      pathname === "/travel-application"
+    ) {
+      setIsFormPage(true);
+      console.log(isFormPage);
+    } else setIsFormPage(false);
+  }, [isFormPage, pathname]);
 
   return (
     <header className="bg-white">
@@ -70,7 +79,10 @@ const Header: React.FC = () => {
           </button>
         </div>
         <PopoverGroup className="hidden lg:flex lg:gap-x-12">
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
+          <a
+            href="/about-us"
+            className="text-sm font-semibold leading-6 text-gray-900"
+          >
             About
           </a>
 
@@ -137,19 +149,23 @@ const Header: React.FC = () => {
             </Transition>
           </Popover>
 
-          <a
-            href="#services"
-            className="text-sm font-semibold leading-6 text-gray-900"
-          >
-            Services
-          </a>
+          {!isFormPage && (
+            <a
+              href="#services"
+              className="text-sm font-semibold leading-6 text-gray-900"
+            >
+              Services
+            </a>
+          )}
 
-          <a
-            href="#proposition"
-            className="text-sm font-semibold leading-6 text-gray-900"
-          >
-            Value Proposition
-          </a>
+          {!isFormPage && (
+            <a
+              href="#proposition"
+              className="text-sm font-semibold leading-6 text-gray-900"
+            >
+              Value Proposition
+            </a>
+          )}
         </PopoverGroup>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
@@ -200,23 +216,27 @@ const Header: React.FC = () => {
                 </div>
                 <div className="space-y-2 py-6">
                   <a
-                    href="#"
+                    href="/about-us"
                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                   >
                     About
                   </a>
-                  <a
-                    href="#"
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                  >
-                    Services
-                  </a>
-                  <a
-                    href="#"
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                  >
-                    Value Proposition
-                  </a>
+                  {!isFormPage && (
+                    <a
+                      href="#services"
+                      className="text-sm font-semibold leading-6 text-gray-900"
+                    >
+                      Services
+                    </a>
+                  )}
+                  {!isFormPage && (
+                    <a
+                      href="#proposition"
+                      className="text-sm font-semibold leading-6 text-gray-900"
+                    >
+                      Value Proposition
+                    </a>
+                  )}
                 </div>
                 <div className="py-6">
                   <a

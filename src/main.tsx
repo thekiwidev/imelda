@@ -6,6 +6,7 @@ import Layout from "./view/layout";
 import Home from "./view/home";
 import StudentApplication from "./view/applications/student";
 import TravelApplication from "./view/applications/travel";
+import About from "./view/about";
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
       {
         path: "",
         element: <Home />,
+      },
+      {
+        path: "/about-us",
+        element: <About />,
       },
       {
         path: "/student-application",
@@ -31,5 +36,5 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <RouterProvider router={router} />
-  </React.StrictMode>,
+  </React.StrictMode>
 );
