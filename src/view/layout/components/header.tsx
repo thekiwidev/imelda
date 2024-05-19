@@ -52,7 +52,6 @@ const Header: React.FC = () => {
       pathname === "/travel-application"
     ) {
       setIsFormPage(true);
-      console.log(isFormPage);
     } else setIsFormPage(false);
   }, [isFormPage, pathname]);
 
