@@ -17,8 +17,8 @@ const RadioField: React.FC<RadioComProps> = ({
       <fieldset className="mt-4">
         <legend className="sr-only">Notification method</legend>
         <div className="space-y-4 sm:flex sm:items-center sm:space-x-10 sm:space-y-0">
-          {options.map(({ label, value }) => (
-            <div className="flex items-center">
+          {options.map(({ label, value }, index) => (
+            <div className="flex items-center" key={index}>
               <input
                 id={`${name}-${value}`}
                 name={name}
