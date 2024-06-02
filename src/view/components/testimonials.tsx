@@ -138,7 +138,7 @@ const Testimonials: React.FC = () => {
               transition={{
                 type: "spring",
                 duration: 0.5,
-                delay: index === 1 ? 0.2 : 0.6 * index,
+                delay: index * 0.1,
               }}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}

@@ -105,12 +105,12 @@ const Faq: React.FC = () => {
             Frequently asked questions
           </motion.h2>
           <dl className="mt-10 space-y-6 divide-y divide-white/10">
-            {faqs.map((faq, index) => (
+            {faqs.map((faq) => (
               <motion.div
                 transition={{
                   type: "spring",
                   duration: 0.3,
-                  delay: index * 0.1,
+                  delay: 0.5,
                 }}
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
