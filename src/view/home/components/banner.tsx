@@ -63,16 +63,8 @@ const Banner: React.FC = () => {
                     viewport={{ once: true }}
                     className="text-4xl font-bold tracking-tight text-[#153615] sm:text-6xl"
                   >
-                    Travel The World,{" "}
-                    <motion.span
-                      transition={{ type: "spring", duration: 0.5, delay: 0.2 }}
-                      initial={{ opacity: 0, y: 100 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      className="text-green-600"
-                    >
-                      Simplified.
-                    </motion.span>
+                    Your Journey, <br />
+                    <span className="text-green-600">Our Expertise.</span>
                   </motion.h1>
                   <motion.p
                     transition={{ type: "spring", duration: 0.5, delay: 0.3 }}
@@ -81,13 +73,14 @@ const Banner: React.FC = () => {
                     viewport={{ once: true }}
                     className="mt-6 text-lg leading-8 text-gray-400 sm:max-w-md lg:max-w-none"
                   >
-                    Effortless Visa Assistance for Your Dream Destination. No
-                    matter where your wanderlust takes you, our streamlined visa
-                    application process ensures a stress-free journey towards
-                    exploring the world's most breathtaking destinations. From
-                    iconic landmarks to hidden gems, we'll guide you through the
-                    entire visa process, so you can focus on planning your
-                    unforgettable adventure.
+                    Turn your travel and relocation dreams into reality. Imelda
+                    Yayala is your one-stop shop for <span>studying,</span>{" "}
+                    <span>working,</span> <span>relocating,</span> and{" "}
+                    <span>exploring the world</span>. We offer complete support
+                    - from visa assistance and program selection to application
+                    processing and travel arrangements. Our expert team will
+                    guide you every step of the way. Get started on your global
+                    adventure today!
                   </motion.p>
                   <div className="mt-10 flex items-center gap-x-6">
                     <motion.a
@@ -96,23 +89,9 @@ const Banner: React.FC = () => {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       href="#"
-                      className="rounded-md bg-green-500 px-3.5 py-2.5 text-sm font-semibold text-[#153615] shadow-sm hover:bg-green-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 duration-300"
+                      className="rounded-md bg-green-500 px-3.5 py-2.5 text-sm font-semibold text-[#f3fff3] shadow-sm hover:bg-green-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 duration-200 active:scale-[0.95]"
                     >
-                      Get started
-                    </motion.a>
-                    <motion.a
-                      transition={{
-                        type: "spring",
-                        duration: 0.1,
-                        delay: 0.45,
-                      }}
-                      initial={{ opacity: 0, y: 100 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      href="#"
-                      className="text-sm font-semibold leading-6 text-green-400 hover:text-green-900 duration-300"
-                    >
-                      Learn more <span aria-hidden="true">→</span>
+                      Start your journey
                     </motion.a>
                   </div>
                 </div>

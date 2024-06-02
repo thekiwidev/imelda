@@ -12,39 +12,39 @@ import { IMG06 } from "../../../assets";
 
 const features = [
   {
-    name: "Free Visa Assessment:",
+    name: "Visa Assistance:",
     description:
-      "Our initial consultation helps us understand your travel plans and visa requirements. We'll provide a clear overview of the visa application process specific to your destination and purpose of travel.",
+      "We simplify the visa application process by providing expert guidance for student visas, travel visas, work visas, and more, ensuring you meet all the requirements for a smooth and successful approval.",
     icon: FaScaleBalanced,
   },
   {
-    name: "Document Collection and Review:",
+    name: "Flight Reservation:",
     description:
-      "We'll guide you through the necessary documents for your visa application and ensure all paperwork is complete, accurate, and meets embassy or consulate requirements.",
+      "Our flight reservation service ensures you get the best travel options and prices, making your journey stress-free from the start.",
     icon: FaFileCircleCheck,
   },
   {
-    name: "Expert Application Assistance:",
+    name: "Program Selection:",
     description:
-      "Our travel consultants have in-depth knowledge of various visa applications. We'll assist you in filling out the forms accurately and provide guidance on gathering any supporting documentation needed.",
+      "We help you find the ideal study program that matches your academic goals and personal interests, ensuring a perfect fit for your educational journey.",
     icon: FaUserGear,
   },
   {
-    name: "Clear Communication and Timely Updates:",
+    name: "Personal Statement:",
     description:
-      "We understand the importance of staying informed. Throughout the application process, you'll receive clear and timely updates on the status of your visa and any necessary next steps.",
+      "Stand out with a compelling personal statement. Our experts will help you craft a narrative that highlights your strengths and aspirations, making your application memorable.",
     icon: FaComments,
   },
   {
-    name: "Embassy/Consulate Liaison (if applicable):",
+    name: "CV Redaction",
     description:
-      "For some visa applications, liaison with the embassy or consulate may be required. Our team can assist with communication and follow-up, ensuring a smooth application process.",
+      "Enhance your CV with our professional redaction services. We focus on showcasing your skills and experiences in the best possible light to potential employers or educational institutions.",
     icon: FaUsersGear,
   },
   {
-    name: "Travel Planning Resources:",
+    name: "Application Processing:",
     description:
-      "While we don't offer comprehensive booking services, we can provide you with valuable resources to assist with your travel planning, including reputable accommodation booking platforms and trusted partners for tours or activities.",
+      "We assist you through every step of the application process, from preparing documents to submitting your application, ensuring all details are handled with care and precision.",
     icon: FaPlaneDeparture,
   },
 ];

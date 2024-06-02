@@ -6,6 +6,7 @@ import EmergencyContact from "./emergencyContact";
 import OtherInformation from "./otherInfo";
 import Declaration from "./declaration";
 import SubmitButton from "../../components/submitButton";
+import FormAlert from "../../components/formalert";
 
 const StudentApplicationForm: React.FC = () => {
   return (
@@ -13,6 +14,7 @@ const StudentApplicationForm: React.FC = () => {
       className="mx-auto max-w-7xl px-6 lg:px-8"
       id="student-application-form"
     >
+      <FormAlert />
       <PersonalInformation />
       <Hr />
       <ParentInformation />

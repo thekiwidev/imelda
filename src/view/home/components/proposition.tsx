@@ -6,33 +6,34 @@ import {
   FaMugHot,
   FaPager,
 } from "react-icons/fa6";
+import { TbBookmarkPlus } from "react-icons/tb";
 
 const features = [
   {
-    name: "Streamlined Visa Application Process:",
+    name: "Comprehensive Services:",
     description:
-      "We simplify the complex visa application process by handling paperwork, ensuring all requirements are met, and guiding you through each step. This minimizes errors and delays that could jeopardize your visa approval.",
+      "From visa assistance to personal statement crafting, we offer a wide range of services to support your study, work, and travel ambitions.",
     href: "#",
     icon: FaCubesStacked,
   },
   {
-    name: "Expertise for Increased Approval Rates",
+    name: "Expert Guidance:",
     description:
-      "Our travel consultant has extensive knowledge of visa requirements and procedures for various destinations. This expertise helps us prepare strong applications that increase your chances of visa approval, saving you time and frustration.",
+      "Our team of experienced professionals provides personalized advice and insights to help you navigate the complexities of studying, working, or relocating abroad.",
     href: "#",
     icon: FaArrowTrendUp,
   },
   {
-    name: "Peace of Mind & Stress-Free Travel Planning",
+    name: "Tailored Solutions:",
     description:
-      " By taking care of the visa application, we remove a significant source of stress from your travel planning. This allows you to focus on booking flights, accommodation, and planning your dream itinerary with confidence.",
+      "We understand that each client's needs are unique. We customize our services to fit your specific goals and requirements, ensuring a perfect match.",
     href: "#",
     icon: FaMugHot,
   },
   {
-    name: "Personalized Support Throughout the Process",
+    name: "Proven Track Record:",
     description:
-      "We provide clear communication and timely updates throughout your visa application journey. You'll have a dedicated consultant readily available to answer your questions and address any concerns you may have.",
+      "With a history of successful placements and satisfied clients, Imelda Yayala has built a reputation for excellence and reliability.",
     href: "#",
     icon: FaPager,
   },
@@ -51,7 +52,7 @@ const Proposition: React.FC = () => {
               viewport={{ once: true }}
               className="text-base font-semibold leading-7 text-green-600"
             >
-              Streamlined Visa Process
+              Why Choose Imelda Yayala?
             </motion.h2>
             <motion.p
               transition={{ type: "spring", duration: 0.7 }}
@@ -69,11 +70,9 @@ const Proposition: React.FC = () => {
               viewport={{ once: true }}
               className="mt-6 text-lg leading-8 text-gray-600"
             >
-              Our travel consultant simplifies the visa application process by
-              handling the document collection and ensuring all requirements are
-              met. This meticulous attention to detail helps to streamline the
-              application process and minimize the risk of errors or delays that
-              could jeopardize your visa approval.
+              Experience seamless, efficient, and successful adventures with our
+              trusted and proven services. Let us help you achieve your dreams
+              abroad.
             </motion.p>
           </div>
           <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
@@ -106,6 +105,16 @@ const Proposition: React.FC = () => {
                 </motion.div>
               ))}
             </dl>
+
+            <div className="flex items-center justify-center my-16">
+              <button
+                type="button"
+                className="inline-flex items-center gap-x-1.5 rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 duration-300 active:scale-[0.95]"
+              >
+                <TbBookmarkPlus />
+                Book a consultation
+              </button>
+            </div>
           </div>
         </div>
       </div>

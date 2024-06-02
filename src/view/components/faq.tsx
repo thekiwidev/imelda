@@ -9,49 +9,84 @@ import { FaMinus, FaPlus } from "react-icons/fa6";
 
 const faqs = [
   {
-    question: "What types of visas do you specialize in?",
+    question: "What is the process for getting started with your services?",
     answer:
-      "We specialize in assisting with a wide range of visas, including tourist visas, business visas, student visas, family reunion visas, and more. During your free consultation, we can discuss your specific travel plans and determine the most appropriate visa type for your needs.",
+      "Simply reach out to us through our contact form or call us. We will schedule a consultation to understand your needs and tailor our services to help you achieve your goals.",
   },
   {
-    question: "How long does the visa application process typically take?",
+    question: "What types of visas do you assist with?",
     answer:
-      "The processing time for visas can vary depending on the destination, visa type, and individual circumstances. However, we can provide an estimated time-frame during your consultation.",
+      "We assist with various types of visas including student visas, travel visas, and work visas.",
   },
   {
-    question: "What happens if my visa application gets rejected?",
+    question: "How long does the visa application process take?",
     answer:
-      "While we have a high success rate due to our meticulous preparation, there's always a chance of visa rejection.  In such cases, we'll analyze the reasons for rejection and advise you on potential next steps, which may include reapplying or appealing the decision.",
+      "The duration varies depending on the type of visa and the country of destination. On average, it can take anywhere from a few weeks to several months. We recommend starting the process early to avoid delays.",
   },
   {
-    question: "Do you offer a money-back guarantee on visa approvals?",
+    question: "Can you help if my visa application has been previously denied?",
     answer:
-      "Due to the complex nature of visa applications and the final decision resting with the embassy or consulate, we cannot offer a money-back guarantee on approvals. However, we guarantee our commitment to providing expert guidance and meticulous preparation to maximize your chances of success.",
+      "Yes, we can review your previous application and help you address the issues that led to the denial, improving your chances for a successful reapplication.",
   },
   {
-    question: "What are your service fees?",
+    question: "Do you book flights for groups as well?",
     answer:
-      "Our service fees vary depending on the complexity of your visa application and the level of support required. We'll provide a transparent fee quote during your initial consultation.",
+      "Yes, we can arrange flight reservations for individuals and groups, ensuring everyone travels smoothly and on schedule.",
   },
   {
-    question: "Can I handle the visa application myself without your help?",
+    question: "Can you help me find the most cost-effective flight options?",
     answer:
-      "You can certainly attempt to handle the application yourself. However, the process can be complex and time-consuming. We recommend our services to ensure all requirements are met, paperwork is accurate, and the application is presented professionally, increasing your chances of approval.",
+      "Absolutely! We use our expertise and connections to find the best travel deals and ensure you get the most cost-effective options.",
   },
   {
-    question: "Do you offer travel booking services like hotels and flights?",
+    question: "How do you help in selecting the right program for me?",
     answer:
-      "While our focus is on visa applications, we can provide you with valuable resources for travel planning, including reputable platforms for booking hotels, flights, and tours.",
+      "We evaluate your academic background, interests, and career goals to recommend programs that are the best fit for you.",
   },
   {
-    question: "What additional services do you offer besides visa assistance?",
+    question: "Do you have partnerships with educational institutions?",
     answer:
-      "We may offer additional services such as document translation and apostille procurement (official certification).  We'll discuss these options with you during your consultation to determine if they are necessary for your specific situation.",
+      "Yes, we have partnerships with numerous reputable institutions worldwide, giving you a wide range of options to choose from.",
   },
   {
-    question: "Can I use your services even if I haven't booked my travel yet?",
+    question: "What if I don't know how to start my personal statement?",
     answer:
-      "Absolutely! We recommend getting a head start on the visa application process before finalizing travel arrangements. This ensures you have ample time to complete the application and obtain your visa before your desired travel date.",
+      "Don't worry! Our experts will guide you through the process, helping you to identify key points and craft a compelling narrative that highlights your strengths and aspirations.",
+  },
+  {
+    question: "How do you improve my CV?",
+    answer:
+      "We refine your CV by highlighting your skills, experiences, and achievements in a clear and professional manner, making it attractive to potential employers or educational institutions.",
+  },
+  {
+    question: "Can you tailor my CV for a specific job or program?",
+    answer:
+      "Yes, we tailor your CV to meet the specific requirements of the job or program you're applying for, increasing your chances of success.",
+  },
+  {
+    question: "How do you ensure my application is strong?",
+    answer:
+      "We meticulously review all documents and forms to ensure accuracy and completeness. We also provide guidance on how to strengthen your application.",
+  },
+  {
+    question: "Can you help me find a job abroad?",
+    answer:
+      "Yes, we assist with job searches, application processes, and preparation for interviews to help you secure employment abroad.",
+  },
+  {
+    question: "Do you offer any packages that combine multiple services?",
+    answer:
+      "Yes, we offer comprehensive packages that combine services such as visa assistance, program selection, and flight reservations for a streamlined experience.",
+  },
+  {
+    question: "What are your fees for these services?",
+    answer:
+      "Our fees vary depending on the specific services you need. Please contact us for a detailed quote based on your requirements.",
+  },
+  {
+    question: "Do you offer support after I've moved abroad?",
+    answer:
+      "Yes, we provide ongoing support to help you adjust to your new environment and ensure you have the resources you need for a successful transition.",
   },
   // More questions...
 ];

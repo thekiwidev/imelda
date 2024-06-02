@@ -1,4 +1,5 @@
 import { Hr } from "../../../components";
+import FormAlert from "../../components/formalert";
 import SubmitButton from "../../components/submitButton";
 import Agreement from "./agreement";
 import ContactInfo from "./contactInfo";
@@ -14,6 +15,7 @@ const TravelApplicationForm: React.FC = () => {
       className="mx-auto max-w-7xl px-6 lg:px-8"
       id="travel-application-form"
     >
+      <FormAlert />
       <PInfo />
       <Hr />
       <TravelInfo />

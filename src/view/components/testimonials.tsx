@@ -1,96 +1,96 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-const featuredTestimonial = {
-  body: "I initially hesitated to use a visa consultancy service, but I'm so glad I did! Imelda Yayala streamlined the entire visa application process for my family vacation to Europe.  They saved me a lot of time and frustration, and their expertise was worth every penny.  We're now exploring Europe with confidence, knowing our visas are in order.",
+interface TestimonyProps {
+  body: string;
   author: {
-    name: "Brenna Goyette",
-    handle: "brennagoyette",
-    imageUrl:
-      "https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=1024&h=1024&q=80",
-    logoUrl: "https://tailwindui.com/img/logos/savvycal-logo-gray-900.svg",
+    name: string;
+    handle: string;
+    imageUrl?: string;
+    logoUrl?: string;
+  };
+}
+
+// const featuredTestimonial = {
+//   body: "I initially hesitated to use a visa consultancy service, but I'm so glad I did! Imelda Yayala streamlined the entire visa application process for my family vacation to Europe.  They saved me a lot of time and frustration, and their expertise was worth every penny.  We're now exploring Europe with confidence, knowing our visas are in order.",
+//   author: {
+//     name: "Name Other",
+//     handle: "otherness",
+//     imageUrl:
+//       "https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=1024&h=1024&q=80",
+//     logoUrl: "https://tailwindui.com/img/logos/savvycal-logo-gray-900.svg",
+//   },
+// };
+
+const testimonials: TestimonyProps[] = [
+  {
+    body: "I was overwhelmed by the visa application process for my dream trip to Japan. Meldy at Imelda Yayala was a lifesaver! They guided me through everything, got my visa fast, and now I'm exploring Japan stress-free",
+    author: {
+      name: "Sarah K.",
+      handle: "sarahkendrick",
+      imageUrl:
+        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+    },
   },
-};
-const testimonials = [
-  [
-    [
-      {
-        body: "I was overwhelmed by the visa application process for my dream trip to Japan. Meldy at Imelda Yayala was a lifesaver! They guided me through everything, got my visa fast, and now I'm exploring Japan stress-free",
-        author: {
-          name: "Sarah K.",
-          handle: "sarahkendrick",
-          imageUrl:
-            "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-        },
-      },
-      // More testimonials...
-    ],
-    [
-      {
-        body: "Aut reprehenderit voluptatem eum asperiores beatae id. Iure molestiae ipsam ut officia rem nulla blanditiis.",
-        author: {
-          name: "Lindsay Walton",
-          handle: "lindsaywalton",
-          imageUrl:
-            "https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-        },
-      },
-      // More testimonials...
-    ],
-  ],
-  [
-    [
-      {
-        body: "Voluptas quos itaque ipsam in voluptatem est. Iste eos blanditiis repudiandae. Earum deserunt enim molestiae ipsum perferendis recusandae saepe corrupti.",
-        author: {
-          name: "Tom Cook",
-          handle: "tomcook",
-          imageUrl:
-            "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-        },
-      },
-      // More testimonials...
-    ],
-    [
-      {
-        body: "Molestias ea earum quos nostrum doloremque sed. Quaerat quasi aut velit incidunt excepturi rerum voluptatem minus harum.",
-        author: {
-          name: "Leonard Krasner",
-          handle: "leonardkrasner",
-          imageUrl:
-            "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-        },
-      },
-      // More testimonials...
-    ],
-  ],
-  [
-    [
-      {
-        body: "My family reunion in Italy was almost derailed by a complex visa application for my elderly parents. Thankfully, I found Imelda Yayala. They handled the entire process with professionalism and patience, ensuring all documents were translated and apostilled correctly. Now, my family is finally reunited, and we're having a magical time exploring Italy together.",
-        author: {
-          name: "Tom Cook",
-          handle: "tomcook",
-          imageUrl:
-            "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-        },
-      },
-      // More testimonials...
-    ],
-    [
-      {
-        body: "Molestias ea earum quos nostrum doloremque sed. Quaerat quasi aut velit incidunt excepturi rerum voluptatem minus harum.",
-        author: {
-          name: "Leonard Krasner",
-          handle: "leonardkrasner",
-          imageUrl:
-            "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-        },
-      },
-      // More testimonials...
-    ],
-  ],
+  // More testimonials...
+  {
+    body: "My family reunion in Italy was almost derailed by a complex visa application for my elderly parents. Thankfully, I found Imelda Yayala. They handled the entire process with professionalism and patience, ensuring all documents were translated and apostilled correctly. Now, my family is finally reunited, and we're having a magical time exploring Italy together.",
+    author: {
+      name: "Tom Cook",
+      handle: "tomboy",
+      imageUrl:
+        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+    },
+  },
+  {
+    body: "I initially hesitated to use a visa consultancy service, but I'm so glad I did! Imelda Yayala streamlined the entire visa application process for my family vacation to Europe.",
+    author: {
+      name: "Tom Cook",
+      handle: "tomboy",
+      imageUrl:
+        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+    },
+  },
 ];
+
+// [
+//   [
+//     {
+//       body: "Voluptas quos itaque ipsam in voluptatem est. Iste eos blanditiis repudiandae. Earum deserunt enim molestiae ipsum perferendis recusandae saepe corrupti.",
+//       author: {
+//         name: "Tom Cook",
+//         handle: "tomcook",
+//         imageUrl:
+//           "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+//       },
+//     },
+//     // More testimonials...
+//   ],
+//   [
+//     {
+//       body: "Molestias ea earum quos nostrum doloremque sed. Quaerat quasi aut velit incidunt excepturi rerum voluptatem minus harum.",
+//       author: {
+//         name: "Leonard Krasner",
+//         handle: "leonardkrasner",
+//         imageUrl:
+//           "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+//       },
+//     },
+//     // More testimonials...
+//   ],
+// ],
+// [
+//   {
+//     body: "My family reunion in Italy was almost derailed by a complex visa application for my elderly parents. Thankfully, I found Imelda Yayala. They handled the entire process with professionalism and patience, ensuring all documents were translated and apostilled correctly. Now, my family is finally reunited, and we're having a magical time exploring Italy together.",
+//     author: {
+//       name: "Tom Cook",
+//       handle: "tomboy",
+//       imageUrl:
+//         "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+//     },
+//   },
+//   // More testimonials...
+// ],
 
 const Testimonials: React.FC = () => {
   return (
@@ -131,8 +131,49 @@ const Testimonials: React.FC = () => {
             We have worked with thousands of amazing people
           </p>
         </div>
-        <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 grid-rows-1 gap-8 text-sm leading-6 text-gray-900 sm:mt-20 sm:grid-cols-2 xl:mx-0 xl:max-w-none xl:grid-flow-col xl:grid-cols-4">
-          <motion.figure
+        <div className="mx-auto mt-16 flex xl:flex-row sm:flex-col items-start gap-8 text-sm leading-6 text-gray-900 sm:mt-20 xl:mx-0 xl:max-w-none">
+          {testimonials.map((testimony, index) => (
+            <motion.figure
+              key={index}
+              transition={{
+                type: "spring",
+                duration: 0.5,
+                delay: index === 1 ? 0.2 : 0.6 * index,
+              }}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className={`rounded-2xl bg-white shadow-lg ring-1 ring-gray-900/5 ${
+                index === 1 ? "flex-[0.5] " : "flex-[0.25]"
+              }`}
+            >
+              <blockquote
+                className={`p-6 sm:p-12 ${
+                  index === 1 &&
+                  "text-lg leading-7 font-semibold tracking-tight sm:text-xl sm:leading-8 text-gray-900"
+                }`}
+              >
+                <p>{`“${testimony.body}”`}</p>
+              </blockquote>
+              <figcaption className="flex flex-wrap items-center gap-x-4 gap-y-4 border-t border-gray-900/10 px-6 py-4 sm:flex-nowrap">
+                <img
+                  className="h-10 w-10 flex-none rounded-full bg-gray-50"
+                  src={testimony.author.imageUrl}
+                  alt=""
+                />
+                <div className="flex-auto">
+                  <div className="font-semibold">{testimony.author.name}</div>
+                  <div className="text-gray-600">{`@${testimony.author.handle}`}</div>
+                </div>
+                <img
+                  className="h-10 w-auto flex-none"
+                  src={testimony.author.logoUrl}
+                  alt=""
+                />
+              </figcaption>
+            </motion.figure>
+          ))}
+          {/* <motion.figure
             transition={{
               type: "spring",
               duration: 0.5,
@@ -164,16 +205,15 @@ const Testimonials: React.FC = () => {
                 alt=""
               />
             </figcaption>
-          </motion.figure>
-          {testimonials.map((columnGroup, columnGroupIdx) => (
+          </motion.figure> */}
+          {/* {testimonials.map((columnGroup, columnGroupIdx) => (
             <div
               key={columnGroupIdx}
               className="space-y-8 xl:contents xl:space-y-0"
             >
-              {columnGroup.map((column, columnIdx) => (
-                <div
-                  key={columnIdx}
-                  className={`(
+              <div
+                key={"jj"}
+                className={`(
                     (columnGroupIdx === 0 && columnIdx === 0) ||
                       (columnGroupIdx === testimonials.length - 1 &&
                         columnIdx === columnGroup.length - 1)
@@ -181,42 +221,41 @@ const Testimonials: React.FC = () => {
                       : "xl:row-start-1",
                     "space-y-8"
                   )`}
-                >
-                  {column.map((testimonial) => (
-                    <motion.figure
-                      transition={{
-                        type: "spring",
-                        duration: 0.5,
-                        delay: columnIdx * 0.2,
-                      }}
-                      initial={{ opacity: 0, y: 50 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      key={testimonial.author.handle}
-                      className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-gray-900/5"
-                    >
-                      <blockquote className="text-gray-900">
-                        <p>{`“${testimonial.body}”`}</p>
-                      </blockquote>
-                      <figcaption className="mt-6 flex items-center gap-x-4">
-                        <img
-                          className="h-10 w-10 rounded-full bg-gray-50"
-                          src={testimonial.author.imageUrl}
-                          alt=""
-                        />
-                        <div>
-                          <div className="font-semibold">
-                            {testimonial.author.name}
-                          </div>
-                          <div className="text-gray-600">{`@${testimonial.author.handle}`}</div>
+              >
+                {column.map((testimonial) => (
+                  <motion.figure
+                    transition={{
+                      type: "spring",
+                      duration: 0.5,
+                      delay: columnIdx * 0.2,
+                    }}
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    key={testimonial.author.handle}
+                    className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-gray-900/5"
+                  >
+                    <blockquote className="text-gray-900">
+                      <p>{`“${testimonial.body}”`}</p>
+                    </blockquote>
+                    <figcaption className="mt-6 flex items-center gap-x-4">
+                      <img
+                        className="h-10 w-10 rounded-full bg-gray-50"
+                        src={testimonial.author.imageUrl}
+                        alt=""
+                      />
+                      <div>
+                        <div className="font-semibold">
+                          {testimonial.author.name}
                         </div>
-                      </figcaption>
-                    </motion.figure>
-                  ))}
-                </div>
-              ))}
+                        <div className="text-gray-600">{`@${testimonial.author.handle}`}</div>
+                      </div>
+                    </figcaption>
+                  </motion.figure>
+                ))}
+              </div>
             </div>
-          ))}
+          ))} */}
         </div>
       </div>
     </div>
