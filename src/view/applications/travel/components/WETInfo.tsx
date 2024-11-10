@@ -21,7 +21,7 @@ const WETinfo: React.FC = () => {
         <div className="px-4 py-6 sm:p-8">
           <div className="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <InputField
-              name="wetInfoSpecifyOther"
+              name="otherSpecification"
               label="Specify Other"
               gridCol={3}
             />
@@ -33,46 +33,46 @@ const WETinfo: React.FC = () => {
 
           <div className="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <InputField
-              name="wetInfoPresentName"
+              name="currentEmployerOrSchoolName"
               label="Present Employer or School Name"
               gridCol={3}
             />
 
             <InputField
-              name="wetInfoPresentAddress"
+              name="currentEmployerOrSchoolAddress"
               label="Address"
               gridCol={6}
             />
 
             <InputField
-              name="wetInfoPresentCity"
+              name="currentEmployerOrSchoolCity"
               label="City"
               note="(Present Employer or School)"
               gridCol={2}
             />
 
             <InputField
-              name="wetInfoPresentStateProvince"
+              name="currentEmployerOrSchoolStateProvince"
               note="(Present Employer or School)"
               label="State/Province "
               gridCol={2}
             />
 
             <InputField
-              name="wetInfoPresentPostalCode"
+              name="currentEmployerOrSchoolPostalCode"
               label="Postal Zone/Zip Code"
               note="(Present Employer or School)"
               gridCol={2}
             />
 
             <InputField
-              name="wetInfoPresentPhoneNumber"
+              name="currentEmployerOrSchoolPhoneNumber"
               label="Work Phone Number"
               gridCol={3}
             />
 
             <InputField
-              name="wetInfoMonthlySalary"
+              name="monthlySalary"
               label="Monthly Salary in Local Currency"
               gridCol={3}
               note="(if employed)"
@@ -80,7 +80,7 @@ const WETinfo: React.FC = () => {
 
             <TextField
               label="Briefly Describe your Duties"
-              name="wetInfoDuties"
+              name="jobDutiesDescription"
             />
           </div>
 
@@ -91,13 +91,13 @@ const WETinfo: React.FC = () => {
           <div className="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <RadioField
               label="Were you previously employed"
-              name="wetInfoPreviouslyEmployed"
+              name="previouslyEmployed"
               options={YesNo}
             />
 
             <RadioField
               label="Have you attended any educational institutions at a secondary level or above"
-              name="wetInfoAttendedEducation"
+              name="educationAboveSecondary"
               options={YesNo}
             />
 
@@ -106,57 +106,57 @@ const WETinfo: React.FC = () => {
             </h2>
 
             <InputField
-              name="wetInfoInstitutionName"
+              name="educationalInstitutionName"
               label="Name of Institution"
             />
 
             <InputField
-              name="wetInfoInstitutionAddress"
+              name="educationalInstitutionAddress"
               label="Address of Institution"
             />
 
             <InputField
-              name="wetInfoInstitutionCity"
+              name="educationalInstitutionCity"
               label="City"
               note="(of previous Institution)"
               gridCol={3}
             />
 
             <InputField
-              name="wetInfoInstitutionStateProvince"
+              name="educationalInstitutionStateProvince"
               label="State/Province"
               note="(of previous Institution)"
               gridCol={3}
             />
 
             <InputField
-              name="wetInfoInstitutionCountry"
+              name="educationalInstitutionCountry"
               label="Country/Region"
               note="(of previous Institution)"
               gridCol={3}
             />
 
             <InputField
-              name="wetInfoCourseOfStudy"
+              name="courseOfStudy"
               label="Course of Study"
               note="(of previous Institution)"
               gridCol={3}
             />
 
             <DateField
-              name="wetInfoDateOfAttendanceStart"
+              name="dateOfAttendanceStart"
               label="Date of Attendance (start)"
               gridCol={3}
             />
 
             <DateField
-              name="wetInfoDateOfAttendanceEnd"
+              name="dateOfAttendanceEnd"
               label="Date of Attendance (end)"
               gridCol={3}
             />
 
             <TextField
-              name="wetInfoAdditionalInstitutions"
+              name="otherInstitutionsAttended"
               label="Write other institutions attended accordingly in the space provided below:
               (Name, Address, City, State/Region, Course of Study, and Date of Attendance)"
             />
@@ -164,25 +164,25 @@ const WETinfo: React.FC = () => {
 
           <div className="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 mt-8">
             <RadioField
-              name="wetInfoClanOrTribe"
+              name="clanOrTribe"
               label="Do you belong to a clan or tribe"
               options={YesNo}
             />
 
             <InputField
               label="Provide a List of Languages You Speak"
-              name="wetInfoListOfLanguages"
+              name="languagesSpoken"
               note={`Separate them with comma ","`}
             />
 
             <RadioField
-              name="wetInfoTraveledInLastFiveYears"
+              name="travelHistoryLastFiveYears"
               label="Have you traveled to any countries/regions within the last five years"
               options={YesNo}
             />
 
             <RadioField
-              name="wetInfoProfessionalSocialCharityWork"
+              name="professionalOrganizations"
               label="Have you belonged to, contributed to, or worked for any professional, social, or 
               charitable organization"
               options={YesNo}

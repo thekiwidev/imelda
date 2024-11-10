@@ -20,75 +20,75 @@ const TravelInfo: React.FC = () => {
         <div className="px-4 py-6 sm:p-8">
           <div className="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <InputField
-              name="travelInfoVisitCountry"
+              name="intendedCountryOfVisit"
               label="Which Country do you intend to visit"
               gridCol={3}
             />
 
             <InputField
-              name="travelInfoTripPurpose"
+              name="purposeOfTrip"
               label="Purpose of Trip"
               gridCol={3}
             />
 
             <DateField
-              name="travelInfoArrivalDate"
+              name="intendedDateOfArrival"
               label="Intended Date of Arrival"
               gridCol={3}
             />
 
             <InputField
-              name="travelInfoTripLength"
+              name="intendedLengthOfStay"
               label="Intended Length of stay"
               gridCol={3}
               note="How long do you intend on staying"
             />
 
             <InputField
-              name="travelInfoAccommodationAddress"
+              name="addressDuringStay"
               label="Address where you will stay"
             />
 
-            <InputField name="travel-info-city" label="City" gridCol={2} />
+            <InputField name="addressCity" label="City" gridCol={2} />
 
             <InputField
-              name="travelInfoAccommodationCity"
+              name="addressStateProvince"
               label="State / Province"
               gridCol={2}
             />
 
             <InputField
-              name="travelInfoAccommodationState"
+              name="addressPostalCode"
               label="ZIP / Postal code"
               gridCol={2}
             />
 
             <InputField
-              name="travelInfoTripFinancedBy"
+              name="tripPayer"
               label="Person/Entity Paying for Your Trip"
               gridCol={3}
             />
 
             <RadioField
-              name="travelInfoTravelingCompanions"
+              name="travelingCompanions"
               label="Are there other persons traveling with you"
               options={YesNo}
             />
 
             <RadioField
-              name="travelInfoPreviouslyTraveled"
+              name="previousTravelAbroad"
               label="Have you ever been out of your country"
               options={YesNo}
             />
 
             <RadioField
-              name="travelInfoPreviousVisaIssued"
+              name="previousVisaIssued"
               label="Have you ever been issued any country visa"
               options={YesNo}
             />
 
             <RadioField
-              name="travelInfoVisaRefusal"
+              name="visaRefusalDetails"
               label="Have you ever been refused any Visa, or been refused admission to any country, 
               or withdrawn your application for admission at the port of entry"
               options={YesNo}

@@ -14,7 +14,7 @@ const FormAlert = () => {
           checked={isConsulted}
           onChange={(e) => setIsConsulted(e.target.checked)}
           required
-          className="h-4 w-4 rounded border-gray-300 text-green-600 focus:ring-green-600 accent-green-500"
+          className="h-4 w-4 rounded-md border-gray-300 text-green-600 focus:ring-green-600 accent-green-500"
         />
       </div>
       <div className="ml-3 text-sm leading-6">
