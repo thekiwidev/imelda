@@ -120,6 +120,11 @@ const TravelApplicationForm: React.FC = () => {
     languagesSpoken: [],
     travelHistoryLastFiveYears: "",
     professionalOrganizations: "",
+
+    // files to upload
+    visaApplication: "",
+    scannedPassport: "",
+    visaTermsAndConditionsDocument: "",
   });
 
   // hooks

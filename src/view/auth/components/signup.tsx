@@ -221,7 +221,9 @@ const Login: React.FC = () => {
                 disabled={
                   isPending ||
                   formData.email.trim() === "" ||
-                  formData.password.trim() === ""
+                  formData.password.trim() === "" ||
+                  errors.password !== undefined ||
+                  errors.email !== undefined
                 }
                 className="flex w-full justify-center rounded-md bg-green-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 disabled:bg-green-100 disabled:text-gray-300 disabled:cursor-not-allowed duration-150 items-center gap-x-2"
               >

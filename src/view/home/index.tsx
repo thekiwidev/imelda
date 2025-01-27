@@ -1,4 +1,3 @@
-import React from "react";
 import Banner from "./components/banner";
 import Proposition from "./components/proposition";
 import Services from "./components/services";

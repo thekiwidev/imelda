@@ -9,6 +9,7 @@ const navigation = {
     { name: "FAQs", href: "#faqs" },
     { name: "Student Visa Application", href: "/student-application" },
     { name: "Travel Visa Application", href: "/travel-application" },
+    { name: "Spot Reservation", href: "/spot-reservation" },
   ],
   social: [
     {

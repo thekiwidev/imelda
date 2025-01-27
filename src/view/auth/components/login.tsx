@@ -93,6 +93,8 @@ const Login: React.FC = () => {
     e.preventDefault();
     // perform form submission logic here
 
+    if (errors.email || errors.password) return;
+
     mutate(formData, {
       onSuccess: () => {
         toast.custom(
@@ -116,6 +118,12 @@ const Login: React.FC = () => {
       },
     });
   };
+
+  useEffect(() => {
+    if (errors.email || errors.password)
+      console.log(errors.email, errors.password);
+  }, [errors]);
+
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
@@ -242,7 +250,9 @@ const Login: React.FC = () => {
                 disabled={
                   isPending ||
                   formData.email.trim() === "" ||
-                  formData.password.trim() === ""
+                  formData.password.trim() === "" ||
+                  errors.password !== undefined ||
+                  errors.email !== undefined
                 }
                 className="flex w-full justify-center rounded-md bg-green-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 disabled:bg-green-100 disabled:text-gray-300 disabled:cursor-not-allowed duration-150 items-center gap-x-2"
               >
