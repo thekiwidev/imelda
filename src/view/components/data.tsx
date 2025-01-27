@@ -1,7 +1,7 @@
 export const EnglishCert = [
-  { value: "ielts", label: "IELTS" },
-  { value: "toefl", label: "TOEFL" },
-  { value: "none", label: "None" },
+  { value: "IELTS", label: "IELTS" },
+  { value: "TOEFL", label: "TOEFL" },
+  { value: "None", label: "None" },
 ];
 
 export const HowDidYouHearAboutUs = [

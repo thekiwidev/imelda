@@ -20,55 +20,55 @@ const FamilyInfo: React.FC = () => {
         <div className="px-4 py-6 sm:p-8">
           <div className="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <InputField
-              name="familyInfoFatherSurnames"
+              name="fatherSurname"
               label="Father's Surnames"
               gridCol={3}
             />
 
             <InputField
-              name="familyInfoFatherGivenNames"
+              name="fatherGivenNames"
               label="Father's Given Names"
               gridCol={3}
             />
 
             <DateField
-              name="familyInfoFatherDateOfBirth"
+              name="fatherDateOfBirth"
               label="Father's Date of Birth"
               gridCol={3}
             />
 
-            <InputField
-              name="familyInfoFatherInVisitCountry"
-              label="Is your father in the country you intend to visit"
-              gridCol={3}
+            <RadioField
+              name="fatherInVisitCountry"
+              label="Is your Father in the country you intend to visit"
+              options={YesNo}
             />
 
             <InputField
-              name="familyInfoMotherSurnames"
+              name="motherSurname"
               label="Mother's Surnames"
               gridCol={3}
             />
 
             <InputField
-              name="familyInfoMotherGivenNames"
+              name="motherGivenNames"
               label="Mother's Given Names"
               gridCol={3}
             />
 
             <DateField
-              name="familyInfoMotherDateOfBirth"
+              name="motherDateOfBirth"
               label="Mother's Date of Birth"
               gridCol={3}
             />
 
-            <InputField
-              name="familyInfoMotherInVisitCountry"
+            <RadioField
+              name="motherInVisitCountry"
               label="Is your Mother in the country you intend to visit"
-              gridCol={3}
+              options={YesNo}
             />
 
             <RadioField
-              name="familyInfoImmediateRelativesInVisitCountry"
+              name="immediateRelativesInVisitCountry"
               label="Do you have any immediate relatives, in the country you intend to visit"
               options={YesNo}
             />
@@ -79,20 +79,16 @@ const FamilyInfo: React.FC = () => {
           </h2>
 
           <div className="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-            <InputField
-              name="familyInfoRelativeName"
-              label="Relative Name"
-              gridCol={3}
-            />
+            <InputField name="relativeName" label="Relative Name" gridCol={3} />
 
             <InputField
-              name="familyInfoRelativeRelationship"
+              name="relativeRelationship"
               label="Relative relationship to you"
               gridCol={3}
             />
 
             <InputField
-              name="familyInfoRelativeMaritalStatus"
+              name="relativeMaritalStatus"
               label="Relative marital status"
               gridCol={3}
             />

@@ -35,6 +35,13 @@ const PersonalInformation: React.FC = () => {
             />
 
             <InputField
+              name="otherName"
+              label="Other name(s)"
+              note="Name according to passport number"
+              gridCol={3}
+            />
+
+            <InputField
               name="passportNumber"
               label="Passport Number"
               gridCol={3}
@@ -73,13 +80,21 @@ const PersonalInformation: React.FC = () => {
               gridCol={6}
             />
 
-            <InputField name="phoneNumber" label="Phone Number" gridCol={2} />
+            <InputField
+              name="telephoneNumber"
+              label="Phone Number"
+              gridCol={2}
+            />
 
             <InputField name="emailAddress" label="Email address" gridCol={4} />
 
             <InputField name="postalCode" label="Postal/Zip Code" gridCol={2} />
 
-            <InputField name="state" label="State/Province" gridCol={2} />
+            <InputField
+              name="stateProvince"
+              label="State/Province"
+              gridCol={2}
+            />
 
             <InputField name="city" label="City" gridCol={2} />
           </InputFlex>

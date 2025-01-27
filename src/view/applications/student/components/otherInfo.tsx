@@ -7,7 +7,6 @@ import InputsWrapper from "../../components/inputsWrapper";
 import InputFlex from "../../components/inputsFlex";
 import RadioField from "../../components/radioField";
 import InputField from "../../components/inputField";
-import TextField from "../../components/textarea";
 
 const OtherInformation: React.FC = () => {
   return (
@@ -25,40 +24,47 @@ const OtherInformation: React.FC = () => {
         <div className="px-4 py-6 sm:p-8">
           <InputFlex>
             <RadioField
-              name="otherInfoEnglishCertificate"
+              name="hasEnglishCertificate"
               label="Have you had any English Certificate Exam before (e.g IELTS or
                 TOEFL)"
               options={EnglishCert}
             />
 
             <RadioField
-              name="otherInfoEnglishCertificate"
+              name="howDidYouKnowAboutUs"
               label="How did you know about us"
               options={HowDidYouHearAboutUs}
             />
 
             <InputField
-              name="otherInfoAgentName"
+              name="fullNameOfAgent"
               label="Agent Name"
               note="If you were referred by an agent"
               gridCol={3}
             />
 
+            <InputField
+              name="ifOtherExplain"
+              label={`"If "Other" explain`}
+              note="If you were referred by an other means"
+              gridCol={3}
+            />
+
             <RadioField
-              name="otherInfoAccommodation"
+              name="accommodationProvided"
               label="Do you want Imelda Yayala Ltd to provide you accommodation"
               options={YesNo}
             />
 
             <RadioField
-              name="otherInfoDisability"
+              name="hasDisabilityOrMedicalCondition"
               label="Do you have any disability/medical condition that might affect
                 your study"
               options={YesNo}
             />
 
-            <TextField
-              name="otherInfoDisabilityName"
+            <InputField
+              name="nameOfDisabilityOrMedicalCondition"
               label="If you have any disability or medical condition state it."
               note="Skip if you don't have any disability or medical condition"
             />
