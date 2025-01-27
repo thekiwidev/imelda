@@ -11,7 +11,10 @@
   },
   "dependencies": {
     "@headlessui/react": "^2.0.3",
+    "@tanstack/react-query": "^5.64.2",
     "autoprefixer": "^10.4.19",
+    "axios": "^1.7.9",
+    "formik": "^2.4.6",
     "framer-motion": "^11.1.9",
     "postcss": "^8.4.38",
     "react": "^18.2.0",
