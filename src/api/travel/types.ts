@@ -95,10 +95,11 @@ export interface TravelApplicationForm {
   travelHistoryLastFiveYears: "Yes" | "No" | "";
   professionalOrganizations: string;
 
-  // files to upload
-  visaApplication: string;
-  scannedPassport: string;
-  visaTermsAndConditionsDocument: string;
+  // @deprecated: no longer needed as I a not working with files
+  // // files to upload
+  // visaApplication: string;
+  // scannedPassport: string;
+  // visaTermsAndConditionsDocument: string;
 }
 
 export const travelApplicationInitialValues: TravelApplicationForm = {
@@ -198,8 +199,9 @@ export const travelApplicationInitialValues: TravelApplicationForm = {
   travelHistoryLastFiveYears: "",
   professionalOrganizations: "",
 
-  // files to upload
-  visaApplication: "",
-  scannedPassport: "",
-  visaTermsAndConditionsDocument: "",
+  // @deprecated: no longer needed as I a not working with files
+  // // files to upload
+  // visaApplication: "",
+  // scannedPassport: "",
+  // visaTermsAndConditionsDocument: "",
 };

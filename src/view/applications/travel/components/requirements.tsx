@@ -17,6 +17,7 @@ const Requirements: React.FC = () => {
           name="visaRequirementsApplicationForm"
           label="Visa Application Form"
           description="Provide your visa application form with signature and date"
+          isRequired
         />
 
         <CheckboxField
@@ -24,12 +25,14 @@ const Requirements: React.FC = () => {
           label="A clear Scanned Passport Copy"
           description="Visa will NOT be processed until payment has been made and the following
           requirements have been submitted (A clear Scanned Passport Copy of applicant)"
+          isRequired
         />
 
         <CheckboxField
           name="visaRequirementsTermsAndConditions"
           label="Visa terms and conditions document"
           description="Provide your visa terms and condition document with signature and date"
+          isRequired
         />
       </div>
     </div>

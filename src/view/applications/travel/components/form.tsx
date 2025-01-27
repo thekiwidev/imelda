@@ -14,20 +14,25 @@ import {
   travelApplicationInitialValues,
 } from "../../../../api/travel/types";
 import { useTravelMailer } from "../../../../hooks/travel/travel-mailer";
+import { travelApplicationSchema } from "../../components/validation";
 
 const TravelApplicationForm: React.FC = () => {
   const { mutate: mailTravelApplication, isPending } = useTravelMailer();
   const onSubmit = (values: TravelApplicationData) => {
     console.log({ values });
-    // mailTravelApplication(values, {
-    //   onSuccess: (data) => {
-    //     console.log(data);
-    //   },
-    // });
+    mailTravelApplication(values, {
+      onSuccess: (data) => {
+        console.log(data);
+      },
+    });
   };
 
   return (
-    <Formik initialValues={travelApplicationInitialValues} onSubmit={onSubmit}>
+    <Formik
+      initialValues={travelApplicationInitialValues}
+      onSubmit={onSubmit}
+      validationSchema={travelApplicationSchema}
+    >
       <Form>
         <div
           className="mx-auto max-w-7xl px-6 lg:px-8"

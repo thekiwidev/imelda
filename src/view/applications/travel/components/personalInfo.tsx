@@ -22,7 +22,7 @@ const PInfo: React.FC = () => {
         <div className="px-4 py-6 sm:p-8">
           <InputFlex>
             <InputField
-              name="applyCountry"
+              name="countryOfApplication"
               label="Which Country do plan to apply for"
               gridCol={3}
             />
@@ -31,9 +31,9 @@ const PInfo: React.FC = () => {
           <h2 className="mt-4 mb-2 text-md font-bold">Full Name Provided:</h2>
 
           <InputFlex>
-            <InputField name="firstName" label="First name" gridCol={3} />
+            <InputField name="surname" label="First name" gridCol={3} />
 
-            <InputField name="lastName" label="Last name" gridCol={3} />
+            <InputField name="firstName" label="Last name" gridCol={3} />
 
             <InputField name="middleName" label="Middle name" gridCol={3} />
           </InputFlex>
@@ -62,14 +62,14 @@ const PInfo: React.FC = () => {
             />
 
             <RadioField
-              name="heldOtherNationality"
+              name="otherNationality"
               label="Do you hold or have you held any nationality other than the one
                 indicated above on nationality?"
               options={YesNo}
             />
 
             <RadioField
-              name="permanentResidentElsewhere"
+              name="permanentResidentCountry"
               label="Are you a permanent resident of a country/region other than your
                 country/region of origin (nationality) above"
               options={YesNo}
@@ -123,13 +123,13 @@ const PInfo: React.FC = () => {
           <h2 className="mt-8 mb-2 text-md font-bold">Travel Document</h2>
           <InputFlex>
             <InputField
-              name="travelDocumentType"
+              name="passportType"
               label="Passport/Travel Document Type"
               gridCol={3}
             />
 
             <InputField
-              name="travelDocumentNumber"
+              name="passportNumber"
               label="Passport/Travel Document Number"
               gridCol={3}
             />
@@ -141,37 +141,37 @@ const PInfo: React.FC = () => {
             />
 
             <InputField
-              name="issuingCountry"
+              name="passportIssuingCountry"
               label="Country/Authority that Issued Passport/Travel Document"
               gridCol={4}
             />
 
             <InputField
-              name="cityOfIssuance"
+              name="passportIssuingCity"
               label="City Where Issued"
               gridCol={3}
             />
 
             <InputField
-              name="stateOfIssuance"
+              name="passportIssuingStateProvince"
               label="State/Province Where Issued"
               gridCol={3}
             />
 
             <InputField
-              name="countryOfIssuance"
+              name="passportIssuingCountryRegion"
               label="Country/Region Where Issued"
               gridCol={3}
             />
 
             <DateField
-              name="dateOfIssuance"
+              name="passportIssuanceDate"
               label="Issuance Date"
               gridCol={3}
             />
 
             <DateField
-              name="dateOfExpiration"
+              name="passportExpirationDate"
               label="Expiration Date"
               gridCol={3}
             />
