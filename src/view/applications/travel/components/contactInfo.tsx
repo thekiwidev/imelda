@@ -17,37 +17,37 @@ const ContactInfo: React.FC = () => {
         <div className="px-4 py-6 sm:p-8">
           <div className="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <InputField
-              name="contactInfoContactPersonName"
+              name="contactPersonName"
               label="Contact Person Name in the country of visit"
               gridCol={3}
             />
 
             <InputField
-              name="contactInfoOrganizationName"
+              name="contactOrganization"
               label="Organization Name"
               gridCol={3}
             />
 
             <InputField
-              name="contactInfoRelationship"
+              name="contactRelationship"
               label="Relationship to You"
               gridCol={3}
             />
 
             <InputField
-              name="contactInfoAddress"
+              name="contactAddress"
               label="Contact Address"
               gridCol={6}
             />
 
             <InputField
-              name="contactInfoPhoneNumber"
+              name="contactPhoneNumber"
               label="Contact Phone Number"
               gridCol={2}
             />
 
             <InputField
-              name="contactInfoEmailAddress"
+              name="contactEmailAddress"
               label="Contact Email Address"
               gridCol={4}
             />

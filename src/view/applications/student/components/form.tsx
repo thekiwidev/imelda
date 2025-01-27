@@ -25,7 +25,7 @@ const StudentApplicationForm: React.FC = () => {
       <Hr />
       <Declaration />
       <Hr />
-      <SubmitButton />
+      <SubmitButton isLoading={false} text="submit" />
     </form>
   );
 };
