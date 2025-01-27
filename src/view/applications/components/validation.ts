@@ -1,11 +1,12 @@
 import * as Yup from "yup";
 import { TravelApplicationForm } from "../../../api/travel/types";
+import { StudentApplicationForm } from "../../../api/students/types";
 
 type SchemaObject<T> = {
   [key in keyof T]: Yup.Schema<any>;
 };
 
-export const travelApplicationSchema = Yup.object().shape<
+export const travelApplicationValidationSchema = Yup.object().shape<
   SchemaObject<TravelApplicationForm>
 >({
   // Personal Information
@@ -197,4 +198,129 @@ export const travelApplicationSchema = Yup.object().shape<
   //   visaTermsAndConditionsDocument: Yup.string().required(
   //     "Visa terms and conditions document is required"
   //   ),
+});
+
+export const studentApplicationValidationSchema = Yup.object().shape<
+  SchemaObject<StudentApplicationForm>
+>({
+  // Personal Information
+  firstName: Yup.string().required("First name is required"),
+  lastName: Yup.string().required("Last name is required"),
+  otherName: Yup.string(),
+  passportNumber: Yup.string().required("Passport number is required"),
+  race: Yup.string().required("Race is required"),
+  dateOfBirth: Yup.date()
+    .typeError("Invalid date")
+    .required("Date of birth is required"),
+  placeOfBirth: Yup.string().required("Place of birth is required"),
+  nationality: Yup.string().required("Nationality is required"),
+  religion: Yup.string().required("Religion is required"),
+  maritalStatus: Yup.string().required("Marital status is required"),
+  gender: Yup.string().required("Gender is required"),
+  currentAddress: Yup.string().required("Current address is required"),
+  telephoneNumber: Yup.string().required("Telephone number is required"),
+  emailAddress: Yup.string()
+    .email("Invalid email")
+    .required("Email address is required"),
+  postalCode: Yup.string().required("Postal code is required"),
+  stateProvince: Yup.string().required("State/Province is required"),
+  city: Yup.string().required("City is required"),
+
+  // Parent Information
+  // Father
+  parentInfoFatherFirstName: Yup.string().required(
+    "Father’s first name is required"
+  ),
+  parentInfoFatherLastName: Yup.string().required(
+    "Father’s last name is required"
+  ),
+  parentInfoFatherPhoneNumber: Yup.string().required(
+    "Father’s phone number is required"
+  ),
+  parentInfoFatherEmailAddress: Yup.string()
+    .email("Invalid email")
+    .required("Father’s email address is required"),
+  parentInfoFatherOccupation: Yup.string().required(
+    "Father’s occupation is required"
+  ),
+  // Mother
+  parentInfoMotherFirstName: Yup.string().required(
+    "Mother’s first name is required"
+  ),
+  parentInfoMotherLastName: Yup.string().required(
+    "Mother’s last name is required"
+  ),
+  parentInfoMotherPhoneNumber: Yup.string().required(
+    "Mother’s phone number is required"
+  ),
+  parentInfoMotherEmailAddress: Yup.string()
+    .email("Invalid email")
+    .required("Mother’s email address is required"),
+  parentInfoMotherOccupation: Yup.string().required(
+    "Mother’s occupation is required"
+  ),
+
+  // Emergency Contact Details
+  emergencyContactFirstName: Yup.string().required(
+    "Emergency contact first name is required"
+  ),
+  emergencyContactLastName: Yup.string().required(
+    "Emergency contact last name is required"
+  ),
+  emergencyContactRelationship: Yup.string().required(
+    "Emergency contact relationship is required"
+  ),
+  emergencyContactPhoneNumber: Yup.string().required(
+    "Emergency contact phone number is required"
+  ),
+  emergencyContactEmailAddress: Yup.string()
+    .email("Invalid email")
+    .required("Emergency contact email address is required"),
+  emergencyContactOccupation: Yup.string().required(
+    "Emergency contact occupation is required"
+  ),
+
+  // Additional Information
+  hasEnglishCertificate: Yup.string()
+    .oneOf(["IELTS", "TOEFL", "None"])
+    .required("This field is required"),
+  howDidYouKnowAboutUs: Yup.string()
+    .oneOf([
+      "Advertisement",
+      "Education Fare",
+      "Telemarketing",
+      "Agent",
+      "Others",
+    ])
+    .required("This field is required"),
+
+  fullNameOfAgent: Yup.string().when("howDidYouKnowAboutUs", {
+    is: "Agent",
+    then: (schema) => schema.required("Full name of agent is required"),
+    otherwise: (schema) => schema.notRequired(),
+  }),
+
+  ifOtherExplain: Yup.string().when("howDidYouKnowAboutUs", {
+    is: "Others",
+    then: (schema) => schema.required("Please explain how you knew about us"),
+    otherwise: (schema) => schema.notRequired(),
+  }),
+
+  accommodationProvided: Yup.string()
+    .oneOf(["Yes", "No"])
+    .required("This field is required"),
+
+  hasDisabilityOrMedicalCondition: Yup.string()
+    .oneOf(["Yes", "No"])
+    .required("This field is required"),
+
+  nameOfDisabilityOrMedicalCondition: Yup.string().when(
+    "hasDisabilityOrMedicalCondition",
+    {
+      is: "Yes",
+      then: (schema) =>
+        schema.required("Name of disability/medical condition is required"),
+      otherwise: (schema) => schema.notRequired(),
+    }
+  ),
 });

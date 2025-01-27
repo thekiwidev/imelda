@@ -21,13 +21,13 @@ const ParentInformation: React.FC = () => {
 
           <InputFlex>
             <InputField
-              name="parentInfoFatherLastName"
+              name="parentInfoFatherFirstName"
               label="First name"
               gridCol={3}
             />
 
             <InputField
-              name="parentInfoFatherGivenNames"
+              name="parentInfoFatherLastName"
               label="Last name"
               gridCol={3}
             />
@@ -55,13 +55,13 @@ const ParentInformation: React.FC = () => {
 
           <InputFlex>
             <InputField
-              name="parentInfoMotherLastName"
+              name="parentInfoMotherFirstName"
               label="First name"
               gridCol={3}
             />
 
             <InputField
-              name="parentInfoMotherGivenNames"
+              name="parentInfoMotherLastName"
               label="Last name"
               gridCol={3}
             />

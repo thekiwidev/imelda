@@ -1,6 +1,6 @@
 import React from "react";
 import { IoLogoFacebook, IoLogoInstagram } from "react-icons/io5";
-import { FaXTwitter, FaYoutube } from "react-icons/fa6";
+import { FaTiktok, FaXTwitter } from "react-icons/fa6";
 
 const navigation = {
   main: [
@@ -30,7 +30,7 @@ const navigation = {
     {
       name: "YouTube",
       href: "#",
-      icon: FaYoutube,
+      icon: FaTiktok,
     },
   ],
 };
