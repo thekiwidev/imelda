@@ -4,32 +4,32 @@ import { FaTiktok, FaXTwitter } from "react-icons/fa6";
 
 const navigation = {
   main: [
-    { name: "About", href: "#" },
+    { name: "About", href: "/about-us" },
     { name: "Contact Us", href: "#" },
-    { name: "FAQs", href: "#faqs" },
+    { name: "FAQs", href: "./#faqs" },
     { name: "Student Visa Application", href: "/student-application" },
     { name: "Travel Visa Application", href: "/travel-application" },
   ],
   social: [
     {
       name: "Facebook",
-      href: "#",
+      href: "https://www.facebook.com/share/14cYqt5Fhi/",
       icon: IoLogoFacebook,
     },
     {
       name: "Instagram",
-      href: "#",
+      href: "https://www.instagram.com/official_imeldayayala?igsh=MWhtM3g3ODZ4dndzMA==",
       icon: IoLogoInstagram,
     },
     {
       name: "X",
-      href: "#",
+      href: "https://x.com/ImeldaYayala?t=5G-evU42gw0Ia_zsAEV75g&s=09",
       icon: FaXTwitter,
     },
 
     {
-      name: "YouTube",
-      href: "#",
+      name: "TikTok",
+      href: "https://www.tiktok.com/@imeldayayala?_t=ZM-8tQ90uXau73&_r=1",
       icon: FaTiktok,
     },
   ],
@@ -60,6 +60,7 @@ const Footer: React.FC = () => {
               key={item.name}
               href={item.href}
               className="text-gray-400 hover:text-gray-500"
+              target="_blank"
             >
               <span className="sr-only">{item.name}</span>
               <item.icon className="h-6 w-6" aria-hidden="true" />
