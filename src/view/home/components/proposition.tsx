@@ -3,8 +3,8 @@ import { motion } from "framer-motion";
 import {
   FaArrowTrendUp,
   FaCubesStacked,
-  FaMugHot,
-  FaPager,
+  FaGears,
+  FaHandsHoldingChild,
 } from "react-icons/fa6";
 import { TbBookmarkPlus } from "react-icons/tb";
 
@@ -21,21 +21,21 @@ const features = [
     description:
       "Our team of experienced professionals provides personalized advice and insights to help you navigate the complexities of studying, working, or relocating abroad.",
     href: "#",
-    icon: FaArrowTrendUp,
+    icon: FaHandsHoldingChild,
   },
   {
     name: "Tailored Solutions:",
     description:
       "We understand that each client's needs are unique. We customize our services to fit your specific goals and requirements, ensuring a perfect match.",
     href: "#",
-    icon: FaMugHot,
+    icon: FaGears,
   },
   {
     name: "Proven Track Record:",
     description:
       "With a history of successful placements and satisfied clients, Imelda Yayala has built a reputation for excellence and reliability.",
     href: "#",
-    icon: FaPager,
+    icon: FaArrowTrendUp,
   },
 ];
 

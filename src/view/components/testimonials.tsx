@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { FaCircleUser } from "react-icons/fa6";
 
 interface TestimonyProps {
   body: string;
@@ -36,8 +37,8 @@ const testimonials: TestimonyProps[] = [
   {
     body: "My family reunion in Italy was almost derailed by a complex visa application for my elderly parents. Thankfully, I found Imelda Yayala. They handled the entire process with professionalism and patience, ensuring all documents were translated and apostilled correctly. Now, my family is finally reunited, and we're having a magical time exploring Italy together.",
     author: {
-      name: "Tom Cook",
-      handle: "tomboy",
+      name: "Andre K.",
+      handle: "iamAndre",
       imageUrl:
         "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
     },
@@ -45,8 +46,8 @@ const testimonials: TestimonyProps[] = [
   {
     body: "I initially hesitated to use a visa consultancy service, but I'm so glad I did! Imelda Yayala streamlined the entire visa application process for my family vacation to Europe.",
     author: {
-      name: "Tom Cook",
-      handle: "tomboy",
+      name: "Ezekiel Adams",
+      handle: "ezzy_adams",
       imageUrl:
         "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
     },
@@ -156,20 +157,11 @@ const Testimonials: React.FC = () => {
                 <p>{`“${testimony.body}”`}</p>
               </blockquote>
               <figcaption className="flex flex-wrap items-center gap-x-4 gap-y-4 border-t border-gray-900/10 px-6 py-4 sm:flex-nowrap">
-                <img
-                  className="h-10 w-10 flex-none rounded-full bg-gray-50"
-                  src={testimony.author.imageUrl}
-                  alt=""
-                />
+                <FaCircleUser className="text-gray-400 h-[32px] w-[32px] aspect-square" />
                 <div className="flex-auto">
                   <div className="font-semibold">{testimony.author.name}</div>
                   <div className="text-gray-600">{`@${testimony.author.handle}`}</div>
                 </div>
-                <img
-                  className="h-10 w-auto flex-none"
-                  src={testimony.author.logoUrl}
-                  alt=""
-                />
               </figcaption>
             </motion.figure>
           ))}

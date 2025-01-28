@@ -17,12 +17,18 @@ const InputField: React.FC<InputProps> = ({
   note,
   placeholder,
   type = "text",
-  gridCol,
+  gridCol = 6,
 }) => {
-  const gridClass = gridCol ? `sm:col-span-${gridCol}` : "sm:col-span-6";
+  // Use a mapping object for grid classes instead of template literals
+  const gridColClasses = {
+    2: "sm:col-span-2",
+    3: "sm:col-span-3",
+    4: "sm:col-span-4",
+    6: "sm:col-span-6",
+  };
 
   return (
-    <div className={gridClass}>
+    <div className={gridColClasses[gridCol]}>
       <label
         htmlFor={name}
         className="block text-sm font-medium leading-6 text-gray-900"
@@ -31,7 +37,7 @@ const InputField: React.FC<InputProps> = ({
       </label>
       <div className="mt-2">
         <Field name={name}>
-          {({ field, meta }: FieldProps<any>) => (
+          {({ field, meta }: FieldProps<string | number>) => (
             <div>
               <input
                 {...field}

@@ -232,7 +232,7 @@ const Header: React.FC = () => {
                   {!isFormPage && (
                     <a
                       href="#services"
-                      className="text-sm font-semibold leading-6 text-gray-900"
+                      className="text-sm font-semibold leading-6 text-gray-900 block"
                     >
                       Services
                     </a>
@@ -240,7 +240,7 @@ const Header: React.FC = () => {
                   {!isFormPage && (
                     <a
                       href="#proposition"
-                      className="text-sm font-semibold leading-6 text-gray-900"
+                      className="text-sm font-semibold leading-6 text-gray-900 block"
                     >
                       Value Proposition
                     </a>
