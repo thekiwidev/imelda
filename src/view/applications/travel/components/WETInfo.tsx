@@ -2,7 +2,6 @@ import { YesNo } from "../../../components/data";
 import DateField from "../../components/dateField";
 import InputField from "../../components/inputField";
 import RadioField from "../../components/radioField";
-import TextField from "../../components/textarea";
 
 const WETinfo: React.FC = () => {
   return (
@@ -78,9 +77,10 @@ const WETinfo: React.FC = () => {
               note="(if employed)"
             />
 
-            <TextField
+            <InputField
               label="Briefly Describe your Duties"
               name="jobDutiesDescription"
+              type="textarea"
             />
           </div>
 
@@ -155,10 +155,11 @@ const WETinfo: React.FC = () => {
               gridCol={3}
             />
 
-            <TextField
+            <InputField
               name="otherInstitutionsAttended"
               label="Write other institutions attended accordingly in the space provided below:
               (Name, Address, City, State/Region, Course of Study, and Date of Attendance)"
+              type="textarea"
             />
           </div>
 

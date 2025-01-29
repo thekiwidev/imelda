@@ -1,5 +1,4 @@
 import React from "react";
-// import { useRef } from "react";
 import { motion } from "framer-motion";
 import { IMG01, IMG02, IMG03, IMG04, IMG05 } from "../../../assets";
 
@@ -88,7 +87,7 @@ const Banner: React.FC = () => {
                       initial={{ opacity: 0, y: 100 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
-                      href="#"
+                      href="/travel-application"
                       className="rounded-md bg-green-500 px-3.5 py-2.5 text-sm font-semibold text-[#f3fff3] shadow-sm hover:bg-green-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 duration-200 active:scale-[0.95]"
                     >
                       Start your journey
