@@ -23,13 +23,13 @@ import { Link, useLocation } from "react-router-dom";
 
 const forms = [
   {
-    name: "Student Visa Application",
+    name: "Student Visa Applications",
     description: "Pursue your academic dreams abroad",
     href: "/student-application",
     icon: FaGraduationCap,
   },
   {
-    name: "Travel Visa Application",
+    name: "Other Travel Visa Applications",
     description: "Simplify your travel visa application",
     href: "/travel-application",
     icon: FaBriefcase,

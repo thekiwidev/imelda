@@ -3,7 +3,7 @@ import { TravelApplicationForm } from "../../../api/travel/types";
 import { StudentApplicationForm } from "../../../api/students/types";
 
 type SchemaObject<T> = {
-  [key in keyof T]: Yup.Schema<any>;
+  [key in keyof T]: Yup.Schema<unknown>;
 };
 
 export const travelApplicationValidationSchema = Yup.object().shape<
@@ -191,13 +191,28 @@ export const travelApplicationValidationSchema = Yup.object().shape<
   ),
   professionalOrganizations: Yup.string().nullable(),
 
-  // @deprecated: no longer needed as I a not working with files
-  //   // Files to upload
-  //   visaApplication: Yup.string().required("Visa application file is required"),
-  //   scannedPassport: Yup.string().required("Scanned passport file is required"),
-  //   visaTermsAndConditionsDocument: Yup.string().required(
-  //     "Visa terms and conditions document is required"
-  //   ),
+  // Files to upload
+  visaApplication: Yup.mixed<File>()
+    .nullable()
+    .test(
+      "fileRequired",
+      "Visa application file is required",
+      (value) => value !== null
+    ),
+  scannedPassport: Yup.mixed<File>()
+    .nullable()
+    .test(
+      "fileRequired",
+      "Scanned passport file is required",
+      (value) => value !== null
+    ),
+  visaTermsAndConditionsDocument: Yup.mixed<File>()
+    .nullable()
+    .test(
+      "fileRequired",
+      "Visa terms and conditions document is required",
+      (value) => value !== null
+    ),
 });
 
 export const studentApplicationValidationSchema = Yup.object().shape<
