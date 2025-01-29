@@ -134,7 +134,7 @@ const Proposition: React.FC = () => {
               viewport={{ once: true }}
               className="mx-auto max-w-2xl text-3xl font-bold tracking-tight text-green-500 sm:text-4xl"
             >
-              Visas Simplified:{" "}
+              Visa Simplified:{" "}
               <span className="text-white">Dream Trip Activated.</span>
             </motion.h2>
             <motion.p
@@ -162,7 +162,7 @@ const Proposition: React.FC = () => {
               >
                 Get Your Free Visa Assessment
               </motion.a>
-              <motion.a
+              {/* <motion.a
                 transition={{ type: "spring", duration: 0.8, delay: 0.5 }}
                 initial={{ opacity: 0, y: 100 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -171,7 +171,7 @@ const Proposition: React.FC = () => {
                 className="text-sm font-semibold leading-6 text-white hover:text-green-200"
               >
                 Explore Our Services <span aria-hidden="true">→</span>
-              </motion.a>
+              </motion.a> */}
             </div>
             <svg
               viewBox="0 0 1024 1024"
