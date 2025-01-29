@@ -20,6 +20,7 @@ import { travelApplicationValidationSchema } from "../../components/validation";
 const TravelApplicationForm: React.FC = () => {
   const { mutate: mailTravelApplication, isPending } =
     useTravelApplicationMailer();
+
   const onSubmit = (
     values: TravelApplicationData,
     { resetForm }: FormikHelpers<TravelApplicationData>
@@ -29,6 +30,8 @@ const TravelApplicationForm: React.FC = () => {
         resetForm();
         toast.success(data.data.message);
       },
+      onError: () =>
+        toast.error("Failed to send application, Something went wrong"),
     });
   };
 

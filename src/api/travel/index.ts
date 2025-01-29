@@ -6,6 +6,11 @@ export const travelApplicationMailer = async (
 ) => {
   return await api.post<{ message: string }>(
     "/api/mailer/travel-application",
-    payload
+    payload,
+    {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    }
   );
 };

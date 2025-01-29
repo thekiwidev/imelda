@@ -1,4 +1,4 @@
-import CheckboxField from "../../components/checkboxField";
+import FilePicker from "../../components/file-picker";
 
 const Requirements: React.FC = () => {
   return (
@@ -13,27 +13,39 @@ const Requirements: React.FC = () => {
       </div>
 
       <div className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2">
-        <CheckboxField
-          name="visaRequirementsApplicationForm"
-          label="Visa Application Form"
-          description="Provide your visa application form with signature and date"
-          isRequired
-        />
+        <div className="p-4 px-6 text-sm leading-6">
+          <p className="font-medium text-gray-900">Visa Application Form</p>
+          <p className="text-gray-500">
+            Provide your visa application form with signature and date
+          </p>
 
-        <CheckboxField
-          name="visaRequirementsNote"
-          label="A clear Scanned Passport Copy"
-          description="Visa will NOT be processed until payment has been made and the following
-          requirements have been submitted (A clear Scanned Passport Copy of applicant)"
-          isRequired
-        />
+          <FilePicker name="visaApplication" accept=".pdf" />
+        </div>
 
-        <CheckboxField
-          name="visaRequirementsTermsAndConditions"
-          label="Visa terms and conditions document"
-          description="Provide your visa terms and condition document with signature and date"
-          isRequired
-        />
+        <div className="p-4 px-6 text-sm leading-6">
+          <p className="font-medium text-gray-900">
+            A clear Scanned Passport Copy
+          </p>
+          <p className="text-gray-500">
+            Visa will NOT be processed until payment has been made and the
+            following requirements have been submitted (A clear Scanned Passport
+            Copy of applicant)
+          </p>
+
+          <FilePicker name="scannedPassport" accept=".pdf" />
+        </div>
+
+        <div className="p-4 px-6 text-sm leading-6">
+          <p className="font-medium text-gray-900">
+            Visa terms and conditions document
+          </p>
+          <p className="text-gray-500">
+            Provide your visa terms and condition document with signature and
+            date
+          </p>
+
+          <FilePicker name="visaTermsAndConditionsDocument" accept=".pdf" />
+        </div>
       </div>
     </div>
   );
