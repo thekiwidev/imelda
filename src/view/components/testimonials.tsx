@@ -132,7 +132,7 @@ const Testimonials: React.FC = () => {
             We have worked with thousands of amazing people
           </p>
         </div>
-        <div className="mx-auto mt-16 flex xl:flex-row sm:flex-col items-start gap-8 text-sm leading-6 text-gray-900 sm:mt-20 xl:mx-0 xl:max-w-none">
+        <div className="mx-auto mt-16 flex md:flex-row flex-col items-start gap-8 text-sm leading-6 text-gray-900 sm:mt-20 xl:mx-0 xl:max-w-none">
           {testimonials.map((testimony, index) => (
             <motion.figure
               key={index}
