@@ -172,7 +172,7 @@ const Header: React.FC = () => {
               href="#proposition"
               className="text-sm font-semibold leading-6 text-gray-900"
             >
-              Value Proposition
+              Why Us
             </a>
           )}
         </PopoverGroup>
@@ -182,7 +182,7 @@ const Header: React.FC = () => {
             href={WhatsAppLink}
             className="text-sm font-semibold leading-6 text-gray-900"
           >
-            Get Consultation <span aria-hidden="true">&rarr;</span>
+            Book Consultation <span aria-hidden="true">&rarr;</span>
           </a>
         </div>
       </nav>
@@ -257,7 +257,7 @@ const Header: React.FC = () => {
                     href={WhatsAppLink}
                     className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                   >
-                    Get Consultation
+                    Book Consultation
                   </a>
                 </div>
               </div>

@@ -4,7 +4,9 @@ import {
   FaArrowTrendUp,
   FaCubesStacked,
   FaGears,
+  FaGlobe,
   FaHandsHoldingChild,
+  FaHandsHoldingCircle,
 } from "react-icons/fa6";
 import { TbBookmarkPlus } from "react-icons/tb";
 import { WhatsAppLink } from "../../components/data";
@@ -37,6 +39,20 @@ const features = [
       "With a history of successful placements and satisfied clients, Imelda Yayala has built a reputation for excellence and reliability.",
     href: "#",
     icon: FaArrowTrendUp,
+  },
+  {
+    name: "Global Network:",
+    description:
+      "Our extensive connections with educational institutions, employers, and travel partners worldwide enable us to offer you the best opportunities and resources.",
+    href: "#",
+    icon: FaGlobe,
+  },
+  {
+    name: "Dedicated Support:",
+    description:
+      "We are committed to your success and provide ongoing support throughout your journey, from the initial consultation to your final destination.",
+    href: "#",
+    icon: FaHandsHoldingCircle,
   },
 ];
 
