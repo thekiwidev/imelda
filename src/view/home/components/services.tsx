@@ -1,8 +1,11 @@
 import React from "react";
 import { motion } from "framer-motion";
 import {
+  FaBriefcase,
   FaComments,
   FaFileCircleCheck,
+  FaGraduationCap,
+  FaLanguage,
   FaPlaneDeparture,
   FaScaleBalanced,
   FaUserGear,
@@ -46,6 +49,24 @@ const features = [
     description:
       "We assist you through every step of the application process, from preparing documents to submitting your application, ensuring all details are handled with care and precision.",
     icon: FaPlaneDeparture,
+  },
+  {
+    name: "Destination Counselling:",
+    description:
+      "Receive personalised advice on the best study or work destinations based on your goals and preferences, helping you make informed and confident decisions.",
+    icon: FaLanguage,
+  },
+  {
+    name: "Study Information:",
+    description:
+      "Access comprehensive information about studying abroad, including academic opportunities, cultural insights, and practical tips to make the most of your educational experience.",
+    icon: FaGraduationCap,
+  },
+  {
+    name: "Work Information:",
+    description:
+      "Get detailed information about working abroad, including job opportunities, work culture, and essential guidelines to successfully navigate your international career.",
+    icon: FaBriefcase,
   },
 ];
 

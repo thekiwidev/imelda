@@ -20,6 +20,7 @@ import {
   FaHeadset,
 } from "react-icons/fa6";
 import { Link, useLocation } from "react-router-dom";
+import { WhatsAppLink } from "../../components/data";
 
 const forms = [
   {
@@ -79,20 +80,20 @@ const Header: React.FC = () => {
         </div>
         <PopoverGroup className="hidden lg:flex lg:gap-x-12">
           {isFormPage && (
-            <a
-              href="/"
+            <Link
+              to="/"
               className="text-sm font-semibold leading-6 text-gray-900"
             >
               Home
-            </a>
+            </Link>
           )}
 
-          <a
-            href="/about-us"
+          <Link
+            to="/about-us"
             className="text-sm font-semibold leading-6 text-gray-900"
           >
             About
-          </a>
+          </Link>
 
           <Popover className="relative">
             <PopoverButton className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
@@ -171,13 +172,17 @@ const Header: React.FC = () => {
               href="#proposition"
               className="text-sm font-semibold leading-6 text-gray-900"
             >
-              Value Proposition
+              Why Us
             </a>
           )}
         </PopoverGroup>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-            Get Consultation <span aria-hidden="true">&rarr;</span>
+          <a
+            target="_blank"
+            href={WhatsAppLink}
+            className="text-sm font-semibold leading-6 text-gray-900"
+          >
+            Book Consultation <span aria-hidden="true">&rarr;</span>
           </a>
         </div>
       </nav>
@@ -223,12 +228,12 @@ const Header: React.FC = () => {
                   ))}
                 </div>
                 <div className="space-y-2 py-6">
-                  <a
-                    href="/about-us"
+                  <Link
+                    to="/about-us"
                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                   >
                     About
-                  </a>
+                  </Link>
                   {!isFormPage && (
                     <a
                       href="#services"
@@ -248,10 +253,11 @@ const Header: React.FC = () => {
                 </div>
                 <div className="py-6">
                   <a
-                    href="#"
+                    target="_blank"
+                    href={WhatsAppLink}
                     className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                   >
-                    Get Consultation
+                    Book Consultation
                   </a>
                 </div>
               </div>

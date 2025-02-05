@@ -23,7 +23,7 @@ const PInfo: React.FC = () => {
           <InputFlex>
             <InputField
               name="countryOfApplication"
-              label="Which Country do plan to apply for"
+              label="Which Country are you applying from?"
               gridCol={3}
             />
           </InputFlex>

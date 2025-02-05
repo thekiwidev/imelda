@@ -73,13 +73,15 @@ const Banner: React.FC = () => {
                     className="mt-6 text-lg leading-8 text-gray-400 sm:max-w-md lg:max-w-none"
                   >
                     Turn your travel and relocation dreams into reality. Imelda
-                    Yayala is your one-stop shop for <span>studying,</span>{" "}
-                    <span>working,</span> <span>relocating,</span> and{" "}
-                    <span>exploring the world</span>. We offer complete support
-                    - from visa assistance and program selection to application
-                    processing and travel arrangements. Our expert team will
-                    guide you every step of the way. Get started on your global
-                    adventure today!
+                    Yayala is your one-stop shop for{" "}
+                    <span className="text-green-600">studying,</span>{" "}
+                    <span className="text-green-600">working,</span>{" "}
+                    <span className="text-green-600">relocating,</span> and{" "}
+                    <span className="text-green-600">exploring the world</span>.
+                    We offer complete support - from visa assistance and program
+                    selection to application processing and travel arrangements.
+                    Our expert team will guide you every step of the way. Get
+                    started on your global adventure today!
                   </motion.p>
                   <div className="mt-10 flex items-center gap-x-6">
                     <motion.a

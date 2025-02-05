@@ -21,3 +21,5 @@ export const Gender = [
   { label: "Male", value: "Male" },
   { label: "Female", value: "Female" },
 ];
+
+export const WhatsAppLink = "https://wa.me/48791510761";
