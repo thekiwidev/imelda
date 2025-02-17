@@ -9,7 +9,7 @@ import {
   FaHandsHoldingCircle,
 } from "react-icons/fa6";
 import { TbBookmarkPlus } from "react-icons/tb";
-import { WhatsAppLink } from "../../components/data";
+import { whatsappLink } from "../../components/data";
 
 const features = [
   {
@@ -125,7 +125,7 @@ const Proposition: React.FC = () => {
 
             <div className="flex items-center justify-center my-16">
               <a
-                href={WhatsAppLink}
+                href={whatsappLink}
                 type="button"
                 className="inline-flex items-center gap-x-1.5 rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 duration-300 active:scale-[0.95]"
               >
@@ -174,7 +174,7 @@ const Proposition: React.FC = () => {
                 initial={{ opacity: 0, y: 100 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                href={WhatsAppLink}
+                href={whatsappLink}
                 className="rounded-md bg-green-500 px-3.5 py-2.5 text-sm font-semibold text-[#153615] shadow-sm hover:bg-green-600
                 duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
               >
