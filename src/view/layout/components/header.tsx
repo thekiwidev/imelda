@@ -20,6 +20,7 @@ import {
   FaHeadset,
 } from "react-icons/fa6";
 import { Link, useLocation } from "react-router-dom";
+import { whatsappLink } from "../../components/data";
 
 const forms = [
   {
@@ -38,7 +39,7 @@ const forms = [
 
 const callsToAction = [
   { name: "See testimonies", href: "#testimonials", icon: FaComments },
-  { name: "Get in touch", href: "#", icon: FaHeadset },
+  { name: "Get in touch", href: whatsappLink, icon: FaHeadset },
 ];
 
 const Header: React.FC = () => {
@@ -79,20 +80,20 @@ const Header: React.FC = () => {
         </div>
         <PopoverGroup className="hidden lg:flex lg:gap-x-12">
           {isFormPage && (
-            <a
-              href="/"
+            <Link
+              to="/"
               className="text-sm font-semibold leading-6 text-gray-900"
             >
               Home
-            </a>
+            </Link>
           )}
 
-          <a
-            href="/about-us"
+          <Link
+            to="/about-us"
             className="text-sm font-semibold leading-6 text-gray-900"
           >
             About
-          </a>
+          </Link>
 
           <Popover className="relative">
             <PopoverButton className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
@@ -171,13 +172,17 @@ const Header: React.FC = () => {
               href="#proposition"
               className="text-sm font-semibold leading-6 text-gray-900"
             >
-              Value Proposition
+              Why Us
             </a>
           )}
         </PopoverGroup>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-            Get Consultation <span aria-hidden="true">&rarr;</span>
+          <a
+            target="_blank"
+            href={whatsappLink}
+            className="text-sm font-semibold leading-6 text-gray-900"
+          >
+            Book Consultation <span aria-hidden="true">&rarr;</span>
           </a>
         </div>
       </nav>
@@ -210,6 +215,7 @@ const Header: React.FC = () => {
                     <a
                       key={item.name}
                       href={item.href}
+                      onClick={() => setMobileMenuOpen(false)}
                       className="group -mx-3 flex items-center gap-x-6 rounded-lg p-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                     >
                       <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
@@ -223,15 +229,17 @@ const Header: React.FC = () => {
                   ))}
                 </div>
                 <div className="space-y-2 py-6">
-                  <a
-                    href="/about-us"
+                  <Link
+                    to="/about-us"
+                    onClick={() => setMobileMenuOpen(false)}
                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                   >
                     About
-                  </a>
+                  </Link>
                   {!isFormPage && (
                     <a
                       href="#services"
+                      onClick={() => setMobileMenuOpen(false)}
                       className="text-sm font-semibold leading-6 text-gray-900 block"
                     >
                       Services
@@ -240,18 +248,21 @@ const Header: React.FC = () => {
                   {!isFormPage && (
                     <a
                       href="#proposition"
+                      onClick={() => setMobileMenuOpen(false)}
                       className="text-sm font-semibold leading-6 text-gray-900 block"
                     >
-                      Value Proposition
+                      Why Us
                     </a>
                   )}
                 </div>
                 <div className="py-6">
                   <a
-                    href="#"
+                    target="_blank"
+                    href={whatsappLink}
+                    onClick={() => setMobileMenuOpen(false)}
                     className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                   >
-                    Get Consultation
+                    Book Consultation
                   </a>
                 </div>
               </div>
@@ -262,6 +273,7 @@ const Header: React.FC = () => {
               <a
                 key={item.name}
                 href={item.href}
+                onClick={() => setMobileMenuOpen(false)}
                 className="p-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-100"
               >
                 {item.name}

@@ -4,9 +4,12 @@ import {
   FaArrowTrendUp,
   FaCubesStacked,
   FaGears,
+  FaGlobe,
   FaHandsHoldingChild,
+  FaHandsHoldingCircle,
 } from "react-icons/fa6";
 import { TbBookmarkPlus } from "react-icons/tb";
+import { whatsappLink } from "../../components/data";
 
 const features = [
   {
@@ -36,6 +39,20 @@ const features = [
       "With a history of successful placements and satisfied clients, Imelda Yayala has built a reputation for excellence and reliability.",
     href: "#",
     icon: FaArrowTrendUp,
+  },
+  {
+    name: "Global Network:",
+    description:
+      "Our extensive connections with educational institutions, employers, and travel partners worldwide enable us to offer you the best opportunities and resources.",
+    href: "#",
+    icon: FaGlobe,
+  },
+  {
+    name: "Dedicated Support:",
+    description:
+      "We are committed to your success and provide ongoing support throughout your journey, from the initial consultation to your final destination.",
+    href: "#",
+    icon: FaHandsHoldingCircle,
   },
 ];
 
@@ -107,13 +124,14 @@ const Proposition: React.FC = () => {
             </dl>
 
             <div className="flex items-center justify-center my-16">
-              <button
+              <a
+                href={whatsappLink}
                 type="button"
                 className="inline-flex items-center gap-x-1.5 rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 duration-300 active:scale-[0.95]"
               >
                 <TbBookmarkPlus />
                 Book a consultation
-              </button>
+              </a>
             </div>
           </div>
         </div>
@@ -156,7 +174,7 @@ const Proposition: React.FC = () => {
                 initial={{ opacity: 0, y: 100 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                href="#"
+                href={whatsappLink}
                 className="rounded-md bg-green-500 px-3.5 py-2.5 text-sm font-semibold text-[#153615] shadow-sm hover:bg-green-600
                 duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
               >

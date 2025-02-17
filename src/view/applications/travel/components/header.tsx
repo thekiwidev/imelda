@@ -1,5 +1,6 @@
 import React from "react";
 import { FaCircleQuestion, FaFileSignature } from "react-icons/fa6";
+import { applicationWhatsappLink } from "../../../components/data";
 
 const FormHeader: React.FC = () => {
   return (
@@ -25,10 +26,15 @@ const FormHeader: React.FC = () => {
               Get started{" "}
             </a>
 
-            <button className="flex gap-2 items-center text-green-500 group hover:text-green-800 duration-300">
+            <a
+              href={applicationWhatsappLink}
+              target="_blank"
+              rel="noreferrer"
+              className="flex gap-2 items-center text-green-500 group hover:text-green-800 duration-300"
+            >
               <FaCircleQuestion className="group-hover:mr-2 duration-300" /> Get
               help
-            </button>
+            </a>
           </div>
         </div>
         <div className="flex-[0.3] md:flex items-center justify-center hidden m">
