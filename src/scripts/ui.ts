@@ -1,58 +1,19 @@
-// Shared page behaviour: scroll reveals, hero parallax and small toggle helpers used by pages.
+// Shared page behaviour: WhatsApp helpers, auto-advancing showcases and small toggle helpers.
 
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-function initReveal() {
-  const items = Array.from(document.querySelectorAll<HTMLElement>('.rv'));
-  // Stagger siblings that reveal together: 80ms apart, capped so long lists do not drag.
-  items.forEach((el) => {
-    const siblings = el.parentElement ? Array.from(el.parentElement.children).filter((c) => c.classList.contains('rv')) : [el];
-    el.style.setProperty('--d', `${Math.min(siblings.indexOf(el), 5) * 80}ms`);
-  });
-  if (reduceMotion || !('IntersectionObserver' in window)) {
-    items.forEach((el) => el.classList.add('in'));
-    return;
-  }
-  const io = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((e) => {
-        if (!e.isIntersecting) return;
-        e.target.classList.add('in');
-        io.unobserve(e.target);
-      });
-    },
-    { rootMargin: '0px 0px -8% 0px' },
-  );
-  items.forEach((el) => io.observe(el));
-}
-
-function initParallax() {
-  if (reduceMotion || !window.matchMedia('(pointer: fine)').matches) return;
-  document.querySelectorAll<HTMLElement>('[data-parallax]').forEach((hero) => {
-    const layers = Array.from(hero.querySelectorAll<HTMLElement>('[data-px]'));
-    let frame = 0;
-    const apply = (mx: number, my: number) =>
-      layers.forEach((l) => {
-        const [fx, fy] = (l.dataset.px ?? '0,0').split(',').map(Number);
-        l.style.transform = `translate3d(${(mx * fx).toFixed(1)}px, ${(my * fy).toFixed(1)}px, 0)`;
-      });
-    hero.addEventListener('mousemove', (e) => {
-      const r = hero.getBoundingClientRect();
-      const mx = ((e.clientX - r.left) / r.width - 0.5) * 2;
-      const my = ((e.clientY - r.top) / r.height - 0.5) * 2;
-      cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(() => apply(mx, my));
-    });
-    hero.addEventListener('mouseleave', () => apply(0, 0));
-  });
-}
-
-initReveal();
-initParallax();
 
 /** Mark one button in a group as pressed/selected/checked and return the chosen value. */
 export function selectIn(buttons: HTMLElement[], chosen: HTMLElement, attr = 'aria-pressed') {
   buttons.forEach((b) => b.setAttribute(attr, String(b === chosen)));
+}
+
+/** Replays the destination "flip" when a boarding-pass value changes. */
+export function flipText(el: Element, text: string) {
+  el.textContent = text;
+  if (reduceMotion) return;
+  el.classList.remove('flip');
+  void (el as HTMLElement).offsetWidth;
+  el.classList.add('flip');
 }
 
 /** Show the panel whose data-key matches and hide the rest. */

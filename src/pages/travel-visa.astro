@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
 import Breadcrumb from '../components/Breadcrumb.astro';
+import FaqAccordion from '../components/FaqAccordion.astro';
 import Photo from '../components/Photo.astro';
 import coupleAirport from '../assets/photos/couple-airport.jpeg';
 import WaLink from '../components/WaLink.astro';
@@ -68,25 +69,20 @@ const docItem = 'font-size: 14px; line-height: 22px; color: var(--ink-muted)';
   service={{ name: 'Visitor visa and travel planning', serviceType: 'Visitor visa consultancy', description: 'Visitor visa applications, invitation letters and dated travel plans for the UK, US, Schengen area, Canada, UAE and Ireland.' }}
 >
   <!-- HERO -->
-  <section id="top" data-parallax style="position: relative; overflow: hidden; padding: 64px 0 96px; background: var(--paper)">
+  <section id="top" style="position: relative; overflow: hidden; padding: 64px 0 96px; background: var(--paper)">
     <div class="wrap" style="display: flex; flex-direction: column; gap: 40px">
       <Breadcrumb current="Travel and visits" />
       <div style="position: relative">
-        <div class="px" data-px="-10,-6">
+        <div>
           <Photo eager src={coupleAirport} alt="Couple with luggage arriving at an airport" style="height: 560px" />
         </div>
-        <div class="card rv travel-card pad-sm" style="position: relative; margin: -220px 0 0 48px; max-width: 640px; padding: 40px; display: flex; flex-direction: column; gap: 24px; align-items: flex-start; box-shadow: 0 4px 8px rgba(15,61,31,.05), 0 24px 48px rgba(15,61,31,.12)">
-          <span class="tab">Travel and visits</span>
+        <div class="card travel-card hero-copy pad-sm" style="position: relative; margin: -220px 0 0 48px; max-width: 640px; padding: 40px; display: flex; flex-direction: column; gap: 24px; align-items: flex-start; box-shadow: 0 4px 8px rgba(15,61,31,.05), 0 24px 48px rgba(15,61,31,.12)">
           <h1 class="display" style="max-width: 12ch; font-size: 56px; line-height: 62px">Make the trip. Keep the date.</h1>
           <p class="lead">Holidays, family visits, weddings, graduations and business trips. Tell us the date you can't miss; we work backwards from it and file a complete visitor visa.</p>
           <div style="display: flex; flex-wrap: wrap; gap: 12px">
             <a class="btn btn-primary" href="#planner">Plan my trip <Icon name="arrow" size={20} stroke="var(--signal)" strokeWidth={2} class="arr" /></a>
             <a class="btn btn-secondary" href="#host">Inviting family?</a>
           </div>
-          <dl style="margin: 0; display: flex; flex-wrap: wrap; gap: 24px">
-            <div style="display: flex; flex-direction: column; gap: 2px"><dt class="meta" style="color: var(--ink-subtle)">REPLIES</dt><dd style="margin: 0; font-weight: 600">Within one working day</dd></div>
-            <div style="display: flex; flex-direction: column; gap: 2px"><dt class="meta" style="color: var(--ink-subtle)">FIRST CALL</dt><dd style="margin: 0; font-weight: 600">Free, 30 minutes</dd></div>
-          </dl>
         </div>
       </div>
     </div>
@@ -96,19 +92,18 @@ const docItem = 'font-size: 14px; line-height: 22px; color: var(--ink-muted)';
   <section id="planner" class="sec" style="background: var(--paper); padding-top: 32px">
     <div class="wrap g-split" style="align-items: start">
       <div style="display: flex; flex-direction: column; gap: 20px; align-items: flex-start; padding-top: 24px">
-        <span class="tab rv">Trip planner</span>
-        <h2 class="h1 rv">How much time do you have?</h2>
-        <p class="lead rv">Pick when you travel and why. We'll show you how tight it is and what happens first.</p>
-        <ul class="bullets rv" style="margin-top: 8px; display: flex; flex-direction: column; gap: 12px">
+        <h2 class="h1">How much time do you have?</h2>
+        <p class="lead">Pick when you travel and why. We'll show you how tight it is and what happens first.</p>
+        <ul class="bullets" style="margin-top: 8px; display: flex; flex-direction: column; gap: 12px">
           <li><Icon name="bullet" size={10} stroke="var(--forest)" /><span class="muted">Processing times change through the year. We check the current official estimate.</span></li>
           <li><Icon name="bullet" size={10} stroke="var(--forest)" /><span class="muted">We book flights after approval, so you don't lose money on a refused visa.</span></li>
         </ul>
       </div>
-      <div class="card rv" data-planner-root style="padding: 0; overflow: hidden; box-shadow: var(--shadow-md)">
+      <div class="card" data-planner-root style="padding: 0; overflow: hidden; box-shadow: var(--shadow-md)">
         <div style="display: grid; grid-template-columns: 132px minmax(0, 1fr)">
           <div aria-live="polite" style="background: var(--forest); color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; padding: 24px 12px">
             <span class="overline" style="color: var(--on-forest-muted)">You fly</span>
-            <span data-fly-month style="font-family: var(--f-display); font-weight: 600; font-size: 44px; line-height: 48px; letter-spacing: -.02em; color: var(--brass)">{MON[fly.getMonth()]}</span>
+            <span data-fly-month style="font-family: var(--f-display); font-weight: 600; font-size: 44px; line-height: 48px; letter-spacing: -.02em; color: var(--signal)">{MON[fly.getMonth()]}</span>
             <span class="meta" data-fly-year style="color: var(--on-forest-muted)">AROUND {fly.getFullYear()}</span>
           </div>
           <div style="padding: 24px; display: flex; flex-direction: column; gap: 16px">
@@ -152,12 +147,11 @@ const docItem = 'font-size: 14px; line-height: 22px; color: var(--ink-muted)';
   <section class="sec" style="background: var(--surface); border-top: 1px solid var(--line)">
     <div class="wrap" style="display: flex; flex-direction: column; gap: 40px">
       <div style="display: flex; flex-direction: column; gap: 16px; align-items: flex-start; max-width: 720px">
-        <span class="tab rv">Kinds of trip</span>
-        <h2 class="h1 rv">Every reason to travel has its own paperwork.</h2>
+        <h2 class="h1">Every reason to travel has its own paperwork.</h2>
       </div>
       <div class="g-tix">
         {TICKETS.map((t) => (
-          <article class="ticket rv">
+          <article class="ticket">
             <div style="background: var(--forest-tint); border-right: 2px dashed var(--line-strong); display: flex; flex-direction: column; align-items: center; justify-content: space-between; padding: 24px 0; color: var(--forest)">
               <Icon name={t.icon} size={28} />
               <span class="meta" aria-hidden="true" style="writing-mode: vertical-rl; transform: rotate(180deg); letter-spacing: .2em">{t.code}</span>
@@ -179,10 +173,9 @@ const docItem = 'font-size: 14px; line-height: 22px; color: var(--ink-muted)';
   <section id="host" class="sec" style="background: var(--paper)">
     <div class="wrap g-split" data-host-root style="align-items: start">
       <div style="display: flex; flex-direction: column; gap: 20px; align-items: flex-start">
-        <span class="tab rv">Inviting family</span>
-        <h2 class="h1 rv">Living abroad and inviting family? Here is what your letter needs.</h2>
-        <p class="rv muted" style="margin: 0">A clear invitation letter answers the officer's questions before they ask them. Here is where each point goes.</p>
-        <ol class="rv" data-host style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px; width: 100%">
+        <h2 class="h1">Living abroad and inviting family? Here is what your letter needs.</h2>
+        <p class="muted" style="margin: 0">A clear invitation letter answers the officer's questions before they ask them. Here is where each point goes.</p>
+        <ol data-host style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px; width: 100%">
           {HOST.map((h, i) => (
             <li class:list={['hostli', { on: i === 0 }]} tabindex="0" data-key={String(i)}>
               <span class="n" aria-hidden="true">{i + 1}</span>
@@ -191,14 +184,14 @@ const docItem = 'font-size: 14px; line-height: 22px; color: var(--ink-muted)';
           ))}
         </ol>
       </div>
-      <figure class="rv" aria-label="Example invitation letter layout" style="margin: 0">
+      <figure aria-label="Example invitation letter layout" style="margin: 0">
         <div class="card pad-sm" style="padding: 48px; box-shadow: var(--shadow-md); display: flex; flex-direction: column; gap: 14px; font-size: 14px; line-height: 22px">
           <div style="display: flex; justify-content: space-between; gap: 16px"><span class="letter-part on" data-part="0" set:html={letter[0]} /><span class="meta" style="color: var(--ink-subtle)">3 MARCH 2026</span></div>
           <span>To the Visa Officer,</span>
           {letter.slice(1).map((l, i) => <span class="letter-part" data-part={String(i + 1)}>{l}</span>)}
           <span style="margin-top: 8px">Yours faithfully,<br /><span style="font-family: var(--f-serif); font-style: italic; font-size: 22px; line-height: 32px; color: var(--ink-muted)">Ngozi Adeyemi</span></span>
         </div>
-        <figcaption class="meta" style="color: var(--ink-subtle); margin-top: 12px">ILLUSTRATIVE LAYOUT · WE TAILOR IT TO THE DESTINATION'S RULES</figcaption>
+        <figcaption class="muted" style="margin-top: 12px; font-size: 14px; line-height: 22px">An illustrative layout. We tailor every letter to the destination's rules.</figcaption>
       </figure>
     </div>
   </section>
@@ -208,20 +201,18 @@ const docItem = 'font-size: 14px; line-height: 22px; color: var(--ink-muted)';
     <div class="art" aria-hidden="true">
       <div style="position: absolute; inset: -40px">
         <svg width="100%" height="100%" viewBox="0 0 1440 820" preserveAspectRatio="xMidYMid slice" fill="none">
-          <g stroke="#0f3d1f" stroke-width="2" stroke-dasharray="6 8" stroke-linecap="round"><path d="M120 700 Q 420 120 980 90"></path><path d="M120 700 Q 700 520 1380 300"></path></g>
-          <g fill="#0f3d1f"><circle cx="120" cy="700" r="8"></circle><circle cx="980" cy="90" r="5"></circle><circle cx="1380" cy="300" r="5"></circle></g>
+          <g stroke="var(--signal)" stroke-width="2" stroke-dasharray="6 8" stroke-linecap="round"><path d="M120 700 Q 420 120 980 90"></path><path d="M120 700 Q 700 520 1380 300"></path></g>
+          <g fill="var(--signal)"><circle cx="120" cy="700" r="8"></circle><circle cx="980" cy="90" r="5"></circle><circle cx="1380" cy="300" r="5"></circle></g>
         </svg>
       </div>
     </div>
     <div class="wrap" style="display: flex; flex-direction: column; gap: 32px">
       <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px">
         <div style="display: flex; flex-direction: column; gap: 16px; align-items: flex-start; max-width: 640px">
-          <span class="tab rv">Destinations</span>
-          <h2 class="h1 rv">Where our travellers go, and how each one works.</h2>
+          <h2 class="h1">Where our travellers go, and how each one works.</h2>
         </div>
-        <span class="meta rv" style="color: var(--ink-subtle)">WE CHECK CURRENT RULES FOR EVERY CASE</span>
       </div>
-      <div class="rv" style="border-top: 1px solid var(--line-strong)">
+      <div style="border-top: 1px solid var(--line-strong)">
         <div class="drow hide-sm" aria-hidden="true" style="padding-top: 12px; padding-bottom: 12px"><span class="overline" style="color: var(--ink-subtle)">Code</span><span class="overline" style="color: var(--ink-subtle)">Destination</span><span class="overline hide-md" style="color: var(--ink-subtle)">Visa</span><span class="overline hide-md" style="color: var(--ink-subtle)">How you apply</span><span></span></div>
         {DESTS.map((d) => (
           <WaLink class="drow" message={`Hello Imelda Yayala, I'd like help with a ${d.visa} for ${d.country}.`}>
@@ -236,42 +227,24 @@ const docItem = 'font-size: 14px; line-height: 22px; color: var(--ink-muted)';
     </div>
   </section>
 
-  <!-- REFUSED BANNER -->
-  <section style="background: var(--surface); padding: 0 0 96px">
-    <div class="wrap">
-      <a href="/#services" class="rv svc" style="display: flex; flex-wrap: wrap; gap: 24px; align-items: center; justify-content: space-between; padding: 32px 40px; border-radius: 12px; background: var(--forest-tint); border: 1px solid rgba(15,61,31,.2)">
-        <span style="display: flex; gap: 20px; align-items: center"><span class="tile" style="background: var(--surface)"><Icon name="refresh" /></span><span style="display: flex; flex-direction: column; gap: 2px"><span class="h3">Refused a visitor visa before?</span><span class="muted" style="font-size: 15px">Bring the letter. We'll read the reasons and show you what to change before you reapply.</span></span></span>
-        <span style="display: flex; align-items: center; gap: 8px; font-weight: 600; color: var(--forest)">Start a refusal review <Icon name="arrow" size={20} stroke="var(--forest)" strokeWidth={2} class="go" /></span>
-      </a>
-    </div>
-  </section>
 
   <!-- FAQ -->
   <section id="faq" class="sec" style="background: var(--paper)">
-    <div class="wrap" style="display: flex; flex-direction: column; gap: 24px">
-      <div style="display: flex; flex-direction: column; gap: 16px; align-items: flex-start">
-        <span class="tab rv">Quick answers</span>
-        <h2 class="h1 rv">What travellers ask us most.</h2>
-      </div>
-      <div style="border-top: 1px solid var(--line)">
-        {FAQS.map((f) => (
-          <div class="g-qa rv"><h3 class="h3">{f.q}</h3><p class="muted" style="margin: 0">{f.a}</p></div>
-        ))}
-      </div>
+    <div class="wrap g-faq">
+      <h2 class="h1">What travellers ask us most.</h2>
+      <FaqAccordion faqs={FAQS} group="faq-travel" />
     </div>
   </section>
 
   <!-- CLOSING -->
-  <section id="contact" style="background: var(--brass-tint); border-top: 1px solid rgba(138,97,24,.25); padding: 96px 0">
+  <section id="contact" style="background: var(--lime-tint); border-top: 1px solid var(--lime-line); padding: 96px 0">
     <div class="wrap" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 20px; max-width: 760px">
-      <span class="overline rv" style="color: var(--brass-ink)">Your next step</span>
-      <h2 class="rv" style="margin: 0; font-family: var(--f-display); font-weight: 600; font-size: 44px; line-height: 50px; letter-spacing: -.03em">Tell us the date. We'll work back from it.</h2>
-      <p class="rv muted" style="margin: 0; font-size: 19px; line-height: 30px">Send your travel date and destination on WhatsApp. A consultant replies with your dated checklist and a time for your free call.</p>
-      <div class="rv" style="display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 8px">
+      <h2 style="margin: 0; font-family: var(--f-display); font-weight: 600; font-size: 44px; line-height: 50px; letter-spacing: -.03em">Tell us the date. We'll work back from it.</h2>
+      <p class="muted" style="margin: 0; font-size: 19px; line-height: 30px">Send your travel date and destination on WhatsApp. A consultant replies with your dated checklist and a time for your free call.</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 8px">
         <WaLink class="btn btn-primary" message="Hello Imelda Yayala, I'd like help planning a trip. My travel date is:"><Icon name="whatsapp" size={18} /> Message us on WhatsApp</WaLink>
         <a class="btn btn-secondary" href={callLink()}><Icon name="phone" size={18} /> Call {site.phone}</a>
       </div>
-      <span class="meta rv" style="color: var(--brass-ink)">REPLY WITHIN ONE WORKING DAY</span>
     </div>
   </section>
 </Base>

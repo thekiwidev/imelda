@@ -18,16 +18,15 @@ const { crumb, tab, title, lead, checklist } = Astro.props;
     <Breadcrumb current={crumb} />
     <div class="g-hero" style="align-items: start">
       <div style="display: flex; flex-direction: column; gap: 24px; align-items: flex-start">
-        <span class="tab rv">{tab}</span>
-        <h1 class="display rv" style="max-width: 14ch">{title}</h1>
-        <p class="lead rv">{lead}</p>
-        <div class="rv" style="display: flex; flex-wrap: wrap; gap: 12px">
+        <h1 class="display" style="max-width: 14ch">{title}</h1>
+        <p class="lead">{lead}</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 12px">
           <a class="btn btn-primary" href="#application">Get started <Icon name="arrow" size={20} stroke="var(--signal)" strokeWidth={2} class="arr" /></a>
           <a class="btn btn-secondary" href="#contact">Get help</a>
         </div>
       </div>
-      <aside class="rv on-dark" style="background: var(--forest); color: var(--on-forest); border-radius: 12px; padding: 32px; display: flex; flex-direction: column; gap: 20px; box-shadow: var(--shadow-md)">
-        <span class="overline" style="color: var(--brass)">Before you start</span>
+      <aside class="on-dark" style="background: var(--forest); color: var(--on-forest); border-radius: 12px; padding: 32px; display: flex; flex-direction: column; gap: 20px; box-shadow: var(--shadow-md)">
+        <span class="overline" style="color: var(--signal)">Before you start</span>
         <ul class="bullets" style="display: flex; flex-direction: column; gap: 14px">
           {checklist.map((item) => (
             <li style="color: var(--on-forest-muted); font-size: 15px; line-height: 24px"><Icon name="check" size={16} stroke="var(--signal)" strokeWidth={2.5} style="margin-top: 4px" /><span>{item}</span></li>

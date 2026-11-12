@@ -59,20 +59,19 @@ const listItem = 'font-size: 15px; line-height: 24px; color: var(--ink-muted)';
   service={{ name: 'Work abroad and work visa support', serviceType: 'Work visa consultancy', description: 'Job offer and employer checks, CV and evidence packs, and work visa applications for the UK, Canada, Germany, Ireland, Poland and Australia.' }}
 >
   <!-- HERO -->
-  <section id="top" data-parallax style="position: relative; overflow: hidden; padding: 64px 0 96px; background: var(--paper)">
+  <section id="top" style="position: relative; overflow: hidden; padding: 64px 0 96px; background: var(--paper)">
     <div class="wrap" style="display: flex; flex-direction: column; gap: 48px">
       <Breadcrumb current="Work abroad" />
       <div class="g-hero" style="align-items: center">
-        <div style="display: flex; flex-direction: column; gap: 24px; align-items: flex-start">
-          <span class="tab rv">Work abroad</span>
-          <h1 class="display rv" style="max-width: 14ch">Work abroad through routes that are real.</h1>
-          <p class="lead rv">We check the job, the employer and the visa route before you spend money on any of them. Then we prepare your CV and file the work visa with you.</p>
-          <div class="rv" style="display: flex; flex-wrap: wrap; gap: 12px">
+        <div class="hero-copy" style="display: flex; flex-direction: column; gap: 24px; align-items: flex-start">
+          <h1 class="display" style="max-width: 14ch">Work abroad through routes that are real.</h1>
+          <p class="lead">We check the job, the employer and the visa route before you spend money on any of them. Then we prepare your CV and file the work visa with you.</p>
+          <div style="display: flex; flex-wrap: wrap; gap: 12px">
             <a class="btn btn-primary" href="#check">Check my offer <Icon name="arrow" size={20} stroke="var(--signal)" strokeWidth={2} class="arr" /></a>
             <a class="btn btn-secondary" href="#routes">See work routes</a>
           </div>
         </div>
-        <div class="rv px stack-sm" data-px="-10,-6" style="display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 12px">
+        <div class="stack-sm" style="display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 12px">
           <Photo eager src={healthcareWorker} alt="Healthcare worker in scrubs with a stethoscope" style="height: 460px" />
           <div style="display: flex; flex-direction: column; gap: 12px">
             <Photo src={consultantCall} alt="Consultant on a phone call reviewing documents" style="height: 220px" />
@@ -84,7 +83,7 @@ const listItem = 'font-size: 15px; line-height: 24px; color: var(--ink-muted)';
         </div>
       </div>
 
-      <div id="check" class="card rv" style="padding: 0; overflow: hidden; box-shadow: var(--shadow-md)">
+      <div id="check" class="card" style="padding: 0; overflow: hidden; box-shadow: var(--shadow-md)">
         <div class="g-tool">
           <div class="pad-sm" style="padding: 32px; display: flex; flex-direction: column; gap: 8px">
             <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 8px">
@@ -93,7 +92,7 @@ const listItem = 'font-size: 15px; line-height: 24px; color: var(--ink-muted)';
             </div>
             {QS.map((q, i) => (
               <div role="group" aria-label={q.text} data-q={i} data-flag-on={q.flagOn} data-flag={q.flag} style="display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 14px 0; border-top: 1px solid var(--line)">
-                <span style="display: flex; gap: 12px; align-items: baseline"><span class="meta" style="color: var(--ink-subtle)">0{i + 1}</span><span style="font-size: 15px; line-height: 24px">{q.text}</span></span>
+                <span style="font-size: 15px; line-height: 24px">{q.text}</span>
                 <span style="display: flex; gap: 4px; padding: 4px; background: var(--surface-sunken); border-radius: 8px; flex: none">
                   <button type="button" class="yn" aria-pressed="false" data-val="yes">Yes</button>
                   <button type="button" class="yn" aria-pressed="false" data-val="no">No</button>
@@ -102,7 +101,6 @@ const listItem = 'font-size: 15px; line-height: 24px; color: var(--ink-muted)';
             ))}
           </div>
           <div class="tool-verdict pad-sm" role="status" aria-live="polite" data-verdict style="padding: 32px; background: var(--paper); border-left: 1px solid var(--line); display: flex; flex-direction: column; gap: 16px; transition: background-color 320ms var(--ease)">
-            <span class="overline" style="color: var(--ink-subtle)">Our read</span>
             <span class="chip" data-v="chip" style="align-self: flex-start; background: var(--slate); color: #fff; padding: 6px 10px; font-size: 12px">NOT STARTED</span>
             <span class="h1" data-v="title" style="font-size: 28px; line-height: 36px">Answer five quick questions.</span>
             <p class="muted" data-v="body" style="margin: 0">Tap Yes or No for each one. We will tell you whether the offer looks safe to pursue.</p>
@@ -126,10 +124,9 @@ const listItem = 'font-size: 15px; line-height: 24px; color: var(--ink-muted)';
     </div>
     <div class="wrap" data-routes-root style="display: flex; flex-direction: column; gap: 40px">
       <div style="display: flex; flex-direction: column; gap: 16px; align-items: flex-start; max-width: 720px">
-        <span class="tab rv">Work routes</span>
-        <h2 class="h1 rv">The route depends on where, and on the employer.</h2>
+        <h2 class="h1">The route depends on where, and on the employer.</h2>
       </div>
-      <div class="rv" role="tablist" aria-label="Destination" data-routes style="display: flex; flex-wrap: wrap; border-bottom: 1px solid var(--line)">
+      <div role="tablist" aria-label="Destination" data-routes style="display: flex; flex-wrap: wrap; border-bottom: 1px solid var(--line)">
         {ROUTES.map((r, i) => (
           <button type="button" class="ctry" role="tab" id={`route-tab-${r.id}`} aria-controls={`route-${r.id}`} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1} data-key={r.id}>
             <span class="meta">{r.code}</span><span style="font-weight: 600; font-size: 15px">{r.country}</span>
@@ -139,7 +136,6 @@ const listItem = 'font-size: 15px; line-height: 24px; color: var(--ink-muted)';
       {ROUTES.map((r, i) => (
         <div role="tabpanel" id={`route-${r.id}`} aria-labelledby={`route-tab-${r.id}`} class="g-route" data-route-panel data-key={r.id} hidden={i !== 0}>
           <div style="display: flex; flex-direction: column; gap: 20px">
-            <span class="meta" style="color: var(--brass-ink)">{r.from} → {r.code} · {r.country}</span>
             <h3 class="h1">{r.name}</h3>
             <p class="muted" style="margin: 0; max-width: 60ch">{r.body}</p>
             <div class="g-2" style="gap: 32px; margin-top: 8px">
@@ -150,7 +146,6 @@ const listItem = 'font-size: 15px; line-height: 24px; color: var(--ink-muted)';
             </div>
           </div>
           <dl style="margin: 0; background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 28px; display: flex; flex-direction: column; align-self: start">
-            <span class="overline" style="color: var(--ink-subtle); padding-bottom: 16px">Route record</span>
             <div style={row}><dt class="meta" style="color: var(--ink-subtle)">SPONSOR</dt><dd style="margin: 0; font-size: 14px; font-weight: 600; text-align: right">{r.sponsor}</dd></div>
             <div style={row}><dt class="meta" style="color: var(--ink-subtle)">FAMILY</dt><dd style="margin: 0; font-size: 14px; font-weight: 600; text-align: right">Depends on route and salary</dd></div>
             <div style={row}><dt class="meta" style="color: var(--ink-subtle)">LANGUAGE</dt><dd style="margin: 0; font-size: 14px; font-weight: 600; text-align: right">{r.lang}</dd></div>
@@ -167,21 +162,20 @@ const listItem = 'font-size: 15px; line-height: 24px; color: var(--ink-muted)';
     <div class="wrap" style="display: flex; flex-direction: column; gap: 48px">
       <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px">
         <div style="display: flex; flex-direction: column; gap: 16px; align-items: flex-start; max-width: 640px">
-          <span class="tab rv">Your field</span>
-          <h2 class="h1 rv">Different work, different evidence.</h2>
+          <h2 class="h1">Different work, different evidence.</h2>
         </div>
-        <p class="rv muted" style="margin: 0; max-width: 44ch">We prepare a CV and evidence pack that matches what employers and officers in your field look for.</p>
+        <p class="muted" style="margin: 0; max-width: 44ch">We prepare a CV and evidence pack that matches what employers and officers in your field look for.</p>
       </div>
       <div class="g-3">
         {FIELDS.map((f) => (
-          <div class="card lift svc rv" style="padding: 0; overflow: hidden; display: flex; flex-direction: column">
+          <div class="card lift svc" style="padding: 0; overflow: hidden; display: flex; flex-direction: column">
             <div style="padding: 32px 32px 24px; display: flex; flex-direction: column; gap: 16px; border-top: 4px solid var(--forest)">
-              <div style="display: flex; justify-content: space-between; align-items: center"><div class="tile"><Icon name={f.icon} /></div><span aria-hidden="true" style="font-family: var(--f-display); font-weight: 500; font-size: 40px; line-height: 44px; color: var(--line)">{f.n}</span></div>
+              <div style="display: flex; justify-content: space-between; align-items: center"><div class="tile"><Icon name={f.icon} /></div></div>
               <h3 class="h3" style="font-size: 22px; line-height: 30px">{f.title}</h3>
               <p style={`margin: 0; ${listItem}`}>{f.sub}</p>
             </div>
             <div style="padding: 24px 32px 32px; background: var(--paper); border-top: 1px solid var(--line); flex: 1">
-              <span class="overline" style="color: var(--brass-ink)">Evidence pack</span>
+              <h4 style="margin: 0; font-weight: 600; font-size: 14px; line-height: 20px">Evidence pack</h4>
               <ul class="bullets" style="margin-top: 14px; display: flex; flex-direction: column; gap: 10px">
                 {f.pack.map((x) => <li style="font-size: 15px; line-height: 24px"><Icon name="bullet" size={10} stroke="var(--forest)" /><span>{x}</span></li>)}
               </ul>
@@ -196,21 +190,19 @@ const listItem = 'font-size: 15px; line-height: 24px; color: var(--ink-muted)';
   <section id="how" class="sec" style="background: var(--surface-sunken)">
     <div class="wrap g-tl">
       <div style="display: flex; flex-direction: column; gap: 16px; align-items: flex-start">
-        <span class="tab rv">How it works</span>
-        <h2 class="h1 rv">Five steps. The first one protects your money.</h2>
-        <p class="rv muted" style="margin: 0">Nothing gets filed, and nothing gets paid to anyone abroad, until the offer and the route have been checked.</p>
+        <h2 class="h1">Five steps. The first one protects your money.</h2>
+        <p class="muted" style="margin: 0">Nothing gets filed, and nothing gets paid to anyone abroad, until the offer and the route have been checked.</p>
       </div>
-      <div class="rv" style="position: relative">
+      <div style="position: relative">
       <span aria-hidden="true" style="position: absolute; left: 19px; top: 20px; bottom: 20px; width: 2px; background: var(--line-strong)"></span>
       <ol style="list-style: none; margin: 0; padding: 0; position: relative">
         {TIMELINE.map((t, i) => (
           <li style="display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 24px; padding-bottom: 32px; position: relative">
             <span aria-hidden="true" style={`width: 40px; height: 40px; border-radius: 999px; border: 2px solid var(--forest); background: ${t.chip ? 'var(--forest)' : 'var(--surface)'}; color: ${t.chip ? '#fff' : 'var(--forest)'}; display: flex; align-items: center; justify-content: center; font-family: var(--f-mono); font-weight: 500; font-size: 14px; position: relative; z-index: 1`}>{i + 1}</span>
             <div class="card" style="padding: 24px; display: flex; flex-direction: column; gap: 8px">
-              <span class="meta" style="color: var(--ink-subtle)">STEP {i + 1} OF 5</span>
               <h3 class="h3">{t.title}</h3>
               <p style={`margin: 0; ${listItem}`}>{t.body}</p>
-              {t.chip && <span class="chip" style="background: var(--brass-tint); color: var(--brass-ink); align-self: flex-start">{t.chip}</span>}
+              {t.chip && <span class="chip" style="background: var(--lime-tint); color: var(--forest); align-self: flex-start">{t.chip}</span>}
             </div>
           </li>
         ))}
@@ -223,8 +215,7 @@ const listItem = 'font-size: 15px; line-height: 24px; color: var(--ink-muted)';
   <section id="faq" class="sec" style="background: var(--paper)">
     <div class="wrap" style="max-width: 880px; display: flex; flex-direction: column; gap: 32px">
       <div style="display: flex; flex-direction: column; gap: 16px; align-items: flex-start">
-        <span class="tab rv">FAQ</span>
-        <h2 class="h1 rv">What job seekers ask us most.</h2>
+        <h2 class="h1">What job seekers ask us most.</h2>
       </div>
       <FaqAccordion faqs={FAQS} group="faq-work" />
     </div>
@@ -234,18 +225,17 @@ const listItem = 'font-size: 15px; line-height: 24px; color: var(--ink-muted)';
   <section id="contact" class="on-dark" style="background: var(--charcoal); color: var(--on-charcoal); padding: 96px 0">
     <div class="wrap g-split" style="align-items: start">
       <div style="display: flex; flex-direction: column; gap: 20px; align-items: flex-start">
-        <span class="overline rv" style="color: var(--brass)">Your next step</span>
-        <h2 class="rv" style="margin: 0; font-family: var(--f-display); font-weight: 600; font-size: 40px; line-height: 48px; letter-spacing: -.03em">Send us the offer before you send anyone money.</h2>
-        <p class="rv" style="margin: 0; font-size: 18px; line-height: 28px; color: #d6d4cd">We check it for free in your consultation and tell you plainly whether to go ahead.</p>
-        <div class="rv" style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px">
+        <h2 style="margin: 0; font-family: var(--f-display); font-weight: 600; font-size: 40px; line-height: 48px; letter-spacing: -.03em">Send us the offer before you send anyone money.</h2>
+        <p style="margin: 0; font-size: 18px; line-height: 28px; color: #d6d4cd">We check it for free in your consultation and tell you plainly whether to go ahead.</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px">
           <WaLink class="btn btn-accent" message="Hello Imelda Yayala, I have a job offer I'd like you to check before I pay anything."><Icon name="whatsapp" size={18} /> Send it on WhatsApp</WaLink>
           <a class="btn" href={callLink()} style="color: var(--on-charcoal) !important; box-shadow: inset 0 0 0 1.5px #c8c6bf"><Icon name="phone" size={18} /> Call {site.phone}</a>
         </div>
       </div>
-      <ol class="rv" style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; border-top: 1px solid var(--charcoal-line)">
+      <ol style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; border-top: 1px solid var(--charcoal-line)">
         {NEXT.map((n, i) => (
           <li style="display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 16px; padding: 24px 0; border-bottom: 1px solid var(--charcoal-line)">
-            <span aria-hidden="true" style="font-family: var(--f-display); font-weight: 500; font-size: 32px; line-height: 36px; color: var(--brass)">0{i + 1}</span>
+            <span aria-hidden="true" style="font-family: var(--f-display); font-weight: 500; font-size: 32px; line-height: 36px; color: var(--signal)">0{i + 1}</span>
             <span><b style="font-weight: 600">{n.t}</b><br /><span style="color: #c8c6bf; font-size: 15px">{n.d}</span></span>
           </li>
         ))}

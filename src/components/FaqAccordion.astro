@@ -6,7 +6,7 @@ interface Props { faqs: readonly Faq[]; group: string }
 const { faqs, group } = Astro.props;
 ---
 
-<div class="rv" style="border-top: 1px solid var(--line)">
+<div style="border-top: 1px solid var(--line)">
   {faqs.map((f, i) => (
     <details class="faq-item" name={group} open={i === 0}>
       <summary class="faq-q">

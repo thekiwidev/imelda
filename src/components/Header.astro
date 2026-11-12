@@ -7,20 +7,27 @@ import { nav } from '../data/site';
 interface Props { faqHref?: string }
 const { faqHref = '#faq' } = Astro.props;
 const path = Astro.url.pathname;
+const links = [...nav, { label: 'FAQ', href: faqHref }];
 ---
 
-<header style="position: sticky; top: 0; z-index: 30; background: var(--surface); border-bottom: 1px solid var(--line); box-shadow: var(--shadow-sm)">
+<header style="position: sticky; top: 0; z-index: 30; background: var(--surface); border-bottom: 1px solid var(--line)">
   <div class="wrap" style="height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 24px">
-    <a href="/" style="display: flex; align-items: center; text-decoration: none"><Logo eager /></a>
+    <a href="/" style="display: flex; align-items: center; text-decoration: none"><Logo eager height={44} /></a>
     <nav class="nav-links" aria-label="Main" style="display: flex; align-items: center; gap: 24px">
-      {nav.map((item) => (
+      {links.map((item) => (
         <a class="navlink" href={item.href} aria-current={item.href === path ? 'page' : undefined}>{item.label}</a>
       ))}
-      <a class="navlink" href={faqHref}>FAQ</a>
     </nav>
-    <div style="display: flex; align-items: center; gap: 12px">
-      <WaLink class="btn btn-secondary btn-sm hide-sm" message="Hello Imelda Yayala, I have a question."><Icon name="whatsapp" size={18} /> WhatsApp us</WaLink>
-      <WaLink class="btn btn-primary btn-sm">Book a consultation <Icon name="arrow" size={18} stroke="var(--signal)" strokeWidth={2} class="arr" /></WaLink>
+    <div style="display: flex; align-items: center; gap: 8px">
+      <WaLink class="btn btn-primary btn-sm"><span>Book<span class="hide-sm"> a consultation</span></span> <Icon name="arrow" size={18} stroke="var(--signal)" strokeWidth={2} class="arr" /></WaLink>
+      <details class="menu">
+        <summary class="iconbtn" aria-label="Menu"><span class="menu-bars" aria-hidden="true"></span></summary>
+        <nav aria-label="Mobile" class="menu-panel">
+          {links.map((item) => (
+            <a href={item.href} aria-current={item.href === path ? 'page' : undefined}>{item.label}</a>
+          ))}
+        </nav>
+      </details>
     </div>
   </div>
 </header>

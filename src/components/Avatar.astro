@@ -1,8 +1,8 @@
 ---
-interface Props { initials: string; size?: number; tone?: 'brass' | 'forest' }
+interface Props { initials: string; size?: number; tone?: 'lime' | 'forest' }
 const { initials, size = 48, tone = 'forest' } = Astro.props;
-const colors = tone === 'brass'
-  ? 'background: var(--surface); color: var(--brass-ink); border: 1px solid rgba(138,97,24,.3)'
+const colors = tone === 'lime'
+  ? 'background: var(--surface); color: var(--forest); border: 1px solid var(--lime-line)'
   : 'background: var(--forest-tint); color: var(--forest); border: 1px solid rgba(15,61,31,.2)';
 ---
 

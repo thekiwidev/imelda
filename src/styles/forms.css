@@ -17,7 +17,7 @@ textarea.finput { resize: vertical; min-height: 128px; }
 .ffile::file-selector-button { font-family: var(--f-sans); font-weight: 600; font-size: 14px; margin-right: 12px; padding: 8px 14px; border: 0; border-radius: 6px; background: var(--forest-tint); color: var(--forest); cursor: pointer; }
 .ferr { margin: 6px 0 0; font-size: 14px; line-height: 20px; color: var(--danger); }
 .fnote { margin: 6px 0 0; font-size: 13px; line-height: 20px; color: var(--ink-subtle); }
-.fsub { margin: 8px 0 0; font-family: var(--f-mono); font-weight: 500; font-size: 12px; line-height: 16px; letter-spacing: .14em; text-transform: uppercase; color: var(--brass-ink); }
+.fsub { margin: 8px 0 0; font-family: var(--f-mono); font-weight: 500; font-size: 12px; line-height: 16px; letter-spacing: .14em; text-transform: uppercase; color: var(--forest); }
 .fsub-caution { color: var(--caution); }
 .fradio { border: 0; margin: 0; padding: 0; min-width: 0; }
 .fradio legend { padding: 0; }
