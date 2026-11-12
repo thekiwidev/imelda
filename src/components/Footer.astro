@@ -1,0 +1,80 @@
+---
+import Icon from './Icon.astro';
+import Logo from './Logo.astro';
+import WaLink from './WaLink.astro';
+import { site, callLink } from '../data/site';
+
+const socials = [
+  { key: 'instagram', label: 'Instagram' },
+  { key: 'facebook', label: 'Facebook' },
+  { key: 'x', label: 'X' },
+  { key: 'tiktok', label: 'TikTok' },
+] as const;
+const year = new Date().getFullYear();
+const col = 'display: flex; flex-direction: column; gap: 12px; font-size: 14px; line-height: 20px';
+const head = 'color: var(--brass-ink); margin-bottom: 4px';
+const small = 'margin: 0; font-size: 14px; line-height: 22px; max-width: 34ch';
+---
+
+<footer class="ftr" style="background: var(--surface-sunken); border-top: 1px solid var(--line); color: var(--ink); padding: 80px 0 32px">
+  <div class="wrap" style="display: flex; flex-direction: column; gap: 56px">
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 24px; padding-bottom: 40px; border-bottom: 1px solid var(--line)">
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <p style="margin: 0; font-family: var(--f-display); font-weight: 600; font-size: 26px; line-height: 34px; letter-spacing: -.02em">Not sure where to start?</p>
+        <p class="muted" style="margin: 0">Send us one message. A consultant replies within one working day.</p>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 12px">
+        <WaLink class="btn btn-primary"><Icon name="whatsapp" size={18} /> Message us on WhatsApp</WaLink>
+        <a class="btn btn-secondary" href={callLink()}><Icon name="phone" size={18} /> Call {site.phone}</a>
+      </div>
+    </div>
+
+    <div class="g-ftr">
+      <div style="display: flex; flex-direction: column; gap: 20px">
+        <div style="background: var(--surface); border-radius: 8px; padding: 12px; align-self: flex-start"><Logo /></div>
+        <p class="muted" style={small}>{site.description}</p>
+        <div style="display: flex; gap: 8px">
+          {socials.map((s) => (
+            <a class="soc" href={site.social[s.key]} aria-label={`${site.name} on ${s.label}`} target="_blank" rel="noopener"><Icon name={s.key} size={18} /></a>
+          ))}
+        </div>
+        <p class="muted" style={small}>{site.disclaimer}</p>
+      </div>
+      <nav aria-label="Services" style={col}>
+        <span class="overline" style={head}>Services</span>
+        <a href="/study-abroad/">Study abroad</a>
+        <a href="/work-abroad/">Work abroad</a>
+        <a href="/travel-visa/">Travel and visits</a>
+        <a href="/#services">Priority concierge</a>
+        <a href="/#services">Refusal review</a>
+        <a href="/student-application/">Student application form</a>
+        <a href="/travel-application/">Travel application form</a>
+      </nav>
+      <nav aria-label="Company" style={col}>
+        <span class="overline" style={head}>Company</span>
+        <a href="/#top">About us</a>
+        <a href="/#how">How it works</a>
+        <a href="/#stories">Client stories</a>
+        <a href="/#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <address style={`${col}; font-style: normal`}>
+        <span class="overline" style={head}>Visit us</span>
+        <span class="muted" style="display: flex; gap: 8px"><Icon name="pin" size={18} /><span>{site.address.street}<br />{site.address.city}, {site.address.country}</span></span>
+        <span class="muted" style="display: flex; gap: 8px"><Icon name="clock" size={18} /><span>Mon–Fri {site.hours.weekdays}<br />Sat {site.hours.saturday}</span></span>
+        <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${site.address.street}, ${site.address.city}, ${site.address.country}`)}`} target="_blank" rel="noopener">Get directions</a>
+      </address>
+      <div style={col}>
+        <span class="overline" style={head}>Talk to us</span>
+        <WaLink style="display: flex; gap: 8px"><Icon name="whatsapp" size={18} /> Chat on WhatsApp</WaLink>
+        <a href={callLink()} style="display: flex; gap: 8px"><Icon name="phone" size={18} /> {site.phone}</a>
+        <a href={`mailto:${site.email}`} style="display: flex; gap: 8px"><Icon name="mail" size={18} /> {site.email}</a>
+      </div>
+    </div>
+
+    <div class="muted" style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; font-size: 13px; line-height: 20px; padding-top: 24px; border-top: 1px solid var(--line)">
+      <span>© {year} {site.legalName}. All rights reserved.</span>
+      <nav aria-label="Legal" style="display: flex; flex-wrap: wrap; gap: 24px"><a href="#">Privacy policy</a><a href="#">Terms of service</a><a href="#">Cookie notice</a><span class="meta">{site.domainLabel}</span></nav>
+    </div>
+  </div>
+</footer>

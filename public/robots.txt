@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://imeldayayala.com.ng/sitemap-index.xml

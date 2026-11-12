@@ -1,0 +1,512 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import FaqAccordion from '../components/FaqAccordion.astro';
+import Photo from '../components/Photo.astro';
+import Avatar from '../components/Avatar.astro';
+import WaLink from '../components/WaLink.astro';
+import travellerDeparture from '../assets/photos/traveller-departure.jpeg';
+import studentCampus from '../assets/photos/student-campus.jpeg';
+import healthcareWorker from '../assets/photos/healthcare-worker.webp';
+import familyReunion from '../assets/photos/family-reunion.webp';
+import consultation from '../assets/photos/consultation.jpeg';
+import { site, type Faq } from '../data/site';
+
+const DESTS = [
+  { country: 'United Kingdom', code: 'LHR', city: 'London' },
+  { country: 'Canada', code: 'YYZ', city: 'Toronto' },
+  { country: 'United States', code: 'JFK', city: 'New York' },
+  { country: 'Germany', code: 'FRA', city: 'Frankfurt' },
+  { country: 'Ireland', code: 'DUB', city: 'Dublin' },
+  { country: 'Australia', code: 'MEL', city: 'Melbourne' },
+];
+const STEPS = [
+  { title: 'Free consultation', code: 'ASSESS', duration: '30 minutes', body: 'A 30-minute call or office visit. We look at your goal, budget, documents and any past refusals, then tell you honestly whether to go ahead now or wait.', bring: 'Your passport, any offer or job letter, and past refusal letters if you have them.' },
+  { title: 'Plan and shortlist', code: 'PLAN', duration: '2–3 working days', body: 'We match you to programmes, employers or visa routes that fit your profile, and give you a written plan with every fee listed before you commit.', bring: 'Transcripts or CV, your preferred start date, and your budget.' },
+  { title: 'Documents and statements', code: 'PREPARE', duration: '1–2 weeks', body: 'We review every document against the official checklist, help you write your personal statement or CV in your own words, and check proof of funds.', bring: 'Bank statements, sponsor letters and certificates.' },
+  { title: 'Application and biometrics', code: 'SUBMIT', duration: '1 week, plus your appointment', body: 'We complete and submit the application with you, book your biometrics appointment and prepare you for any interview.', bring: 'Your time for biometrics and, if needed, an interview.' },
+  { title: 'Decision and flights', code: 'DEPART', duration: 'Set by the embassy', body: 'When the decision arrives we walk you through it. Approved: we book flights and run pre-departure checks. Refused: we explain why and plan the next step together.', bring: 'Your preferred travel dates.' },
+];
+const STORIES = [
+  { name: 'Adaeze O.', initials: 'AO', context: 'STUDENT VISA · UNITED KINGDOM · 2025', quote: 'I had been refused once and was ready to give up. They went through my bank statements line by line and showed me exactly what the officer needed to see. My visa came back in three weeks.' },
+  { name: 'Chinedu E.', initials: 'CE', context: 'SKILLED WORKER · CANADA · 2024', quote: 'Someone had asked me to pay for a job offer. Imelda Yayala checked the employer before I spent a kobo and found me the real route. Eight months later I started work in Calgary.' },
+  { name: 'Halima B.', initials: 'HB', context: 'FAMILY VISIT · UNITED STATES · 2025', quote: 'My daughter was graduating in Houston and the date could not move. They planned everything backwards from that day and prepared me for the interview. I was in the hall when she walked.' },
+];
+const FAQS: Faq[] = [
+  { q: 'Can you guarantee my visa?', a: 'No one can, and you should be wary of anyone who says they can. Only the embassy or immigration authority decides. What we promise is a complete, honest application and a clear explanation at every step.' },
+  { q: 'How much do your services cost?', a: 'It depends on the service and destination. Visitor visa support starts from ₦150,000 and full study abroad packages from ₦450,000. You get a written quote after the free consultation, before you pay anything. Government visa fees are paid directly to the official application centre, not to us.' },
+  { q: 'I was refused before. Can you still help?', a: 'Yes. Bring the refusal letter to your consultation. We read the stated reasons, fix what can be fixed, and tell you plainly if waiting would serve you better.' },
+  { q: 'How do I know you are a real company?', a: `Visit our office at ${site.address.street}, ${site.address.city}, and speak to a named consultant. We have worked with clients since ${site.foundedYear}, and every client gets a reference number and written receipts.` },
+  { q: 'Can we do everything over WhatsApp?', a: 'Most of it. Consultations, document checks and updates can happen on WhatsApp or video call. You only need to appear in person for biometrics or an embassy interview.' },
+];
+const COVERAGE = [
+  'United Kingdom', 'Canada', 'United States', 'Ireland', 'Germany', 'France', 'Netherlands', 'Belgium', 'Italy', 'Spain',
+  'Portugal', 'Poland', 'Sweden', 'Finland', 'Malta', 'Cyprus', 'Switzerland', 'Australia', 'New Zealand', 'United Arab Emirates',
+  'South Africa', 'Ghana', 'Kenya', 'Rwanda', 'Egypt', 'Morocco', 'Mauritius', 'Malaysia',
+];
+const SERVICES = [
+  { icon: 'idcard', title: 'Visa applications', body: 'Study, work, visitor and family visas, completed with you and checked twice before submission.' },
+  { icon: 'search', title: 'Programme selection', body: 'A shortlist that fits your grades, budget and goals, with entry requirements written out plainly.' },
+  { icon: 'pen', title: 'Personal statements', body: 'We help you tell your own story clearly. Your words, sharpened, never written for you.' },
+  { icon: 'fileText', title: 'CVs and cover letters', body: "Formatted for the country you're applying to, so recruiters read the parts that matter." },
+  { icon: 'calendarCheck', title: 'Application processing', body: 'Biometrics booking, document upload and interview preparation, tracked against your reference number.' },
+  { icon: 'planeTakeoff', title: 'Flights and pre-departure', body: "Once you're approved: flights, a packing and arrival checklist, and a last call before you leave." },
+] as const;
+const STATS = [
+  { n: '2,500+', label: `Clients guided since ${site.foundedYear}` },
+  { n: '30+', label: 'Countries we file applications for' },
+  { n: '650+', label: 'Approved applications in 2025' },
+  { n: `${new Date().getFullYear() - site.foundedYear}`, label: `Years helping clients from ${site.address.city}` },
+];
+const muted = 'font-size: 15px; line-height: 24px; color: var(--ink-muted)';
+const statNum = 'font-family: var(--f-display); font-weight: 500; font-size: 52px; line-height: 56px; letter-spacing: -.03em; color: var(--forest); font-variant-numeric: tabular-nums';
+const pass = 'font-family: var(--f-display); font-weight: 600; font-size: 34px; line-height: 38px; letter-spacing: -.02em';
+---
+
+<Base
+  title="Study, Work and Travel Abroad from Nigeria | Imelda Yayala"
+  description="Your move abroad, handled properly. We guide students, workers and travellers from Nigeria through the programme or role, the documents, the visa and the flight."
+  faqs={FAQS}
+>
+  <!-- HERO -->
+  <section id="top" data-parallax style="position: relative; overflow: hidden; padding: 112px 0 96px; background: var(--paper)">
+    <div class="wrap g-hero">
+      <div style="display: flex; flex-direction: column; gap: 32px; align-items: flex-start">
+        <span class="tab rv"><Icon name="play" size={14} stroke="var(--signal)" /> Study · Work · Travel</span>
+        <h1 class="display rv" style="max-width: 14ch">Your move abroad, handled properly.</h1>
+        <p class="lead rv">Abuja to London, Lagos to Toronto, Cyprus to Poland. We guide students, workers and travellers through every step: the right programme or role, the documents, the visa and the flight. One team, one plan, wherever you are starting from.</p>
+        <div class="rv" style="display: flex; flex-direction: column; gap: 16px">
+          <div style="display: flex; flex-wrap: wrap; gap: 12px">
+            <WaLink class="btn btn-primary">Book a free consultation <Icon name="arrow" size={20} stroke="var(--signal)" strokeWidth={2} class="arr" /></WaLink>
+            <a class="btn btn-secondary" href="#how">See how it works</a>
+          </div>
+          <p class="muted" style="margin: 0; font-size: 14px; line-height: 22px; display: flex; align-items: center; gap: 8px"><Icon name="shieldCheck" size={16} stroke="var(--forest)" /> Free 30-minute assessment. No payment to start. We reply within one working day.</p>
+        </div>
+      </div>
+
+      <!-- Hero visual: photo, client chip and boarding ticket -->
+      <div class="rv hero-visual" style="position: relative; padding: 0 0 64px 48px">
+        <div class="px" data-px="-8,-6">
+          <Photo eager src={travellerDeparture} alt="Smiling traveller holding a passport and boarding pass" style="height: 620px" />
+        </div>
+        <div class="card px hero-float" data-px="16,10" style="position: absolute; right: -20px; top: 40px; width: 270px; padding: 16px; display: flex; gap: 12px; align-items: center; box-shadow: var(--shadow-md)">
+          <Avatar initials="AO" size={52} />
+          <span style="display: flex; flex-direction: column; gap: 4px; min-width: 0"><span style="font-weight: 600; font-size: 14px; line-height: 20px">Adaeze O.</span><span class="meta" style="font-size: 11px; color: var(--ink-subtle)">STUDENT VISA · UK · 2025</span><span class="chip chip-forest" style="align-self: flex-start; font-size: 11px"><Icon name="check" size={11} stroke="var(--signal)" strokeWidth={2.5} />APPROVED</span></span>
+        </div>
+        <div class="px" data-px="12,8" style="position: absolute; left: 0; bottom: 0; width: 380px; max-width: calc(100% - 24px); background: var(--forest); color: var(--on-forest); border-radius: 12px; padding: 22px 24px; box-shadow: 0 4px 8px rgba(15,61,31,.05), 0 24px 48px rgba(15,61,31,.12)">
+          <div style="display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 14px; align-items: center">
+            <div style="display: flex; flex-direction: column; gap: 2px"><span class="overline" style="color: var(--on-forest-muted)">From</span><span style={pass}>ABV</span><span style="font-size: 12px; line-height: 16px; color: var(--on-forest-muted)">Abuja</span></div>
+            <div aria-hidden="true" style="display: flex; align-items: center; gap: 6px; min-width: 0"><div style="flex: 1; border-top: 2px dashed rgba(183,203,189,.5)"></div><Icon name="plane" size={22} stroke="var(--signal)" /><div style="flex: 1; border-top: 2px dashed rgba(183,203,189,.5)"></div></div>
+            <div aria-live="polite" style="display: flex; flex-direction: column; gap: 2px; text-align: right"><span class="overline" style="color: var(--on-forest-muted)">To</span><span data-out="code" style={`${pass}; color: var(--brass)`}>{DESTS[0].code}</span><span data-out="city" style="font-size: 12px; line-height: 16px; color: var(--on-forest-muted)">{DESTS[0].city}</span></div>
+          </div>
+          <div role="group" aria-label="Choose a destination" data-dests style="margin-top: 14px; padding-top: 12px; border-top: 1px solid rgba(183,203,189,.25); display: flex; flex-wrap: wrap; gap: 4px">
+            {DESTS.map((d, i) => (
+              <button type="button" class="tick-dest" aria-pressed={i === 0 ? 'true' : 'false'} aria-label={d.country} data-code={d.code} data-city={d.city}>{d.code}</button>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrap hide-sm" aria-hidden="true" style="margin-top: 64px; display: flex; align-items: center; gap: 16px">
+      <div style="width: 22px; height: 38px; border: 1.5px solid var(--ink-subtle); border-radius: 12px; position: relative; overflow: hidden">
+        <div class="cue-dot" style="position: absolute; left: 50%; top: 6px; width: 4px; height: 8px; margin-left: -2px; border-radius: 2px; background: var(--forest)"></div>
+      </div>
+      <span class="overline" style="color: var(--ink-subtle)">Scroll · see how it works</span>
+    </div>
+  </section>
+
+  <!-- COVERAGE MARQUEE -->
+  <div style="background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); overflow: hidden">
+    <div class="wrap rv" style="display: flex; align-items: center; gap: 32px; height: 72px">
+      <h2 class="overline" style="margin: 0; color: var(--brass-ink); flex: none">Our coverage</h2>
+      <div class="marquee meta" style="flex: 1; min-width: 0; color: var(--ink-muted); font-size: 14px">
+        <ul class="marquee-track" aria-label="Countries we file applications for">
+          {COVERAGE.map((c) => <li>{c}</li>)}
+        </ul>
+        <ul class="marquee-track" aria-hidden="true">
+          {COVERAGE.map((c) => <li>{c}</li>)}
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHAT WE DO -->
+  <section id="services" class="sec" style="background: var(--paper)">
+    <div class="art" aria-hidden="true">
+      <svg style="position: absolute; right: -80px; top: 40px" width="620" height="900" viewBox="0 0 620 900">
+        <defs>
+          <pattern id="adire" width="124" height="124" patternUnits="userSpaceOnUse">
+            <circle cx="62" cy="62" r="40" fill="none" stroke="#0f3d1f" stroke-width="3"></circle>
+            <circle cx="62" cy="62" r="28" fill="none" stroke="#0f3d1f" stroke-width="3"></circle>
+            <circle cx="62" cy="62" r="16" fill="none" stroke="#0f3d1f" stroke-width="3"></circle>
+            <circle cx="62" cy="62" r="5" fill="#0f3d1f"></circle>
+            <circle cx="0" cy="0" r="6" fill="#0f3d1f"></circle><circle cx="124" cy="0" r="6" fill="#0f3d1f"></circle><circle cx="0" cy="124" r="6" fill="#0f3d1f"></circle><circle cx="124" cy="124" r="6" fill="#0f3d1f"></circle>
+            <path d="M0 62 l10 -8 l10 8 l10 -8" fill="none" stroke="#0f3d1f" stroke-width="2.5"></path>
+            <path d="M94 62 l10 -8 l10 8 l10 -8" fill="none" stroke="#0f3d1f" stroke-width="2.5"></path>
+            <path d="M62 0 l-8 10 l8 10" fill="none" stroke="#0f3d1f" stroke-width="2.5"></path>
+            <path d="M62 104 l-8 10 l8 10" fill="none" stroke="#0f3d1f" stroke-width="2.5"></path>
+          </pattern>
+        </defs>
+        <rect width="620" height="900" fill="url(#adire)"></rect>
+      </svg>
+    </div>
+    <div class="wrap" style="display: flex; flex-direction: column; gap: 48px">
+      <div style="display: flex; flex-direction: column; gap: 16px; align-items: flex-start; max-width: 720px">
+        <span class="tab rv">What we do</span>
+        <h2 class="h1 rv">One team for the whole journey, not just the form.</h2>
+        <p class="lead rv">Pick the path that fits you. Each one starts with the same free assessment and ends with a clear next step.</p>
+      </div>
+
+      <!-- Desktop bento -->
+      <div class="bento only-desk">
+        <a href="/study-abroad/" class="card lift svc rv b-big">
+          <Photo src={studentCampus} alt="Student with a backpack and notes on a university campus" style="height: 340px; object-position: 50% 22%; border-radius: 0; border: 0; border-bottom: 1px solid var(--line)" />
+          <div style="padding: 32px; display: flex; flex-direction: column; gap: 12px; flex: 1">
+            <span class="overline" style="color: var(--brass-ink)">Undergraduate to PhD</span>
+            <h3 class="h1" style="font-size: 30px; line-height: 38px">Study abroad</h3>
+            <p class="muted" style="margin: 0; max-width: 56ch">We shortlist programmes, coach your personal statement and handle the student visa, with parents in the loop.</p>
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-top: auto; padding-top: 12px">
+              <div style="display: flex; flex-wrap: wrap; gap: 6px"><span class="chip chip-muted">UK</span><span class="chip chip-muted">CANADA</span><span class="chip chip-muted">USA</span><span class="chip chip-muted">+3</span></div>
+              <span style="display: flex; gap: 8px; align-items: center; font-weight: 600; color: var(--forest)">Explore <Icon name="arrow" size={22} class="go" stroke="var(--forest)" strokeWidth={2} /></span>
+            </div>
+          </div>
+        </a>
+        <a href="/work-abroad/" class="card lift svc rv">
+          <Photo src={healthcareWorker} alt="Healthcare worker in scrubs with a stethoscope" style="height: 160px; object-position: 50% 20%; border-radius: 0; border: 0; border-bottom: 1px solid var(--line)" />
+          <div style="padding: 24px; display: flex; flex-direction: column; gap: 8px; flex: 1">
+            <h3 class="h3">Work abroad</h3>
+            <p style={`margin: 0; ${muted}`}>Offer checked, CV prepared, work visa filed.</p>
+            <span style="display: flex; gap: 8px; align-items: center; font-weight: 600; color: var(--forest); margin-top: auto; padding-top: 8px">Explore <Icon name="arrow" size={22} class="go" stroke="var(--forest)" strokeWidth={2} /></span>
+          </div>
+        </a>
+        <a href="/travel-visa/" class="card lift svc rv">
+          <Photo src={familyReunion} alt="Family smiling together outdoors" style="height: 160px; border-radius: 0; border: 0; border-bottom: 1px solid var(--line)" />
+          <div style="padding: 24px; display: flex; flex-direction: column; gap: 8px; flex: 1">
+            <h3 class="h3">Travel and family visits</h3>
+            <p style={`margin: 0; ${muted}`}>A dated plan so the trip happens on time.</p>
+            <span style="display: flex; gap: 8px; align-items: center; font-weight: 600; color: var(--forest); margin-top: auto; padding-top: 8px">Explore <Icon name="arrow" size={22} class="go" stroke="var(--forest)" strokeWidth={2} /></span>
+          </div>
+        </a>
+        <WaLink message="Hello Imelda Yayala, I'd like to ask about the priority concierge service." class="lift svc rv" style="background: var(--brass-tint); border: 1px solid rgba(138,97,24,.25); border-radius: 12px; padding: 32px; gap: 14px; transition: box-shadow 200ms var(--ease), transform 200ms var(--ease)">
+          <div class="tile" style="background: var(--surface); color: var(--brass-ink)"><Icon name="star" /></div>
+          <span class="overline" style="color: var(--brass-ink)">Premium</span>
+          <h3 class="h3">Priority concierge</h3>
+          <p style={`margin: 0; ${muted}`}>A named consultant, faster document turnaround and appointments booked for you.</p>
+          <span style="font-weight: 600; color: var(--brass-ink); margin-top: auto">Ask about concierge</span>
+        </WaLink>
+        <a href="#contact" class="lift svc rv b-wide on-dark" style="background: var(--forest); color: var(--on-forest) !important; border-radius: 12px; clip-path: polygon(0 0, calc(100% - 36px) 0, 100% 36px, 100% 100%, 0 100%); transition: transform 200ms var(--ease); display: grid !important; grid-template-columns: minmax(0, 1fr) 260px">
+          <div style="padding: 36px; display: flex; flex-direction: column; gap: 14px">
+            <div class="tile" style="background: rgba(255,255,255,.08); color: var(--signal)"><Icon name="refresh" /></div>
+            <h3 class="h1" style="font-size: 28px; line-height: 36px; color: var(--on-forest)">Refused before? Start here.</h3>
+            <p style="margin: 0; color: var(--on-forest-muted); max-width: 46ch">Bring your refusal letter. We read the stated reasons, fix what can be fixed, and tell you plainly when to reapply.</p>
+            <span style="display: flex; gap: 8px; align-items: center; font-weight: 600; margin-top: auto">Start a refusal review <Icon name="arrow" size={22} class="go" stroke="var(--signal)" strokeWidth={2} /></span>
+          </div>
+          <div style="padding: 20px 20px 20px 0; display: flex">
+            <Photo src={consultation} alt="Consultant reviewing documents with clients" style="flex: 1; min-height: 220px" />
+          </div>
+        </a>
+      </div>
+
+      <!-- Mobile rows -->
+      <div class="only-mob">
+        <a href="/study-abroad/" class="card lift svc rv" style="padding: 28px 32px">
+          <div class="g-svc">
+            <div class="tile"><Icon name="cap" /></div>
+            <div style="display: flex; flex-direction: column; gap: 6px"><h3 class="h3">Study abroad</h3><p style={`margin: 0; ${muted}`}>Undergraduate to PhD. We shortlist programmes, review your personal statement, and handle the student visa.</p></div>
+            <div class="svc-meta" style="display: flex; flex-wrap: wrap; gap: 6px"><span class="chip chip-muted">UK</span><span class="chip chip-muted">CANADA</span><span class="chip chip-muted">USA</span><span class="chip chip-muted">+3</span></div>
+            <Icon name="arrow" class="go" stroke="var(--forest)" strokeWidth={2} />
+          </div>
+        </a>
+        <a href="/work-abroad/" class="card lift svc rv" style="padding: 28px 32px">
+          <div class="g-svc">
+            <div class="tile"><Icon name="briefcase" /></div>
+            <div style="display: flex; flex-direction: column; gap: 6px"><h3 class="h3">Work abroad</h3><p style={`margin: 0; ${muted}`}>Office and skilled-trade roles. We prepare your CV, check the sponsorship route, and file the work visa.</p></div>
+            <div class="svc-meta" style="display: flex; flex-wrap: wrap; gap: 6px"><span class="chip chip-muted">SKILLED WORKER</span><span class="chip chip-muted">CV REVIEW</span></div>
+            <Icon name="arrow" class="go" stroke="var(--forest)" strokeWidth={2} />
+          </div>
+        </a>
+        <a href="/travel-visa/" class="card lift svc rv" style="padding: 28px 32px">
+          <div class="g-svc">
+            <div class="tile"><Icon name="plane" /></div>
+            <div style="display: flex; flex-direction: column; gap: 6px"><h3 class="h3">Travel and family visits</h3><p style={`margin: 0; ${muted}`}>Holidays, weddings, graduations and visits to family. A dated checklist so you never miss the trip.</p></div>
+            <div class="svc-meta" style="display: flex; flex-wrap: wrap; gap: 6px"><span class="chip chip-muted">VISITOR VISA</span><span class="chip chip-muted">FLIGHTS</span></div>
+            <Icon name="arrow" class="go" stroke="var(--forest)" strokeWidth={2} />
+          </div>
+        </a>
+        <a href="#contact" class="card lift svc rv" style="padding: 28px 32px; background: var(--brass-tint); border-color: rgba(138,97,24,.25)">
+          <div class="g-svc">
+            <div class="tile" style="background: var(--surface); color: var(--brass-ink)"><Icon name="star" /></div>
+            <div style="display: flex; flex-direction: column; gap: 6px"><span class="overline" style="color: var(--brass-ink)">Premium</span><h3 class="h3">Priority concierge</h3><p style={`margin: 0; ${muted}`}>A named consultant, faster turnaround on documents, and appointment booking handled for you.</p></div>
+            <div class="svc-meta" style="display: flex; flex-wrap: wrap; gap: 6px"><span class="chip" style="background: var(--brass-ink); color: #fff">PRIORITY</span><span class="chip" style="background: var(--surface); color: var(--brass-ink)">NAMED CONSULTANT</span></div>
+            <Icon name="arrow" class="go" stroke="var(--brass-ink)" strokeWidth={2} />
+          </div>
+        </a>
+        <a href="#contact" class="lift svc rv on-dark" style="padding: 32px; background: var(--forest); color: var(--on-forest) !important; border-radius: 12px; clip-path: polygon(0 0, calc(100% - 36px) 0, 100% 36px, 100% 100%, 0 100%); box-shadow: var(--shadow-sm); transition: transform 200ms var(--ease)">
+          <div class="g-svc">
+            <div class="tile" style="background: rgba(255,255,255,.08); color: var(--signal)"><Icon name="refresh" /></div>
+            <div style="display: flex; flex-direction: column; gap: 6px"><h3 class="h3" style="color: var(--on-forest)">Refused before? Start here.</h3><p style="margin: 0; font-size: 15px; line-height: 24px; color: var(--on-forest-muted)">Bring your refusal letter. We read the stated reasons, fix what can be fixed, and tell you plainly when to reapply.</p></div>
+            <div class="svc-meta" style="display: flex; flex-wrap: wrap; gap: 6px"><span class="chip" style="background: var(--brass); color: var(--charcoal)">REFUSAL REVIEW</span></div>
+            <Icon name="arrow" class="go" stroke="var(--signal)" strokeWidth={2} />
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROOF BAND -->
+  <section aria-labelledby="proof-h" style="background: var(--surface); padding: 88px 0; position: relative; overflow: hidden; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line)">
+    <div class="wrap" style="display: flex; flex-direction: column; gap: 48px">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px">
+        <div style="display: flex; flex-direction: column; gap: 12px; max-width: 560px">
+          <span class="overline rv" style="color: var(--brass-ink)">The record</span>
+          <h2 id="proof-h" class="h1 rv">Numbers with dates, not adjectives.</h2>
+        </div>
+        <span class="meta rv muted">From our case records · October 2026</span>
+      </div>
+      <dl class="g-stats" style="margin: 0">
+        {STATS.map((s) => (
+          <div class="rv" style="display: flex; flex-direction: column-reverse; justify-content: flex-end; gap: 12px; padding-top: 24px; border-top: 2px solid var(--forest)">
+            <dt class="muted" style="font-size: 15px; line-height: 22px">{s.label}</dt>
+            <dd style={`margin: 0; ${statNum}`}>{s.n}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how" class="sec" style="background: var(--surface-sunken)">
+    <div class="art" aria-hidden="true">
+      <svg style="position: absolute; right: -60px; top: 36px; transform: rotate(-6deg)" width="760" height="300" viewBox="0 0 760 300" fill="none" stroke="#333333" stroke-width="3">
+        <path d="M20 20 H520 a18 18 0 0 0 36 0 H740 V280 H556 a18 18 0 0 0 -36 0 H20 Z"></path>
+        <path d="M538 52 V250" stroke-dasharray="6 8"></path>
+        <g stroke-width="5"><path d="M590 70 V230"></path><path d="M604 70 V230" stroke-width="2"></path><path d="M614 70 V230"></path><path d="M630 70 V230" stroke-width="2"></path><path d="M640 70 V230" stroke-width="8"></path><path d="M658 70 V230" stroke-width="2"></path><path d="M668 70 V230"></path><path d="M684 70 V230" stroke-width="8"></path><path d="M700 70 V230" stroke-width="2"></path></g>
+        <text x="56" y="110" fill="#333333" stroke="none" font-family="Sora, sans-serif" font-size="64" font-weight="600">ABV → LHR</text>
+        <text x="58" y="160" fill="#333333" stroke="none" font-family="IBM Plex Mono, monospace" font-size="20" letter-spacing="4">GATE 04 · SEAT 12A · BOARDING</text>
+        <text x="58" y="240" fill="#333333" stroke="none" font-family="IBM Plex Mono, monospace" font-size="20" letter-spacing="4">PASSENGER · YOU</text>
+      </svg>
+    </div>
+    <div class="wrap" data-steps-root style="display: flex; flex-direction: column; gap: 48px">
+      <div style="display: flex; flex-direction: column; gap: 16px; align-items: flex-start; max-width: 720px">
+        <span class="tab rv">How it works</span>
+        <h2 class="h1 rv">Five steps. You always know which one you're on.</h2>
+        <p class="lead rv">Every client gets a reference number and a written update at each step. Here is what happens at each one and what to bring.</p>
+      </div>
+      <div class="g-steps rv" role="tablist" aria-label="Application steps" data-steps style="position: relative">
+        <div aria-hidden="true" class="hide-sm" style="position: absolute; left: 40px; right: 40px; top: 40px; height: 2px; background: var(--line)"></div>
+        {STEPS.map((s, i) => (
+          <button type="button" class="step" role="tab" id={`step-tab-${i}`} aria-controls={`step-panel-${i}`} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1} data-key={String(i)}>
+            <span class="dot">{i + 1}</span>
+            <span class="meta" style="color: var(--ink-subtle)">STEP {i + 1} OF 5</span>
+            <span class="h3" style="font-size: 18px; line-height: 26px; color: var(--ink)">{s.title}</span>
+          </button>
+        ))}
+      </div>
+      {STEPS.map((s, i) => (
+        <div class="card rv" role="tabpanel" id={`step-panel-${i}`} aria-labelledby={`step-tab-${i}`} data-step-panel data-key={String(i)} hidden={i !== 0} style="padding: 32px">
+          <div class="g-detail">
+            <div style="display: flex; flex-direction: column; gap: 12px">
+              <span class="meta" style="color: var(--brass-ink)">STEP {i + 1} OF 5 · {s.code}</span>
+              <h3 class="h1" style="font-size: 28px; line-height: 36px">{s.title}</h3>
+              <p class="muted" style="margin: 0; max-width: 60ch">{s.body}</p>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 16px; padding: 24px; background: var(--forest-tint); border-radius: 8px">
+              <span style="font-weight: 600; font-size: 14px; line-height: 20px; color: var(--forest); display: flex; align-items: center; gap: 8px"><Icon name="fileCheck" size={18} /> What to bring</span>
+              <p style="margin: 0; font-size: 15px; line-height: 24px">{s.bring}</p>
+              <span class="meta" style="color: var(--ink-subtle)">USUAL DURATION · {s.duration.toUpperCase()}</span>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- SERVICES GRID -->
+  <section class="sec" style="background: var(--paper)">
+    <div class="wrap" style="display: flex; flex-direction: column; gap: 48px">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px">
+        <div style="display: flex; flex-direction: column; gap: 16px; align-items: flex-start; max-width: 640px">
+          <span class="tab rv">Services</span>
+          <h2 class="h1 rv">Everything an application needs, under one roof.</h2>
+        </div>
+        <a class="rv" href="#contact" style="font-weight: 600">See fees and timelines</a>
+      </div>
+      <div class="g-3">
+        {SERVICES.map((s) => (
+          <div class="card lift svc rv" style="padding: 32px; display: flex; flex-direction: column; gap: 16px">
+            <div class="tile"><Icon name={s.icon} /></div>
+            <h3 class="h3">{s.title}</h3>
+            <p style={`margin: 0; ${muted}`}>{s.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CLIENT STORIES -->
+  <section id="stories" class="sec" style="background: var(--surface); border-top: 1px solid var(--line)">
+    <div class="art" aria-hidden="true">
+      <div style="position: absolute; inset: 0">
+        <div class="stamp" style="left: 3%; top: 58%; width: 168px; height: 168px; border-radius: 50%; transform: rotate(-14deg); font-size: 12px; gap: 6px; border-width: 4px"><span>Arrived</span><span style="font-family: var(--f-display); font-size: 30px; letter-spacing: .04em">LHR</span><span>12 · SEP · 2026</span></div>
+        <div class="stamp" style="left: 38%; top: 4%; width: 220px; height: 92px; border-radius: 10px; transform: rotate(7deg); font-size: 11px; gap: 4px"><span>Departed · Abuja</span><span style="font-family: var(--f-display); font-size: 26px; letter-spacing: .06em">ABV ✈</span><span>Nnamdi Azikiwe Intl</span></div>
+        <div class="stamp" style="right: 4%; bottom: 6%; width: 190px; height: 112px; border-radius: 4px; transform: rotate(-6deg); font-size: 11px; gap: 4px"><span>Entry · Visa</span><span style="font-family: var(--f-display); font-size: 24px">YYZ</span><span>Toronto · 2026</span></div>
+        <div class="stamp" style="left: 44%; bottom: 3%; width: 128px; height: 128px; border-radius: 50%; transform: rotate(18deg); font-size: 11px; gap: 4px"><span>Lagos</span><span style="font-family: var(--f-display); font-size: 22px">LOS</span><span>Out · 2026</span></div>
+      </div>
+    </div>
+    <div class="art" aria-hidden="true">
+      <svg style="position: absolute; left: -40px; top: 0" width="100%" height="100%" viewBox="0 0 1440 700" preserveAspectRatio="xMidYMid slice" fill="#0f3d1f">
+        <g>
+          {[80, 120, 160].map((y) => [80, 120, 160, 200, 240].map((x) => <circle cx={x} cy={y} r="3"></circle>))}
+        </g>
+        <path d="M120 600 C 420 420, 820 680, 1380 260" fill="none" stroke="#0f3d1f" stroke-width="2" stroke-dasharray="6 8"></path>
+        <text x="1240" y="640" font-family="Newsreader, serif" font-style="italic" font-size="300">“</text>
+      </svg>
+    </div>
+    <div class="wrap" style="display: flex; flex-direction: column; gap: 48px">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px">
+        <div style="display: flex; flex-direction: column; gap: 16px; align-items: flex-start; max-width: 640px">
+          <span class="tab rv">Client stories</span>
+          <h2 class="h1 rv">In their words, with their visa type and year.</h2>
+        </div>
+        <div class="rv" style="display: flex; align-items: center; gap: 12px">
+          <span class="meta" style="color: var(--ink-subtle); margin-right: 8px"><span data-story-pos>1</span> / {STORIES.length}</span>
+          <button type="button" class="iconbtn" aria-label="Previous story" data-story-prev><Icon name="arrowLeft" size={20} strokeWidth={2} /></button>
+          <button type="button" class="iconbtn" aria-label="Next story" data-story-next><Icon name="arrow" size={20} strokeWidth={2} /></button>
+        </div>
+      </div>
+      <div class="g-story" data-stories-root>
+        <div class="rv" aria-live="polite">
+          {STORIES.map((st, i) => (
+            <figure class="card" data-story data-key={String(i)} hidden={i !== 0} style="margin: 0; padding: 40px; background: var(--brass-tint); border-color: rgba(138,97,24,.2); display: flex; flex-direction: column; gap: 24px">
+              <span aria-hidden="true" style="font-family: var(--f-serif); font-style: italic; font-size: 88px; line-height: 48px; color: var(--brass-ink); height: 40px">“</span>
+              <blockquote style="margin: 0; font-family: var(--f-serif); font-style: italic; font-size: 24px; line-height: 36px">{st.quote}</blockquote>
+              <figcaption style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap">
+                <Avatar initials={st.initials} size={64} tone="brass" />
+                <span style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 600">{st.name}</span><span class="meta" style="color: var(--ink-subtle)">{st.context}</span></span>
+                <span class="chip chip-forest" style="margin-left: auto"><Icon name="check" size={12} stroke="var(--signal)" strokeWidth={2.5} />APPROVED</span>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 12px" data-story-list>
+          <Photo class="rv" icon="video" alt="Client testimonial video" brief="Video · Client testimonial, 60–90s, with consent" style="height: 200px; margin-bottom: 4px" />
+          {STORIES.map((st, i) => (
+            <button type="button" class="story-btn rv" aria-pressed={i === 0 ? 'true' : 'false'} data-key={String(i)}>
+              <span class="bar"></span>
+              <span style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 600">{st.name}</span><span class="meta" style="color: var(--ink-subtle)">{st.context}</span></span>
+            </button>
+          ))}
+          <p style="margin: 8px 0 0; font-size: 13px; line-height: 20px; color: var(--ink-subtle)">Stories are shared with written consent. Names and outcomes are verified against our case records.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="sec" style="background: var(--paper)">
+    <div class="art" aria-hidden="true">
+      <div class="stamp" style="left: 4%; bottom: 10%; width: 200px; height: 200px; border-radius: 50%; border-width: 4px; font-size: 12px; gap: 6px; transform: rotate(-12deg)"><span>Honest answers</span><span style="font-family: var(--f-display); font-size: 34px">FAQ</span><span>No guarantees sold</span></div>
+    </div>
+    <div class="wrap g-faq">
+      <div style="display: flex; flex-direction: column; gap: 16px; align-items: flex-start">
+        <span class="tab rv">FAQ</span>
+        <h2 class="h1 rv">The questions people are often afraid to ask.</h2>
+        <p class="rv muted" style="margin: 0">Still unsure? <WaLink message="Hello Imelda Yayala, I have a question.">Message a consultant on WhatsApp</WaLink> and get a straight answer.</p>
+      </div>
+      <FaqAccordion faqs={FAQS} group="faq-home" />
+    </div>
+  </section>
+
+  <!-- CLOSING CTA -->
+  <section id="contact" class="on-dark" style="background: var(--charcoal); color: var(--on-charcoal); padding: 112px 0; position: relative; overflow: hidden">
+    <div class="art art-dark" aria-hidden="true">
+      <svg width="100%" height="100%" viewBox="0 0 1440 640" preserveAspectRatio="xMidYMid slice" fill="none">
+        <g stroke="#c9a45c" stroke-width="2" stroke-dasharray="6 8"><path d="M720 560 Q 400 300 80 120"></path><path d="M720 560 Q 1040 300 1360 120"></path><path d="M720 560 Q 640 260 520 40"></path><path d="M720 560 Q 820 260 940 40"></path></g>
+        <circle cx="720" cy="560" r="10" fill="#c9a45c"></circle>
+        <circle cx="720" cy="560" r="34" stroke="#c9a45c" stroke-width="1.5"></circle>
+      </svg>
+    </div>
+    <div class="wrap" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 24px; max-width: 920px">
+      <span class="overline rv" style="color: var(--brass)">Your next step</span>
+      <h2 class="rv" style="margin: 0; font-family: var(--f-display); font-weight: 600; font-size: 44px; line-height: 50px; letter-spacing: -.03em">Tell us where you're headed. We'll tell you honestly if you're ready.</h2>
+      <p class="rv" style="margin: 0; font-size: 19px; line-height: 30px; color: #d6d4cd; max-width: 56ch">Book a free 30-minute consultation on WhatsApp. Tell us your goal and destination, and a consultant replies within one working day.</p>
+      <div class="rv" style="margin-top: 8px">
+        <WaLink class="btn btn-accent"><Icon name="whatsapp" size={20} /> Book a consultation</WaLink>
+      </div>
+      <p class="rv" style="margin: 8px 0 0; display: flex; align-items: center; gap: 8px; color: #c8c6bf; font-size: 14px"><Icon name="pin" size={16} stroke="var(--signal)" />Walk-ins welcome at {site.address.street}, {site.address.city}</p>
+    </div>
+  </section>
+</Base>
+
+<script>
+  import { selectIn, showOnly, autoplay } from '../scripts/ui';
+
+  const $ = <T extends HTMLElement>(sel: string) => document.querySelector<T>(sel);
+  const $$ = <T extends HTMLElement>(sel: string) => Array.from(document.querySelectorAll<T>(sel));
+  const out = (key: string, text: string) => $$(`[data-out="${key}"]`).forEach((el) => (el.textContent = text));
+
+  // Hero ticket: destination picker, auto-advancing
+  const dests = $$('[data-dests] button');
+  const pickDest = (b: HTMLElement) => {
+    selectIn(dests, b);
+    out('code', b.dataset.code!);
+    out('city', b.dataset.city!);
+  };
+  dests.forEach((b) => b.addEventListener('click', () => pickDest(b)));
+  autoplay($('[data-dests]')?.parentElement ?? null, {
+    count: dests.length,
+    current: () => dests.findIndex((b) => b.getAttribute('aria-pressed') === 'true'),
+    show: (i) => pickDest(dests[i]),
+    interval: 3500,
+  });
+
+  // Steps (tabs): auto-advance; hovering a step shows it and pauses there.
+  const tabs = $$('[data-steps] [role="tab"]');
+  const pickStep = (tab: HTMLElement) => {
+    const idx = tabs.indexOf(tab);
+    tabs.forEach((t, i) => {
+      t.setAttribute('aria-selected', String(t === tab));
+      t.tabIndex = t === tab ? 0 : -1;
+      t.classList.toggle('done', i < idx);
+    });
+    showOnly($$('[data-step-panel]'), tab.dataset.key!);
+    $$('[data-step-panel]').forEach((p) => p.classList.add('in'));
+  };
+  tabs.forEach((t, i) => {
+    t.addEventListener('click', () => pickStep(t));
+    t.addEventListener('mouseenter', () => pickStep(t));
+    t.addEventListener('keydown', (e) => {
+      const next = e.key === 'ArrowRight' ? i + 1 : e.key === 'ArrowLeft' ? i - 1 : null;
+      if (next === null) return;
+      const target = tabs[(next + tabs.length) % tabs.length];
+      pickStep(target);
+      target.focus();
+    });
+  });
+  autoplay($('[data-steps-root]'), {
+    count: tabs.length,
+    current: () => tabs.findIndex((t) => t.getAttribute('aria-selected') === 'true'),
+    show: (i) => pickStep(tabs[i]),
+    interval: 5000,
+  });
+
+  // Client stories
+  const storyBtns = $$('[data-story-list] button');
+  let story = 0;
+  const showStory = (i: number) => {
+    story = (i + storyBtns.length) % storyBtns.length;
+    selectIn(storyBtns, storyBtns[story]);
+    showOnly($$('[data-story]'), String(story));
+    const pos = $('[data-story-pos]');
+    if (pos) pos.textContent = String(story + 1);
+  };
+  storyBtns.forEach((b, i) => {
+    b.addEventListener('click', () => showStory(i));
+    b.addEventListener('mouseenter', () => showStory(i));
+  });
+  $('[data-story-prev]')?.addEventListener('click', () => showStory(story - 1));
+  $('[data-story-next]')?.addEventListener('click', () => showStory(story + 1));
+
+  autoplay($('[data-stories-root]'), { count: storyBtns.length, current: () => story, show: showStory, interval: 7000 });
+</script>

@@ -1,0 +1,33 @@
+---
+import Base from '../layouts/Base.astro';
+import ApplicationHero from '../components/ApplicationHero.astro';
+import HelpBand from '../components/HelpBand.astro';
+import TravelApplicationForm from '../components/forms/TravelApplicationForm';
+import '../styles/forms.css';
+---
+
+<Base
+  title="Travel Visa Application Form | Imelda Yayala"
+  description="Apply for your travel or visitor visa with Imelda Yayala. Complete the travel application form and upload your signed visa form, passport scan and terms document."
+  breadcrumbs={[{ name: 'Travel application', path: '/travel-application/' }]}
+  hasFaq={false}
+>
+  <ApplicationHero
+    crumb="Travel application"
+    tab="Travel application"
+    title="Travel visa application, without the stress."
+    lead="Don't let visa paperwork hold you back. Fill in this form after your consultation and our travel visa team will prepare your appointment application."
+    checklist={[
+      'You have had your consultation with Imelda Yayala.',
+      'Your passport and travel dates are at hand.',
+      'Your signed visa application form, a clear passport scan and the signed visa terms and conditions, each as a PDF.',
+      'Details of a contact person in the country you are visiting.',
+    ]}
+  />
+  <section id="application" class="sec" style="background: var(--surface); border-top: 1px solid var(--line); padding-top: 64px">
+    <div class="wrap">
+      <TravelApplicationForm client:load />
+    </div>
+  </section>
+  <HelpBand />
+</Base>

@@ -1,0 +1,10 @@
+---
+// Link that opens WhatsApp with a prefilled message (see `waLink` in src/data/site.ts).
+import { site, waLink, CONSULT_MESSAGE } from '../data/site';
+
+interface Props { message?: string; class?: string; style?: string }
+const { message = CONSULT_MESSAGE, class: className, style } = Astro.props;
+const external = Boolean(site.whatsapp);
+---
+
+<a class={className} style={style} href={waLink(message)} target={external ? '_blank' : undefined} rel={external ? 'noopener' : undefined}><slot /></a>

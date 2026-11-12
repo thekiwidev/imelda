@@ -1,0 +1,340 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import Photo from '../components/Photo.astro';
+import coupleAirport from '../assets/photos/couple-airport.jpeg';
+import WaLink from '../components/WaLink.astro';
+import { site, callLink, type Faq } from '../data/site';
+
+const WHENS = [
+  { id: 'w1', label: '< 1 month', months: 0.75, chip: 'VERY TIGHT', chipBg: '#b42318', bg: '#fef3f2', text: 'Some visas take longer than this. Message us today and we will tell you honestly whether the date is realistic.', plan: [['TODAY', 'Message us on WhatsApp'], ['THIS WEEK', 'Free call and document check'], ['ASAP', 'Submit and book the earliest appointment'], ['AFTER DECISION', 'Book flights and insurance']] },
+  { id: 'w2', label: '1–3 months', months: 2, chip: 'START THIS WEEK', chipBg: '#b54708', bg: '#fff6ed', text: 'Workable for many destinations, but appointments can fill up. Start now.', plan: [['THIS WEEK', 'Free call and dated checklist'], ['WEEK 2', 'Gather statements and letters'], ['WEEK 3', 'Submit and attend biometrics'], ['WAIT', 'Decision from the authority'], ['APPROVED', 'Book flights and insurance']] },
+  { id: 'w3', label: '3–6 months', months: 4.5, chip: 'GOOD TIME TO START', chipBg: '#0f3d1f', bg: '#e8f0ea', text: 'Enough time to prepare properly and apply when the rules allow.', plan: [['THIS MONTH', 'Free call and dated checklist'], ['NEXT MONTH', 'Gather documents, host letters'], ['WHEN OPEN', 'Submit and attend biometrics'], ['WAIT', 'Decision from the authority'], ['APPROVED', 'Book flights and insurance']] },
+  { id: 'w4', label: '6+ months', months: 7, chip: 'EARLY · GREAT', chipBg: '#475467', bg: '#faf8f3', text: 'Plenty of time. We plan now and tell you the earliest date you can apply.', plan: [['THIS MONTH', 'Free call and a dated plan'], ['MONTHS AHEAD', 'Build bank history and documents'], ['WHEN OPEN', 'Submit and attend biometrics'], ['WAIT', 'Decision from the authority'], ['APPROVED', 'Book flights and insurance']] },
+];
+const DEFAULT_WHEN = 'w2';
+const TRIPS = [
+  { id: 'hol', label: 'Holiday', word: 'holiday' },
+  { id: 'fam', label: 'Family visit', word: 'family visit' },
+  { id: 'evt', label: 'Wedding or graduation', word: 'event' },
+  { id: 'biz', label: 'Business', word: 'business trip' },
+];
+const TICKETS = [
+  { icon: 'sun', code: 'HOL · ADMIT', title: 'Holiday', body: 'Sightseeing, rest, a city you have always wanted to see.', docs: ['Travel itinerary', 'Hotel bookings', 'Bank statements', 'Proof of job or business at home'] },
+  { icon: 'users', code: 'FAM · ADMIT', title: 'Family visit', body: 'Seeing children, parents or relatives who live abroad.', docs: ["Host's invitation letter", "Host's ID and proof of status", 'Proof of relationship', 'Proof of ties at home'] },
+  { icon: 'gift', code: 'EVT · ADMIT', title: 'Weddings and graduations', body: "A date that won't move, so the plan starts from it.", docs: ['Event invitation', 'Travel dates', 'Accommodation details', 'Bank statements'] },
+  { icon: 'briefcase', code: 'BIZ · ADMIT', title: 'Business trip', body: 'Meetings, conferences, trade fairs and site visits.', docs: ['Invitation from the host company', 'Letter from your employer', 'Company registration documents', 'Conference or meeting details'] },
+] as const;
+const HOST = [
+  { title: 'Who you are', body: 'Your full name, address abroad and contact details.' },
+  { title: 'Who you are inviting', body: 'Their name, passport number and your relationship.' },
+  { title: 'Dates and reason', body: 'Arrival and departure dates, and why they are visiting.' },
+  { title: 'Where they stay, who pays', body: 'Your address, and who covers which costs.' },
+  { title: 'Your status', body: 'Your citizenship or residence, with copies attached.' },
+];
+const DESTS = [
+  { code: 'LHR', country: 'United Kingdom', visa: 'Standard Visitor visa', how: 'Online form, then biometrics at a visa centre' },
+  { code: 'JFK', country: 'United States', visa: 'B1/B2 visitor visa', how: 'DS-160 form, then an embassy interview' },
+  { code: 'CDG', country: 'Schengen area', visa: 'Short-stay Schengen visa', how: "At the visa centre of the country you'll spend longest in" },
+  { code: 'YYZ', country: 'Canada', visa: 'Visitor visa', how: 'Online application with biometrics' },
+  { code: 'DXB', country: 'UAE', visa: 'Tourist visa', how: 'Usually through an airline, hotel or sponsor' },
+  { code: 'DUB', country: 'Ireland', visa: 'Short-stay visa', how: 'Online form, then documents to the visa office' },
+];
+const FAQS: Faq[] = [
+  { q: 'How early should I apply?', a: 'As early as the rules allow. Processing times change through the year, so we check the current official estimate for your destination and build your plan around it.' },
+  { q: 'Should I book flights before the visa?', a: 'Usually not. Many visas only need a planned itinerary. We tell you what your application needs, and book flights once you are approved.' },
+  { q: 'Can you help my family visit me abroad?', a: 'Yes. We work with you as the host and with your family as applicants, wherever each of you lives.' },
+  { q: 'Do I have to come to your office?', a: 'No. Most of the work happens on WhatsApp and video. You only appear in person for biometrics or an embassy interview.' },
+];
+const MON = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+// Build-time estimate; the page script recomputes it from the visitor's own date.
+const fly = new Date(Date.now() + Math.round(2 * 30.4) * 864e5);
+const letter = [
+  '<b style="font-weight: 600">Ngozi Adeyemi</b><br>14 Harrow Road, London W2 1AA<br>+44 7700 900123 · ngozi.adeyemi@example.com',
+  'I am writing to invite my mother, Mrs Grace Okafor (passport A01234567), to visit me.',
+  'The visit will be from 12 June 2026 to 10 July 2026, for my graduation from King\'s College London.',
+  'She will stay with me at the address above. I will cover the costs of her stay.',
+  'I am a British citizen. Copies of my passport and proof of address are attached.',
+];
+const docItem = 'font-size: 14px; line-height: 22px; color: var(--ink-muted)';
+---
+
+<Base
+  title="Visitor Visa Help: Make the Trip, Keep the Date | Imelda Yayala"
+  description="Make the trip. Keep the date. Holidays, family visits, weddings, graduations and business trips: tell us the date you can't miss and we file a complete visitor visa."
+  breadcrumbs={[{ name: 'Travel and visits', path: '/travel-visa/' }]}
+  faqs={FAQS}
+  service={{ name: 'Visitor visa and travel planning', serviceType: 'Visitor visa consultancy', description: 'Visitor visa applications, invitation letters and dated travel plans for the UK, US, Schengen area, Canada, UAE and Ireland.' }}
+>
+  <!-- HERO -->
+  <section id="top" data-parallax style="position: relative; overflow: hidden; padding: 64px 0 96px; background: var(--paper)">
+    <div class="wrap" style="display: flex; flex-direction: column; gap: 40px">
+      <Breadcrumb current="Travel and visits" />
+      <div style="position: relative">
+        <div class="px" data-px="-10,-6">
+          <Photo eager src={coupleAirport} alt="Couple with luggage arriving at an airport" style="height: 560px" />
+        </div>
+        <div class="card rv travel-card pad-sm" style="position: relative; margin: -220px 0 0 48px; max-width: 640px; padding: 40px; display: flex; flex-direction: column; gap: 24px; align-items: flex-start; box-shadow: 0 4px 8px rgba(15,61,31,.05), 0 24px 48px rgba(15,61,31,.12)">
+          <span class="tab">Travel and visits</span>
+          <h1 class="display" style="max-width: 12ch; font-size: 56px; line-height: 62px">Make the trip. Keep the date.</h1>
+          <p class="lead">Holidays, family visits, weddings, graduations and business trips. Tell us the date you can't miss; we work backwards from it and file a complete visitor visa.</p>
+          <div style="display: flex; flex-wrap: wrap; gap: 12px">
+            <a class="btn btn-primary" href="#planner">Plan my trip <Icon name="arrow" size={20} stroke="var(--signal)" strokeWidth={2} class="arr" /></a>
+            <a class="btn btn-secondary" href="#host">Inviting family?</a>
+          </div>
+          <dl style="margin: 0; display: flex; flex-wrap: wrap; gap: 24px">
+            <div style="display: flex; flex-direction: column; gap: 2px"><dt class="meta" style="color: var(--ink-subtle)">REPLIES</dt><dd style="margin: 0; font-weight: 600">Within one working day</dd></div>
+            <div style="display: flex; flex-direction: column; gap: 2px"><dt class="meta" style="color: var(--ink-subtle)">FIRST CALL</dt><dd style="margin: 0; font-weight: 600">Free, 30 minutes</dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLANNER -->
+  <section id="planner" class="sec" style="background: var(--paper); padding-top: 32px">
+    <div class="wrap g-split" style="align-items: start">
+      <div style="display: flex; flex-direction: column; gap: 20px; align-items: flex-start; padding-top: 24px">
+        <span class="tab rv">Trip planner</span>
+        <h2 class="h1 rv">How much time do you have?</h2>
+        <p class="lead rv">Pick when you travel and why. We'll show you how tight it is and what happens first.</p>
+        <ul class="bullets rv" style="margin-top: 8px; display: flex; flex-direction: column; gap: 12px">
+          <li><Icon name="bullet" size={10} stroke="var(--forest)" /><span class="muted">Processing times change through the year. We check the current official estimate.</span></li>
+          <li><Icon name="bullet" size={10} stroke="var(--forest)" /><span class="muted">We book flights after approval, so you don't lose money on a refused visa.</span></li>
+        </ul>
+      </div>
+      <div class="card rv" data-planner-root style="padding: 0; overflow: hidden; box-shadow: var(--shadow-md)">
+        <div style="display: grid; grid-template-columns: 132px minmax(0, 1fr)">
+          <div aria-live="polite" style="background: var(--forest); color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; padding: 24px 12px">
+            <span class="overline" style="color: var(--on-forest-muted)">You fly</span>
+            <span data-fly-month style="font-family: var(--f-display); font-weight: 600; font-size: 44px; line-height: 48px; letter-spacing: -.02em; color: var(--brass)">{MON[fly.getMonth()]}</span>
+            <span class="meta" data-fly-year style="color: var(--on-forest-muted)">AROUND {fly.getFullYear()}</span>
+          </div>
+          <div style="padding: 24px; display: flex; flex-direction: column; gap: 16px">
+            <div style="display: flex; flex-direction: column; gap: 8px">
+              <span id="when-label" style="font-weight: 600; font-size: 14px; line-height: 20px">When do you travel?</span>
+              <div role="group" aria-labelledby="when-label" data-whens style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px">
+                {WHENS.map((w) => <button type="button" class="when" aria-pressed={w.id === DEFAULT_WHEN ? 'true' : 'false'} data-id={w.id} data-months={w.months}>{w.label}</button>)}
+              </div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 8px">
+              <span id="trip-label" style="font-weight: 600; font-size: 14px; line-height: 20px">Kind of trip</span>
+              <div role="group" aria-labelledby="trip-label" data-trips style="display: flex; flex-wrap: wrap; gap: 6px">
+                {TRIPS.map((t, i) => <button type="button" class="dest" aria-pressed={i === 0 ? 'true' : 'false'} data-word={t.word}>{t.label}</button>)}
+              </div>
+            </div>
+          </div>
+        </div>
+        {WHENS.map((w) => (
+          <div data-when-panel data-key={w.id} hidden={w.id !== DEFAULT_WHEN}>
+            <div role="status" style={`padding: 20px 24px; background: ${w.bg}; border-top: 1px solid var(--line); display: flex; gap: 12px; align-items: flex-start`}>
+              <span class="chip" style={`background: ${w.chipBg}; color: #fff; flex: none`}>{w.chip}</span>
+              <span style="font-size: 14px; line-height: 22px">{w.text}</span>
+            </div>
+            <ol style="list-style: none; margin: 0; padding: 24px; display: flex; flex-direction: column; border-top: 1px solid var(--line)">
+              {w.plan.map(([when, text], i) => (
+                <li style="display: grid; grid-template-columns: 96px 16px minmax(0, 1fr); gap: 12px; align-items: start; padding: 8px 0">
+                  <span class="meta" style={`color: ${i === 0 ? 'var(--forest)' : 'var(--ink-subtle)'}; text-align: right; padding-top: 2px`}>{when}</span>
+                  <span aria-hidden="true" style={`width: 12px; height: 12px; margin-top: 5px; border-radius: 999px; background: ${i === 0 ? 'var(--forest)' : '#fff'}; border: 2px solid var(--forest)`}></span>
+                  <span style="font-size: 15px; line-height: 24px">{text}</span>
+                </li>
+              ))}
+            </ol>
+          </div>
+        ))}
+        <div style="padding: 0 24px 24px"><a class="btn btn-primary btn-block" href="#contact" data-plan-cta>Start my&nbsp;<span data-trip-word>{TRIPS[0].word}</span>&nbsp;plan <Icon name="arrow" size={20} stroke="var(--signal)" strokeWidth={2} class="arr" /></a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRIP TICKETS -->
+  <section class="sec" style="background: var(--surface); border-top: 1px solid var(--line)">
+    <div class="wrap" style="display: flex; flex-direction: column; gap: 40px">
+      <div style="display: flex; flex-direction: column; gap: 16px; align-items: flex-start; max-width: 720px">
+        <span class="tab rv">Kinds of trip</span>
+        <h2 class="h1 rv">Every reason to travel has its own paperwork.</h2>
+      </div>
+      <div class="g-tix">
+        {TICKETS.map((t) => (
+          <article class="ticket rv">
+            <div style="background: var(--forest-tint); border-right: 2px dashed var(--line-strong); display: flex; flex-direction: column; align-items: center; justify-content: space-between; padding: 24px 0; color: var(--forest)">
+              <Icon name={t.icon} size={28} />
+              <span class="meta" aria-hidden="true" style="writing-mode: vertical-rl; transform: rotate(180deg); letter-spacing: .2em">{t.code}</span>
+            </div>
+            <div style="padding: 28px; display: flex; flex-direction: column; gap: 12px">
+              <h3 class="h3">{t.title}</h3>
+              <p class="muted" style="margin: 0; font-size: 15px; line-height: 24px">{t.body}</p>
+              <ul class="bullets" style="margin-top: 4px; padding-top: 14px; border-top: 1px solid var(--line); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 16px">
+                {t.docs.map((d) => <li style={docItem}><Icon name="bullet" size={10} stroke="var(--forest)" /><span>{d}</span></li>)}
+              </ul>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- HOST LETTER -->
+  <section id="host" class="sec" style="background: var(--paper)">
+    <div class="wrap g-split" data-host-root style="align-items: start">
+      <div style="display: flex; flex-direction: column; gap: 20px; align-items: flex-start">
+        <span class="tab rv">Inviting family</span>
+        <h2 class="h1 rv">Living abroad and inviting family? Here is what your letter needs.</h2>
+        <p class="rv muted" style="margin: 0">A clear invitation letter answers the officer's questions before they ask them. Here is where each point goes.</p>
+        <ol class="rv" data-host style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px; width: 100%">
+          {HOST.map((h, i) => (
+            <li class:list={['hostli', { on: i === 0 }]} tabindex="0" data-key={String(i)}>
+              <span class="n" aria-hidden="true">{i + 1}</span>
+              <span style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 600">{h.title}</span><span class="muted" style="font-size: 14px; line-height: 22px">{h.body}</span></span>
+            </li>
+          ))}
+        </ol>
+      </div>
+      <figure class="rv" aria-label="Example invitation letter layout" style="margin: 0">
+        <div class="card pad-sm" style="padding: 48px; box-shadow: var(--shadow-md); display: flex; flex-direction: column; gap: 14px; font-size: 14px; line-height: 22px">
+          <div style="display: flex; justify-content: space-between; gap: 16px"><span class="letter-part on" data-part="0" set:html={letter[0]} /><span class="meta" style="color: var(--ink-subtle)">3 MARCH 2026</span></div>
+          <span>To the Visa Officer,</span>
+          {letter.slice(1).map((l, i) => <span class="letter-part" data-part={String(i + 1)}>{l}</span>)}
+          <span style="margin-top: 8px">Yours faithfully,<br /><span style="font-family: var(--f-serif); font-style: italic; font-size: 22px; line-height: 32px; color: var(--ink-muted)">Ngozi Adeyemi</span></span>
+        </div>
+        <figcaption class="meta" style="color: var(--ink-subtle); margin-top: 12px">ILLUSTRATIVE LAYOUT · WE TAILOR IT TO THE DESTINATION'S RULES</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- DESTINATIONS -->
+  <section class="sec" style="background: var(--surface); border-top: 1px solid var(--line)">
+    <div class="art" aria-hidden="true">
+      <div style="position: absolute; inset: -40px">
+        <svg width="100%" height="100%" viewBox="0 0 1440 820" preserveAspectRatio="xMidYMid slice" fill="none">
+          <g stroke="#0f3d1f" stroke-width="2" stroke-dasharray="6 8" stroke-linecap="round"><path d="M120 700 Q 420 120 980 90"></path><path d="M120 700 Q 700 520 1380 300"></path></g>
+          <g fill="#0f3d1f"><circle cx="120" cy="700" r="8"></circle><circle cx="980" cy="90" r="5"></circle><circle cx="1380" cy="300" r="5"></circle></g>
+        </svg>
+      </div>
+    </div>
+    <div class="wrap" style="display: flex; flex-direction: column; gap: 32px">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px">
+        <div style="display: flex; flex-direction: column; gap: 16px; align-items: flex-start; max-width: 640px">
+          <span class="tab rv">Destinations</span>
+          <h2 class="h1 rv">Where our travellers go, and how each one works.</h2>
+        </div>
+        <span class="meta rv" style="color: var(--ink-subtle)">WE CHECK CURRENT RULES FOR EVERY CASE</span>
+      </div>
+      <div class="rv" style="border-top: 1px solid var(--line-strong)">
+        <div class="drow hide-sm" aria-hidden="true" style="padding-top: 12px; padding-bottom: 12px"><span class="overline" style="color: var(--ink-subtle)">Code</span><span class="overline" style="color: var(--ink-subtle)">Destination</span><span class="overline hide-md" style="color: var(--ink-subtle)">Visa</span><span class="overline hide-md" style="color: var(--ink-subtle)">How you apply</span><span></span></div>
+        {DESTS.map((d) => (
+          <WaLink class="drow" message={`Hello Imelda Yayala, I'd like help with a ${d.visa} for ${d.country}.`}>
+            <span aria-hidden="true" style="font-family: var(--f-display); font-weight: 600; font-size: 32px; line-height: 36px; letter-spacing: -.02em; color: var(--forest)">{d.code}</span>
+            <span style="font-weight: 600; font-size: 17px">{d.country}</span>
+            <span class="hide-md" style="font-size: 15px; line-height: 24px">{d.visa}</span>
+            <span class="hide-md muted" style="font-size: 15px; line-height: 24px">{d.how}</span>
+            <Icon name="arrow" size={22} stroke="var(--forest)" strokeWidth={2} class="go" />
+          </WaLink>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- REFUSED BANNER -->
+  <section style="background: var(--surface); padding: 0 0 96px">
+    <div class="wrap">
+      <a href="/#services" class="rv svc" style="display: flex; flex-wrap: wrap; gap: 24px; align-items: center; justify-content: space-between; padding: 32px 40px; border-radius: 12px; background: var(--forest-tint); border: 1px solid rgba(15,61,31,.2)">
+        <span style="display: flex; gap: 20px; align-items: center"><span class="tile" style="background: var(--surface)"><Icon name="refresh" /></span><span style="display: flex; flex-direction: column; gap: 2px"><span class="h3">Refused a visitor visa before?</span><span class="muted" style="font-size: 15px">Bring the letter. We'll read the reasons and show you what to change before you reapply.</span></span></span>
+        <span style="display: flex; align-items: center; gap: 8px; font-weight: 600; color: var(--forest)">Start a refusal review <Icon name="arrow" size={20} stroke="var(--forest)" strokeWidth={2} class="go" /></span>
+      </a>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="sec" style="background: var(--paper)">
+    <div class="wrap" style="display: flex; flex-direction: column; gap: 24px">
+      <div style="display: flex; flex-direction: column; gap: 16px; align-items: flex-start">
+        <span class="tab rv">Quick answers</span>
+        <h2 class="h1 rv">What travellers ask us most.</h2>
+      </div>
+      <div style="border-top: 1px solid var(--line)">
+        {FAQS.map((f) => (
+          <div class="g-qa rv"><h3 class="h3">{f.q}</h3><p class="muted" style="margin: 0">{f.a}</p></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSING -->
+  <section id="contact" style="background: var(--brass-tint); border-top: 1px solid rgba(138,97,24,.25); padding: 96px 0">
+    <div class="wrap" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 20px; max-width: 760px">
+      <span class="overline rv" style="color: var(--brass-ink)">Your next step</span>
+      <h2 class="rv" style="margin: 0; font-family: var(--f-display); font-weight: 600; font-size: 44px; line-height: 50px; letter-spacing: -.03em">Tell us the date. We'll work back from it.</h2>
+      <p class="rv muted" style="margin: 0; font-size: 19px; line-height: 30px">Send your travel date and destination on WhatsApp. A consultant replies with your dated checklist and a time for your free call.</p>
+      <div class="rv" style="display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 8px">
+        <WaLink class="btn btn-primary" message="Hello Imelda Yayala, I'd like help planning a trip. My travel date is:"><Icon name="whatsapp" size={18} /> Message us on WhatsApp</WaLink>
+        <a class="btn btn-secondary" href={callLink()}><Icon name="phone" size={18} /> Call {site.phone}</a>
+      </div>
+      <span class="meta rv" style="color: var(--brass-ink)">REPLY WITHIN ONE WORKING DAY</span>
+    </div>
+  </section>
+</Base>
+
+<script>
+  import { selectIn, showOnly, autoplay, openWhatsApp } from '../scripts/ui';
+
+  const $$ = <T extends HTMLElement>(sel: string) => Array.from(document.querySelectorAll<T>(sel));
+  const MON = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+
+  const setFly = (months: number) => {
+    const d = new Date();
+    d.setDate(d.getDate() + Math.round(months * 30.4));
+    document.querySelector('[data-fly-month]')!.textContent = MON[d.getMonth()];
+    document.querySelector('[data-fly-year]')!.textContent = `AROUND ${d.getFullYear()}`;
+  };
+
+  const whens = $$('[data-whens] button');
+  const pickWhen = (b: HTMLElement) => {
+    selectIn(whens, b);
+    showOnly($$('[data-when-panel]'), b.dataset.id!);
+    setFly(Number(b.dataset.months));
+  };
+  whens.forEach((b) => b.addEventListener('click', () => pickWhen(b)));
+  const active = whens.find((b) => b.getAttribute('aria-pressed') === 'true');
+  if (active) setFly(Number(active.dataset.months));
+
+  const trips = $$('[data-trips] button');
+  const pickTrip = (b: HTMLElement) => {
+    selectIn(trips, b);
+    document.querySelector('[data-trip-word]')!.textContent = b.dataset.word!;
+  };
+  trips.forEach((b) => b.addEventListener('click', () => pickTrip(b)));
+
+  // The planner cycles through timings and trip types until the visitor hovers or picks one.
+  const pressed = (list: HTMLElement[]) => list.findIndex((b) => b.getAttribute('aria-pressed') === 'true');
+  const planner = document.querySelector<HTMLElement>('[data-planner-root]');
+  autoplay(planner, { count: whens.length, current: () => pressed(whens), show: (i) => pickWhen(whens[i]), interval: 4500 });
+  autoplay(planner, { count: trips.length, current: () => pressed(trips), show: (i) => pickTrip(trips[i]), interval: 3000 });
+
+  // "Start my plan" opens WhatsApp with the chosen timing and trip type.
+  document.querySelector('[data-plan-cta]')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    const when = whens[pressed(whens)]?.textContent?.trim() ?? '';
+    const trip = trips[pressed(trips)]?.textContent?.trim() ?? '';
+    openWhatsApp(`Hello Imelda Yayala, I'd like to plan a trip.\nKind of trip: ${trip}\nWhen I travel: ${when} from now\nPlease send me a dated checklist.`);
+  });
+
+  // Invitation letter: highlight the part of the letter each checklist point maps to.
+  const items = $$('[data-host] li');
+  const parts = $$('[data-part]');
+  const pickHost = (li: HTMLElement) => {
+    items.forEach((x) => x.classList.toggle('on', x === li));
+    parts.forEach((p) => p.classList.toggle('on', p.dataset.part === li.dataset.key));
+  };
+  items.forEach((li) => {
+    li.addEventListener('mouseenter', () => pickHost(li));
+    li.addEventListener('focus', () => pickHost(li));
+  });
+  autoplay(document.querySelector('[data-host-root]'), {
+    count: items.length,
+    current: () => items.findIndex((li) => li.classList.contains('on')),
+    show: (i) => pickHost(items[i]),
+    interval: 3500,
+  });
+</script>

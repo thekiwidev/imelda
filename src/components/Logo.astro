@@ -1,0 +1,18 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.png';
+
+interface Props { height?: number; eager?: boolean }
+const { height = 40, eager = false } = Astro.props;
+---
+
+<Image
+  src={logo}
+  alt="Imelda Yayala"
+  height={height}
+  width={Math.round((logo.width / logo.height) * height)}
+  densities={[1, 2]}
+  loading={eager ? 'eager' : 'lazy'}
+  fetchpriority={eager ? 'high' : undefined}
+  style="display: block; height: auto"
+/>

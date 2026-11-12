@@ -1,0 +1,33 @@
+---
+import Base from '../layouts/Base.astro';
+import ApplicationHero from '../components/ApplicationHero.astro';
+import HelpBand from '../components/HelpBand.astro';
+import StudentApplicationForm from '../components/forms/StudentApplicationForm';
+import '../styles/forms.css';
+---
+
+<Base
+  title="Student Visa Application Form | Imelda Yayala"
+  description="Apply for your student visa with Imelda Yayala. Complete the student application form with your personal, parent and emergency contact details after your consultation."
+  breadcrumbs={[{ name: 'Student application', path: '/student-application/' }]}
+  hasFaq={false}
+>
+  <ApplicationHero
+    crumb="Student application"
+    tab="Student application"
+    title="Student visa application, made easy."
+    lead="Turn your plan to study overseas into a complete application. Fill in this form after your consultation and we'll check every detail before anything is submitted."
+    checklist={[
+      'You have had your consultation with Imelda Yayala.',
+      'Your passport details are at hand.',
+      "Your parents' and an emergency contact's details are ready.",
+      'You can confirm the applicant and parent or guardian signatures.',
+    ]}
+  />
+  <section id="application" class="sec" style="background: var(--surface); border-top: 1px solid var(--line); padding-top: 64px">
+    <div class="wrap">
+      <StudentApplicationForm client:load />
+    </div>
+  </section>
+  <HelpBand />
+</Base>

@@ -1,0 +1,13 @@
+---
+// Visible breadcrumb; the matching BreadcrumbList structured data is emitted by Base.astro.
+interface Props { current: string }
+const { current } = Astro.props;
+---
+
+<nav aria-label="Breadcrumb" class="crumb rv">
+  <ol>
+    <li><a href="/">Home</a></li>
+    <li aria-hidden="true">/</li>
+    <li aria-current="page">{current}</li>
+  </ol>
+</nav>

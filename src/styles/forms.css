@@ -1,0 +1,45 @@
+/* Application forms (student and travel). Loaded only on the two application pages. */
+.fform { display: flex; flex-direction: column; gap: 0; }
+.fsection { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 32px; padding: 40px 0; border-top: 1px solid var(--line); }
+.fcard { padding: 32px; display: flex; flex-direction: column; gap: 24px; }
+.fgrid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 24px 20px; }
+.fspan-2 { grid-column: span 2; }
+.fspan-3 { grid-column: span 3; }
+.fspan-4 { grid-column: span 4; }
+.fspan-6 { grid-column: span 6; }
+.fform .flabel { color: var(--ink); }
+.finput { width: 100%; min-height: 48px; padding: 12px 14px; border-radius: 8px; border: 1px solid var(--line-strong); background: var(--surface); font-family: var(--f-sans); font-size: 16px; line-height: 24px; color: var(--ink); }
+textarea.finput { resize: vertical; min-height: 128px; }
+.finput:focus { outline: 2px solid var(--forest); outline-offset: 2px; border-color: var(--forest); }
+.finput.is-invalid { border-color: var(--danger); }
+.finput.is-invalid:focus { outline-color: var(--danger); }
+.ffile { padding: 10px 12px; cursor: pointer; }
+.ffile::file-selector-button { font-family: var(--f-sans); font-weight: 600; font-size: 14px; margin-right: 12px; padding: 8px 14px; border: 0; border-radius: 6px; background: var(--forest-tint); color: var(--forest); cursor: pointer; }
+.ferr { margin: 6px 0 0; font-size: 14px; line-height: 20px; color: var(--danger); }
+.fnote { margin: 6px 0 0; font-size: 13px; line-height: 20px; color: var(--ink-subtle); }
+.fsub { margin: 8px 0 0; font-family: var(--f-mono); font-weight: 500; font-size: 12px; line-height: 16px; letter-spacing: .14em; text-transform: uppercase; color: var(--brass-ink); }
+.fsub-caution { color: var(--caution); }
+.fradio { border: 0; margin: 0; padding: 0; min-width: 0; }
+.fradio legend { padding: 0; }
+.fradio-opts { display: flex; flex-wrap: wrap; gap: 8px; }
+.fchoice { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: 10px 14px; border: 1px solid var(--line); border-radius: 8px; background: #fff; font-size: 15px; cursor: pointer; transition: all 120ms var(--ease); }
+.fchoice:has(input:checked) { background: var(--forest-tint); border-color: var(--forest); color: var(--forest); font-weight: 600; }
+.fchoice input, .fcheck input, .falert input { accent-color: var(--forest); width: 18px; height: 18px; margin: 0; flex: none; }
+.fcheck { display: flex; gap: 14px; align-items: flex-start; }
+.fcheck input { margin-top: 3px; }
+.falert { display: flex; gap: 14px; align-items: flex-start; padding: 20px 24px; margin-bottom: 8px; border-radius: 12px; background: var(--caution-tint); border: 1px solid rgba(181,71,8,.3); color: var(--caution); }
+.falert input { margin-top: 3px; }
+.falert.is-done { background: var(--forest-tint); border-color: rgba(15,61,31,.25); color: var(--forest); }
+.freq { padding-bottom: 24px; border-bottom: 1px solid var(--line); }
+.freq:last-child { padding-bottom: 0; border-bottom: 0; }
+.fspinner { width: 16px; height: 16px; border-radius: 999px; border: 2px solid rgba(255,255,255,.35); border-top-color: #fff; animation: fspin 800ms linear infinite; }
+.btn:disabled { background: var(--surface-sunken); color: var(--ink-subtle) !important; box-shadow: none; cursor: not-allowed; }
+@keyframes fspin { to { transform: rotate(360deg); } }
+@media (max-width: 900px) {
+  .fsection { grid-template-columns: 1fr; gap: 20px; }
+}
+@media (max-width: 640px) {
+  .fcard { padding: 20px; }
+  .fgrid { grid-template-columns: 1fr; }
+  .fspan-2, .fspan-3, .fspan-4, .fspan-6 { grid-column: auto; }
+}

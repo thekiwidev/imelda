@@ -1,0 +1,355 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import FaqAccordion from '../components/FaqAccordion.astro';
+import Photo from '../components/Photo.astro';
+import healthcareWorker from '../assets/photos/healthcare-worker.webp';
+import consultantCall from '../assets/photos/consultant-call.jpeg';
+import WaLink from '../components/WaLink.astro';
+import { site, callLink, type Faq } from '../data/site';
+
+const QS = [
+  { text: 'Do you have a written job offer or contract?', flagOn: 'no', flag: 'No written contract yet' },
+  { text: 'Has anyone asked you to pay for the job offer?', flagOn: 'yes', flag: 'You were asked to pay for the offer' },
+  { text: "Can you find the employer's official website and address?", flagOn: 'no', flag: 'The employer could not be found' },
+  { text: 'Does the offer state your salary and working hours?', flagOn: 'no', flag: 'Salary or hours are missing' },
+  { text: 'Has anyone guaranteed you will get the visa?', flagOn: 'yes', flag: 'Someone "guaranteed" the visa' },
+];
+const ROUTES = [
+  { id: 'uk', from: 'ABV', code: 'LHR', country: 'United Kingdom', name: 'Skilled Worker visa', body: 'For a job with a UK employer that holds a sponsor licence. The role and salary must meet the current rules for your occupation.', employer: ['A Home Office sponsor licence', 'A certificate of sponsorship for you', 'A role and salary that meet the rules'], you: ['A genuine job offer', 'English at the required level', 'Proof of funds, unless the sponsor certifies them'], sponsor: 'Required', lang: 'English test or exemption' },
+  { id: 'ca', from: 'LOS', code: 'YYZ', country: 'Canada', name: 'Employer-backed work permit', body: 'Most work permits need a job offer and, often, a labour market assessment. Skilled workers may also qualify for permanent residence through Express Entry.', employer: ['A genuine job offer', 'A labour market assessment, unless exempt', 'Compliance with Canadian employment rules'], you: ['Proof of qualifications and experience', 'Language test for some routes', 'Medical and police checks, if required'], sponsor: 'Usually', lang: 'English or French test for some routes' },
+  { id: 'de', from: 'ABV', code: 'FRA', country: 'Germany', name: 'EU Blue Card and skilled worker routes', body: 'For graduates and recognised professionals with a qualifying job offer. Your qualification usually needs to be recognised in Germany first.', employer: ['A concrete job offer', 'A salary that meets the threshold for your route', 'Approval from the labour authority, where needed'], you: ['A recognised degree or vocational qualification', 'Health insurance', 'German for some roles'], sponsor: 'Job offer needed', lang: 'Depends on the role' },
+  { id: 'ie', from: 'LOS', code: 'DUB', country: 'Ireland', name: 'Employment permit', body: 'Your employer applies for a permit for roles on the critical skills or general employment lists, then you apply for your visa.', employer: ['An employment permit application', 'A role on an eligible list', 'A salary that meets the minimum for the permit'], you: ['Qualifications for the role', 'A valid passport and visa application', 'Proof of experience'], sponsor: 'Employer applies', lang: 'English' },
+  { id: 'pl', from: 'LCA', code: 'WAW', country: 'Poland', name: 'Work permit and national visa', body: 'Your employer obtains a work permit first, then you apply for a national visa. Popular with clients already living in the EU region, for example in Cyprus.', employer: ['A work permit from the local authority', 'A written contract', 'Pay that meets the local rules'], you: ['A valid passport', 'The work permit and contract', 'Health insurance and accommodation details'], sponsor: 'Employer applies', lang: 'Depends on the role' },
+  { id: 'au', from: 'ABV', code: 'MEL', country: 'Australia', name: 'Employer-sponsored visas', body: 'For occupations on the current skills lists, with an approved Australian sponsor. Skills assessments are common.', employer: ['Approval as a sponsor', 'A nomination for your role', 'A salary that meets the threshold'], you: ['A skills assessment, if required', 'English at the required level', 'Health and character checks'], sponsor: 'Required', lang: 'English test or exemption' },
+];
+const FIELDS = [
+  { n: '01', icon: 'briefcase', title: 'Office and professional', sub: 'Finance, IT, engineering, admin, sales.', pack: ['CV formatted for the destination', 'Degree and professional certificates', 'Reference letters from employers', 'English test, if required'] },
+  { n: '02', icon: 'wrench', title: 'Skilled trades', sub: 'Electricians, welders, drivers, construction, hospitality.', pack: ['Trade certificates or a skills test', 'Proof of hands-on experience', 'Photos or logs of past work', 'Police certificate, if required'] },
+  { n: '03', icon: 'heart', title: 'Healthcare', sub: 'Nurses, carers, doctors, pharmacists, allied health.', pack: ['Professional registration or licence', 'Degree and transcripts', 'English test (e.g. IELTS, OET)', 'Medical and police checks, if required'] },
+] as const;
+const TIMELINE = [
+  { title: 'Assessment', body: 'Your role, experience and goal on a free 30-minute call.' },
+  { title: 'Offer and route check', body: 'We verify the employer, read the contract and confirm the visa route fits.', chip: 'PROTECTS YOUR MONEY' },
+  { title: 'Documents', body: 'CV, credentials, references and any licence applications prepared with you.' },
+  { title: 'Work visa', body: 'Forms filed with you, biometrics booked, interview practised.' },
+  { title: 'Relocation', body: 'Flights, an arrival checklist, and next steps for family joining you.' },
+];
+const FAQS: Faq[] = [
+  { q: 'Can you find me a job abroad?', a: 'We are not a recruiter and we do not sell jobs. We help you build a strong CV, check offers you receive, and file the visa once you have a genuine offer.' },
+  { q: 'A recruiter asked me to pay for a job offer. Is that normal?', a: 'Treat it as a serious warning. Talk to us before you pay anything. We will check the employer and the offer for free in your consultation.' },
+  { q: 'I live outside Nigeria. Can you still file for me?', a: 'Yes. We work with clients applying from many countries, for example from Cyprus to Poland. We check the rules for the country you are applying from.' },
+  { q: 'Can my family come with me?', a: 'Often, depending on the route and your salary. We tell you who can join you and file their applications alongside yours.' },
+];
+const NEXT = [
+  { t: 'Send a photo or PDF of the offer', d: "On WhatsApp. Cover your passport number if it's on there." },
+  { t: 'We check the employer and route', d: 'Official registers, the contract terms and the visa rules.' },
+  { t: 'You get a written go or no-go', d: "With the next steps if it's genuine, and the reasons if it isn't." },
+];
+const row = 'display: flex; justify-content: space-between; gap: 16px; padding: 14px 0; border-top: 1px solid var(--line)';
+const listItem = 'font-size: 15px; line-height: 24px; color: var(--ink-muted)';
+---
+
+<Base
+  title="Work Abroad Through Routes That Are Real | Imelda Yayala"
+  description="Work abroad through routes that are real. We check the job, the employer and the visa route before you spend money, then prepare your CV and file the work visa with you."
+  breadcrumbs={[{ name: 'Work abroad', path: '/work-abroad/' }]}
+  faqs={FAQS}
+  service={{ name: 'Work abroad and work visa support', serviceType: 'Work visa consultancy', description: 'Job offer and employer checks, CV and evidence packs, and work visa applications for the UK, Canada, Germany, Ireland, Poland and Australia.' }}
+>
+  <!-- HERO -->
+  <section id="top" data-parallax style="position: relative; overflow: hidden; padding: 64px 0 96px; background: var(--paper)">
+    <div class="wrap" style="display: flex; flex-direction: column; gap: 48px">
+      <Breadcrumb current="Work abroad" />
+      <div class="g-hero" style="align-items: center">
+        <div style="display: flex; flex-direction: column; gap: 24px; align-items: flex-start">
+          <span class="tab rv">Work abroad</span>
+          <h1 class="display rv" style="max-width: 14ch">Work abroad through routes that are real.</h1>
+          <p class="lead rv">We check the job, the employer and the visa route before you spend money on any of them. Then we prepare your CV and file the work visa with you.</p>
+          <div class="rv" style="display: flex; flex-wrap: wrap; gap: 12px">
+            <a class="btn btn-primary" href="#check">Check my offer <Icon name="arrow" size={20} stroke="var(--signal)" strokeWidth={2} class="arr" /></a>
+            <a class="btn btn-secondary" href="#routes">See work routes</a>
+          </div>
+        </div>
+        <div class="rv px stack-sm" data-px="-10,-6" style="display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 12px">
+          <Photo eager src={healthcareWorker} alt="Healthcare worker in scrubs with a stethoscope" style="height: 460px" />
+          <div style="display: flex; flex-direction: column; gap: 12px">
+            <Photo src={consultantCall} alt="Consultant on a phone call reviewing documents" style="height: 220px" />
+            <div style="flex: 1; border-radius: 12px; background: var(--forest-tint); border: 1px solid rgba(15,61,31,.15); padding: 20px; display: flex; flex-direction: column; justify-content: space-between; gap: 12px">
+              <span class="chip chip-forest" style="align-self: flex-start"><Icon name="check" size={12} stroke="var(--signal)" strokeWidth={2.5} />OFFER VERIFIED</span>
+              <span style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 600">Chinedu E.</span><span class="meta" style="font-size: 11px; color: var(--ink-subtle)">SKILLED WORKER · CANADA · 2024</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="check" class="card rv" style="padding: 0; overflow: hidden; box-shadow: var(--shadow-md)">
+        <div class="g-tool">
+          <div class="pad-sm" style="padding: 32px; display: flex; flex-direction: column; gap: 8px">
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 8px">
+              <h2 class="h3">Got a job offer? Check it in 30 seconds.</h2>
+              <span class="meta" style="color: var(--ink-subtle)"><span data-answered>0</span> OF 5 ANSWERED</span>
+            </div>
+            {QS.map((q, i) => (
+              <div role="group" aria-label={q.text} data-q={i} data-flag-on={q.flagOn} data-flag={q.flag} style="display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 14px 0; border-top: 1px solid var(--line)">
+                <span style="display: flex; gap: 12px; align-items: baseline"><span class="meta" style="color: var(--ink-subtle)">0{i + 1}</span><span style="font-size: 15px; line-height: 24px">{q.text}</span></span>
+                <span style="display: flex; gap: 4px; padding: 4px; background: var(--surface-sunken); border-radius: 8px; flex: none">
+                  <button type="button" class="yn" aria-pressed="false" data-val="yes">Yes</button>
+                  <button type="button" class="yn" aria-pressed="false" data-val="no">No</button>
+                </span>
+              </div>
+            ))}
+          </div>
+          <div class="tool-verdict pad-sm" role="status" aria-live="polite" data-verdict style="padding: 32px; background: var(--paper); border-left: 1px solid var(--line); display: flex; flex-direction: column; gap: 16px; transition: background-color 320ms var(--ease)">
+            <span class="overline" style="color: var(--ink-subtle)">Our read</span>
+            <span class="chip" data-v="chip" style="align-self: flex-start; background: var(--slate); color: #fff; padding: 6px 10px; font-size: 12px">NOT STARTED</span>
+            <span class="h1" data-v="title" style="font-size: 28px; line-height: 36px">Answer five quick questions.</span>
+            <p class="muted" data-v="body" style="margin: 0">Tap Yes or No for each one. We will tell you whether the offer looks safe to pursue.</p>
+            <ul class="bullets" data-flags hidden style="display: flex; flex-direction: column; gap: 8px"></ul>
+            <template id="flag-tpl"><li style="font-size: 14px; line-height: 22px"><Icon name="alert" size={18} stroke="#b42318" style="margin-top: 2px" /><span></span></li></template>
+            <div style="margin-top: auto; display: flex; flex-wrap: wrap; gap: 12px; padding-top: 8px">
+              <a class="btn btn-primary btn-sm" href="#contact" data-offer-cta><span data-v="cta">Or just send us the offer</span> <Icon name="arrow" size={18} stroke="var(--signal)" strokeWidth={2} class="arr" /></a>
+              <button type="button" class="btn btn-secondary btn-sm" data-reset-qs>Start again</button>
+            </div>
+            <span style="font-size: 12px; line-height: 18px; color: var(--ink-subtle)">A quick self-check, not legal advice. We verify every offer properly in your free consultation.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROUTES -->
+  <section id="routes" class="sec" style="background: var(--surface); border-top: 1px solid var(--line)">
+    <div class="art" aria-hidden="true">
+      <div class="stamp" style="right: 6%; top: 6%; width: 230px; height: 230px; border-radius: 50%; border-width: 5px; font-size: 13px; gap: 6px; transform: rotate(-12deg)"><span>Employer</span><span style="font-family: var(--f-display); font-size: 34px; letter-spacing: .06em">VERIFIED</span><span>Before you pay</span></div>
+    </div>
+    <div class="wrap" data-routes-root style="display: flex; flex-direction: column; gap: 40px">
+      <div style="display: flex; flex-direction: column; gap: 16px; align-items: flex-start; max-width: 720px">
+        <span class="tab rv">Work routes</span>
+        <h2 class="h1 rv">The route depends on where, and on the employer.</h2>
+      </div>
+      <div class="rv" role="tablist" aria-label="Destination" data-routes style="display: flex; flex-wrap: wrap; border-bottom: 1px solid var(--line)">
+        {ROUTES.map((r, i) => (
+          <button type="button" class="ctry" role="tab" id={`route-tab-${r.id}`} aria-controls={`route-${r.id}`} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1} data-key={r.id}>
+            <span class="meta">{r.code}</span><span style="font-weight: 600; font-size: 15px">{r.country}</span>
+          </button>
+        ))}
+      </div>
+      {ROUTES.map((r, i) => (
+        <div role="tabpanel" id={`route-${r.id}`} aria-labelledby={`route-tab-${r.id}`} class="g-route" data-route-panel data-key={r.id} hidden={i !== 0}>
+          <div style="display: flex; flex-direction: column; gap: 20px">
+            <span class="meta" style="color: var(--brass-ink)">{r.from} → {r.code} · {r.country}</span>
+            <h3 class="h1">{r.name}</h3>
+            <p class="muted" style="margin: 0; max-width: 60ch">{r.body}</p>
+            <div class="g-2" style="gap: 32px; margin-top: 8px">
+              <div style="display: flex; flex-direction: column; gap: 12px"><h4 style="margin: 0; font-weight: 600; font-size: 14px">The employer usually needs</h4>
+                <ul class="bullets" style="display: flex; flex-direction: column; gap: 12px">{r.employer.map((x) => <li style={listItem}><Icon name="bullet" size={10} stroke="var(--forest)" />{x}</li>)}</ul></div>
+              <div style="display: flex; flex-direction: column; gap: 12px"><h4 style="margin: 0; font-weight: 600; font-size: 14px">You usually need</h4>
+                <ul class="bullets" style="display: flex; flex-direction: column; gap: 12px">{r.you.map((x) => <li style={listItem}><Icon name="bullet" size={10} stroke="var(--forest)" />{x}</li>)}</ul></div>
+            </div>
+          </div>
+          <dl style="margin: 0; background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 28px; display: flex; flex-direction: column; align-self: start">
+            <span class="overline" style="color: var(--ink-subtle); padding-bottom: 16px">Route record</span>
+            <div style={row}><dt class="meta" style="color: var(--ink-subtle)">SPONSOR</dt><dd style="margin: 0; font-size: 14px; font-weight: 600; text-align: right">{r.sponsor}</dd></div>
+            <div style={row}><dt class="meta" style="color: var(--ink-subtle)">FAMILY</dt><dd style="margin: 0; font-size: 14px; font-weight: 600; text-align: right">Depends on route and salary</dd></div>
+            <div style={row}><dt class="meta" style="color: var(--ink-subtle)">LANGUAGE</dt><dd style="margin: 0; font-size: 14px; font-weight: 600; text-align: right">{r.lang}</dd></div>
+            <div style={row}><dt class="meta" style="color: var(--ink-subtle)">WE CHECK</dt><dd style="margin: 0; font-size: 14px; font-weight: 600; text-align: right">Current official rules</dd></div>
+            <WaLink class="btn btn-primary" message={`Hello Imelda Yayala, I'd like to ask about working in ${r.country} (${r.name}).`} style="margin-top: 16px">Ask about {r.country} <Icon name="arrow" size={20} stroke="var(--signal)" strokeWidth={2} class="arr" /></WaLink>
+          </dl>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- FIELDS -->
+  <section class="sec" style="background: var(--paper)">
+    <div class="wrap" style="display: flex; flex-direction: column; gap: 48px">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px">
+        <div style="display: flex; flex-direction: column; gap: 16px; align-items: flex-start; max-width: 640px">
+          <span class="tab rv">Your field</span>
+          <h2 class="h1 rv">Different work, different evidence.</h2>
+        </div>
+        <p class="rv muted" style="margin: 0; max-width: 44ch">We prepare a CV and evidence pack that matches what employers and officers in your field look for.</p>
+      </div>
+      <div class="g-3">
+        {FIELDS.map((f) => (
+          <div class="card lift svc rv" style="padding: 0; overflow: hidden; display: flex; flex-direction: column">
+            <div style="padding: 32px 32px 24px; display: flex; flex-direction: column; gap: 16px; border-top: 4px solid var(--forest)">
+              <div style="display: flex; justify-content: space-between; align-items: center"><div class="tile"><Icon name={f.icon} /></div><span aria-hidden="true" style="font-family: var(--f-display); font-weight: 500; font-size: 40px; line-height: 44px; color: var(--line)">{f.n}</span></div>
+              <h3 class="h3" style="font-size: 22px; line-height: 30px">{f.title}</h3>
+              <p style={`margin: 0; ${listItem}`}>{f.sub}</p>
+            </div>
+            <div style="padding: 24px 32px 32px; background: var(--paper); border-top: 1px solid var(--line); flex: 1">
+              <span class="overline" style="color: var(--brass-ink)">Evidence pack</span>
+              <ul class="bullets" style="margin-top: 14px; display: flex; flex-direction: column; gap: 10px">
+                {f.pack.map((x) => <li style="font-size: 15px; line-height: 24px"><Icon name="bullet" size={10} stroke="var(--forest)" /><span>{x}</span></li>)}
+              </ul>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section id="how" class="sec" style="background: var(--surface-sunken)">
+    <div class="wrap g-tl">
+      <div style="display: flex; flex-direction: column; gap: 16px; align-items: flex-start">
+        <span class="tab rv">How it works</span>
+        <h2 class="h1 rv">Five steps. The first one protects your money.</h2>
+        <p class="rv muted" style="margin: 0">Nothing gets filed, and nothing gets paid to anyone abroad, until the offer and the route have been checked.</p>
+      </div>
+      <div class="rv" style="position: relative">
+      <span aria-hidden="true" style="position: absolute; left: 19px; top: 20px; bottom: 20px; width: 2px; background: var(--line-strong)"></span>
+      <ol style="list-style: none; margin: 0; padding: 0; position: relative">
+        {TIMELINE.map((t, i) => (
+          <li style="display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 24px; padding-bottom: 32px; position: relative">
+            <span aria-hidden="true" style={`width: 40px; height: 40px; border-radius: 999px; border: 2px solid var(--forest); background: ${t.chip ? 'var(--forest)' : 'var(--surface)'}; color: ${t.chip ? '#fff' : 'var(--forest)'}; display: flex; align-items: center; justify-content: center; font-family: var(--f-mono); font-weight: 500; font-size: 14px; position: relative; z-index: 1`}>{i + 1}</span>
+            <div class="card" style="padding: 24px; display: flex; flex-direction: column; gap: 8px">
+              <span class="meta" style="color: var(--ink-subtle)">STEP {i + 1} OF 5</span>
+              <h3 class="h3">{t.title}</h3>
+              <p style={`margin: 0; ${listItem}`}>{t.body}</p>
+              {t.chip && <span class="chip" style="background: var(--brass-tint); color: var(--brass-ink); align-self: flex-start">{t.chip}</span>}
+            </div>
+          </li>
+        ))}
+      </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="sec" style="background: var(--paper)">
+    <div class="wrap" style="max-width: 880px; display: flex; flex-direction: column; gap: 32px">
+      <div style="display: flex; flex-direction: column; gap: 16px; align-items: flex-start">
+        <span class="tab rv">FAQ</span>
+        <h2 class="h1 rv">What job seekers ask us most.</h2>
+      </div>
+      <FaqAccordion faqs={FAQS} group="faq-work" />
+    </div>
+  </section>
+
+  <!-- CLOSING -->
+  <section id="contact" class="on-dark" style="background: var(--charcoal); color: var(--on-charcoal); padding: 96px 0">
+    <div class="wrap g-split" style="align-items: start">
+      <div style="display: flex; flex-direction: column; gap: 20px; align-items: flex-start">
+        <span class="overline rv" style="color: var(--brass)">Your next step</span>
+        <h2 class="rv" style="margin: 0; font-family: var(--f-display); font-weight: 600; font-size: 40px; line-height: 48px; letter-spacing: -.03em">Send us the offer before you send anyone money.</h2>
+        <p class="rv" style="margin: 0; font-size: 18px; line-height: 28px; color: #d6d4cd">We check it for free in your consultation and tell you plainly whether to go ahead.</p>
+        <div class="rv" style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px">
+          <WaLink class="btn btn-accent" message="Hello Imelda Yayala, I have a job offer I'd like you to check before I pay anything."><Icon name="whatsapp" size={18} /> Send it on WhatsApp</WaLink>
+          <a class="btn" href={callLink()} style="color: var(--on-charcoal) !important; box-shadow: inset 0 0 0 1.5px #c8c6bf"><Icon name="phone" size={18} /> Call {site.phone}</a>
+        </div>
+      </div>
+      <ol class="rv" style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; border-top: 1px solid var(--charcoal-line)">
+        {NEXT.map((n, i) => (
+          <li style="display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 16px; padding: 24px 0; border-bottom: 1px solid var(--charcoal-line)">
+            <span aria-hidden="true" style="font-family: var(--f-display); font-weight: 500; font-size: 32px; line-height: 36px; color: var(--brass)">0{i + 1}</span>
+            <span><b style="font-weight: 600">{n.t}</b><br /><span style="color: #c8c6bf; font-size: 15px">{n.d}</span></span>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+</Base>
+
+<script>
+  import { selectIn, showOnly, autoplay, openWhatsApp } from '../scripts/ui';
+
+  const $$ = <T extends HTMLElement>(sel: string, root: ParentNode = document) => Array.from(root.querySelectorAll<T>(sel));
+
+  // Offer checker: verdict rules match the design exactly.
+  const VERDICTS = {
+    none: { chip: 'NOT STARTED', chipBg: '#475467', bg: '#faf8f3', title: 'Answer five quick questions.', body: 'Tap Yes or No for each one. We will tell you whether the offer looks safe to pursue.', cta: 'Or just send us the offer' },
+    stop: { chip: 'STOP · RED FLAGS', chipBg: '#b42318', bg: '#fef3f2', title: 'Stop and talk to us before you pay.', body: 'These answers match patterns we see in fake job offers. Do not send money or documents until we have checked it.', cta: 'Get this offer checked' },
+    check: { chip: 'CHECK BEFORE YOU PAY', chipBg: '#b54708', bg: '#fff6ed', title: 'One thing needs checking.', body: 'It may be fine, but it needs a closer look before you commit any money.', cta: 'Get this offer checked' },
+    partial: { chip: 'SO FAR SO GOOD', chipBg: '#0f3d1f', bg: '#faf8f3', title: 'No red flags yet.', body: 'Finish the remaining questions for a fuller picture.', cta: 'Send us the offer' },
+    clear: { chip: 'LOOKS GENUINE SO FAR', chipBg: '#0f3d1f', bg: '#e8f0ea', title: 'Good signs. Let us confirm it.', body: 'Nothing obvious stands out. We will still verify the employer and the visa route before you apply.', cta: 'Start my work visa' },
+  };
+  const groups = $$('[data-q]');
+  const answers: (string | null)[] = groups.map(() => null);
+  const verdict = document.querySelector<HTMLElement>('[data-verdict]')!;
+  const flagList = verdict.querySelector<HTMLElement>('[data-flags]')!;
+  const tpl = document.querySelector<HTMLTemplateElement>('#flag-tpl')!;
+  const setText = (key: string, text: string) => {
+    const el = verdict.querySelector<HTMLElement>(`[data-v="${key}"]`);
+    if (el) el.textContent = text;
+  };
+
+  const render = () => {
+    const flags = groups.filter((g, i) => answers[i] === g.dataset.flagOn).map((g) => g.dataset.flag!);
+    const answered = answers.filter(Boolean).length;
+    const v =
+      answered === 0 ? VERDICTS.none
+      : flags.length >= 2 ? VERDICTS.stop
+      : flags.length === 1 ? VERDICTS.check
+      : answered < 5 ? VERDICTS.partial
+      : VERDICTS.clear;
+    verdict.style.background = v.bg;
+    (verdict.querySelector('[data-v="chip"]') as HTMLElement).style.background = v.chipBg;
+    setText('chip', v.chip);
+    setText('title', v.title);
+    setText('body', v.body);
+    setText('cta', v.cta);
+    flagList.replaceChildren(
+      ...flags.map((f) => {
+        const li = tpl.content.firstElementChild!.cloneNode(true) as HTMLElement;
+        li.querySelector('span')!.textContent = f;
+        return li;
+      }),
+    );
+    flagList.hidden = flags.length === 0;
+    document.querySelector('[data-answered]')!.textContent = String(answered);
+    groups.forEach((g, i) => $$('button', g).forEach((b) => b.setAttribute('aria-pressed', String(answers[i] === b.dataset.val))));
+  };
+
+  groups.forEach((g, i) =>
+    $$('button', g).forEach((b) =>
+      b.addEventListener('click', () => {
+        answers[i] = answers[i] === b.dataset.val ? null : b.dataset.val!;
+        render();
+      }),
+    ),
+  );
+  document.querySelector('[data-reset-qs]')?.addEventListener('click', () => {
+    answers.fill(null);
+    render();
+  });
+
+  // The verdict button opens WhatsApp with the visitor's answers written out.
+  document.querySelector('[data-offer-cta]')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    const lines = groups
+      .map((g, i) => (answers[i] ? `- ${g.getAttribute('aria-label')} ${answers[i] === 'yes' ? 'Yes' : 'No'}` : ''))
+      .filter(Boolean);
+    openWhatsApp(
+      ['Hello Imelda Yayala, please check a job offer for me.', ...(lines.length ? ['My answers to your offer check:', ...lines] : [])].join('\n'),
+    );
+  });
+
+  // Route tabs: auto-advance; hovering a tab shows it and pauses there.
+  const tabs = $$('[data-routes] [role="tab"]');
+  const pick = (tab: HTMLElement) => {
+    selectIn(tabs, tab, 'aria-selected');
+    tabs.forEach((t) => (t.tabIndex = t === tab ? 0 : -1));
+    showOnly($$('[data-route-panel]'), tab.dataset.key!);
+  };
+  tabs.forEach((t, i) => {
+    t.addEventListener('click', () => pick(t));
+    t.addEventListener('mouseenter', () => pick(t));
+    t.addEventListener('keydown', (e) => {
+      const next = e.key === 'ArrowRight' ? i + 1 : e.key === 'ArrowLeft' ? i - 1 : null;
+      if (next === null) return;
+      const target = tabs[(next + tabs.length) % tabs.length];
+      pick(target);
+      target.focus();
+    });
+  });
+  autoplay(document.querySelector('[data-routes-root]'), {
+    count: tabs.length,
+    current: () => tabs.findIndex((t) => t.getAttribute('aria-selected') === 'true'),
+    show: (i) => pick(tabs[i]),
+    interval: 6000,
+  });
+</script>

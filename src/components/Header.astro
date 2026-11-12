@@ -1,0 +1,26 @@
+---
+import Icon from './Icon.astro';
+import Logo from './Logo.astro';
+import WaLink from './WaLink.astro';
+import { nav } from '../data/site';
+
+interface Props { faqHref?: string }
+const { faqHref = '#faq' } = Astro.props;
+const path = Astro.url.pathname;
+---
+
+<header style="position: sticky; top: 0; z-index: 30; background: var(--surface); border-bottom: 1px solid var(--line); box-shadow: var(--shadow-sm)">
+  <div class="wrap" style="height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 24px">
+    <a href="/" style="display: flex; align-items: center; text-decoration: none"><Logo eager /></a>
+    <nav class="nav-links" aria-label="Main" style="display: flex; align-items: center; gap: 24px">
+      {nav.map((item) => (
+        <a class="navlink" href={item.href} aria-current={item.href === path ? 'page' : undefined}>{item.label}</a>
+      ))}
+      <a class="navlink" href={faqHref}>FAQ</a>
+    </nav>
+    <div style="display: flex; align-items: center; gap: 12px">
+      <WaLink class="btn btn-secondary btn-sm hide-sm" message="Hello Imelda Yayala, I have a question."><Icon name="whatsapp" size={18} /> WhatsApp us</WaLink>
+      <WaLink class="btn btn-primary btn-sm">Book a consultation <Icon name="arrow" size={18} stroke="var(--signal)" strokeWidth={2} class="arr" /></WaLink>
+    </div>
+  </div>
+</header>

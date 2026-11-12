@@ -1,0 +1,154 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { site, type Faq } from '../data/site';
+
+interface Crumb { name: string; path: string }
+interface Service { name: string; description: string; serviceType: string }
+
+interface Props {
+  title: string;
+  description: string;
+  /** Inner pages pass their trail (Home is added automatically). */
+  breadcrumbs?: Crumb[];
+  /** Questions and answers shown on the page, mirrored as FAQPage structured data. */
+  faqs?: readonly Faq[];
+  service?: Service;
+  /** False on pages without an FAQ section, so the header's FAQ link points to the home page FAQ. */
+  hasFaq?: boolean;
+}
+
+const { title, description, breadcrumbs, faqs, service, hasFaq = true } = Astro.props;
+const siteUrl = Astro.site ?? new URL('https://imeldayayala.com.ng');
+const canonical = new URL(Astro.url.pathname, siteUrl).href;
+const orgId = new URL('/#organization', siteUrl).href;
+
+// Example contact details must never reach structured data: Google would index them as facts.
+const real = (v: string) => (site.detailsVerified && v ? v : undefined);
+const sameAs = Object.values(site.social).filter(Boolean);
+
+const organization = {
+  '@type': 'ProfessionalService',
+  '@id': orgId,
+  name: site.name,
+  url: new URL('/', siteUrl).href,
+  description: site.description,
+  logo: new URL('/logo.png', siteUrl).href,
+  image: new URL('/logo.png', siteUrl).href,
+  areaServed: 'Worldwide',
+  foundingDate: String(site.foundedYear),
+  knowsAbout: ['Study abroad', 'Student visas', 'Work visas', 'Visitor visas', 'Visa refusal review'],
+  telephone: real(site.phone),
+  email: real(site.email),
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: real(site.address.street),
+    addressLocality: real(site.address.city),
+    addressCountry: site.address.countryCode,
+  },
+  sameAs: sameAs.length ? sameAs : undefined,
+};
+
+const graph: Record<string, unknown>[] = [
+  organization,
+  {
+    '@type': 'WebPage',
+    '@id': `${canonical}#webpage`,
+    url: canonical,
+    name: title,
+    description,
+    inLanguage: 'en',
+    isPartOf: { '@type': 'WebSite', '@id': new URL('/#website', siteUrl).href, name: site.name, url: new URL('/', siteUrl).href },
+    about: { '@id': orgId },
+  },
+];
+
+if (breadcrumbs?.length) {
+  const trail = [{ name: 'Home', path: '/' }, ...breadcrumbs];
+  graph.push({
+    '@type': 'BreadcrumbList',
+    itemListElement: trail.map((c, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: c.name,
+      item: new URL(c.path, siteUrl).href,
+    })),
+  });
+}
+
+if (faqs?.length) {
+  graph.push({
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  });
+}
+
+if (service) {
+  graph.push({
+    '@type': 'Service',
+    name: service.name,
+    serviceType: service.serviceType,
+    description: service.description,
+    provider: { '@id': orgId },
+    areaServed: 'Worldwide',
+    url: canonical,
+  });
+}
+
+const jsonLd = JSON.stringify({ '@context': 'https://schema.org', '@graph': graph }).replace(/</g, '\\u003c');
+---
+
+<!doctype html>
+<html lang="en" data-wa={site.whatsapp}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+    <meta name="theme-color" content="#0f3d1f" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:locale" content={site.locale} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL('/logo.png', siteUrl).href} />
+    <meta property="og:image:width" content="1251" />
+    <meta property="og:image:height" content="429" />
+    <meta property="og:image:alt" content={`${site.name} logo`} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:image" content={new URL('/logo.png', siteUrl).href} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&family=Newsreader:ital,wght@1,400&display=swap"
+    />
+    <script is:inline>document.documentElement.classList.add('js')</script>
+    <script type="application/ld+json" set:html={jsonLd} />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <Header faqHref={hasFaq ? '#faq' : '/#faq'} />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+    <script>
+      import '../scripts/ui';
+    </script>
+  </body>
+</html>
