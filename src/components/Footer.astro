@@ -21,13 +21,13 @@ const small = 'margin: 0; font-size: 14px; line-height: 22px; max-width: 34ch';
     <div class="g-ftr">
       <div style="display: flex; flex-direction: column; gap: 20px">
         <div style="background: var(--surface); border-radius: 8px; padding: 12px; align-self: flex-start"><Logo /></div>
-        <p class="muted" style={small}>{site.description}</p>
+        <p class="muted ftr-p" style={small}>{site.description}</p>
         <div style="display: flex; gap: 8px">
           {socials.map((s) => (
             <a class="soc" href={site.social[s.key]} aria-label={`${site.name} on ${s.label}`} target="_blank" rel="noopener"><Icon name={s.key} size={18} /></a>
           ))}
         </div>
-        <p class="muted" style={small}>{site.disclaimer}</p>
+        <p class="muted ftr-p" style={small}>{site.disclaimer}</p>
       </div>
       <nav aria-label="Services" style={col}>
         <span class="overline" style={head}>Explore</span>

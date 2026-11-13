@@ -26,8 +26,17 @@ const links = [...nav, { label: 'FAQ', href: faqHref }];
           {links.map((item) => (
             <a href={item.href} aria-current={item.href === path ? 'page' : undefined}>{item.label}</a>
           ))}
+          <WaLink class="btn btn-accent"><Icon name="whatsapp" size={20} /> Book a consultation</WaLink>
         </nav>
       </details>
     </div>
   </div>
 </header>
+
+<script>
+  const menu = document.querySelector<HTMLDetailsElement>('details.menu');
+  const close = () => { if (menu) menu.open = false; };
+  menu?.addEventListener('click', (e) => { if ((e.target as HTMLElement).closest('.menu-panel a')) close(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+  window.matchMedia('(min-width: 901px)').addEventListener('change', close);
+</script>
